@@ -6,12 +6,13 @@ import UserHeader from './components/organisms/Header';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignPage from './pages/SignPage';
+import LoginPage from './pages/LoginPage';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <UserHeader />
+
         <Routes>
           <Route path='/*' element={<SignPage />} />
         </Routes>
