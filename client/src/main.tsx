@@ -9,8 +9,6 @@ import HomePage from './pages/HomePage';
 import { Provider } from 'react-redux';
 import FaceDetectPage from './pages/face/detect';
 
-
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

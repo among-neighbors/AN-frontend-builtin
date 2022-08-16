@@ -21,7 +21,6 @@
     "@types/cors": "^2.8.12",
     "@types/next": "^9.0.0",
     "@types/nprogress": "^0.2.0",
-    "@types/qs": "^6.9.7",
     "@types/react-bootstrap": "^0.32.30",
     "@types/styled-components": "^5.1.26",
     "autoprefixer": "^10.4.8",
@@ -55,6 +54,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.7.3",
+    "@types/qs": "^6.9.7",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.5",
     "@types/uuid": "^8.3.4",
