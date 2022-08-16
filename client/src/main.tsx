@@ -7,21 +7,25 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignPage from './pages/SignPage';
 import HomePage from './pages/HomePage';
 import { Provider } from 'react-redux';
-import FaceDetectPage from './pages/face/detect';
+import Home from '.';
+import Upload from './pages/Upload';
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <FaceDetectPage />
-        {/* <BrowserRouter>
+      <Upload />
+   
+         <BrowserRouter>
         <SignPage />
 
-          {/* <Routes>
+           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/sign' element={<SignPage />} />
-            <Route path='/faceDetection' element={<FaceDetection />} />
-          </Routes> }
-        </BrowserRouter> */}
+            <Route path='/faceDetection' element={<Upload />} />
+          </Routes> 
+        </BrowserRouter> 
 
     </ThemeProvider>
  

@@ -68,12 +68,12 @@ const Header = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.1rem',
-              color: 'primary',
+              color: 'inherit',
               textDecoration: 'none',
               alignItems: 'center',
             }}
           >
-            <SquareImg src='/img/iconWhite.png' />
+            <SquareImg src='../../../public/img/iconWhite.png' />
             이웃사이
           </Typography>
 
@@ -84,7 +84,7 @@ const Header = () => {
               aria-controls='menu-appbar'
               aria-haspopup='true'
               onClick={handleOpenNavMenu}
-              color='primary'
+              color='inherit'
             >
               <MenuIcon />
             </IconButton>
@@ -131,12 +131,12 @@ const Header = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.1rem',
-              color: 'primary',
+              color: 'inherit',
               textDecoration: 'none',
               alignItems: 'center',
             }}
           >
-            <SquareImg src='/img/iconWhite.png' />
+            <SquareImg src='../../../public/img/iconWhite.png' />
             이웃사이
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -144,7 +144,7 @@ const Header = () => {
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block' }}
                 component={Link}
                 to={page.link}
               >
