@@ -7,27 +7,51 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignPage from './pages/SignPage';
 import HomePage from './pages/HomePage';
 import { Provider } from 'react-redux';
-import Home from '.';
-import Upload from './pages/Upload';
-
-
+import { tableNavStore } from './others/store';
+import NoticePage from './pages/NoticePage';
+import ComplaintPage from './pages/ComplaintPage';
+import CommunityPage from './pages/CommunityPage';
+import NoticeViewPage from './pages/NoticeViewPage';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Upload />
-   
-         <BrowserRouter>
-        <SignPage />
-
-           <Routes>
+      <Provider store={tableNavStore}>
+        <BrowserRouter>
+          
+          <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/sign' element={<SignPage />} />
-            <Route path='/faceDetection' element={<Upload />} />
-          </Routes> 
-        </BrowserRouter> 
-
+            <Route path='/notice' element={<NoticePage />} />
+            <Route path='/notice'>
+              <Route path=':id' element={<NoticeViewPage />} />
+            </Route>
+            <Route path='/complaint' element={<ComplaintPage />} />
+            <Route path='/community' element={<CommunityPage />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
- 
+    <style jsx global>{`
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+          'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      html,
+      body,
+      #root,
+      #root > div {
+        width: 100%;
+      }
+      #root {
+        display: flex;
+        padding-top: 70px;
+      }
+    `}</style>
   </React.StrictMode>,
 );
