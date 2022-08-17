@@ -7,6 +7,16 @@ import * as faceLandmarksDetection from "@tensorflow-models/face-landmarks-detec
 import Webcam from "react-webcam";
 import { MediaPipeFaceMesh } from "@tensorflow-models/face-landmarks-detection/dist/types";
 import { draw } from "../components/atoms/mask";
+import styled from 'styled-components';
+
+const StyledBody = styled.body`
+    height: 100vh;
+    background-color: #EC8034;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+`;
 
 function FaceDetection() {
   const webcam = useRef<Webcam>(null);
@@ -47,9 +57,7 @@ function FaceDetection() {
 
   return (
     <div className="App">
-      <header className="header">
-        <div className="title">face mask App</div>
-      </header>
+      <StyledBody>
       <Webcam
         audio={false}
         ref={webcam}
@@ -75,6 +83,8 @@ function FaceDetection() {
           zIndex: 9,
         }}
       />
+      </StyledBody>
+     
     </div>
   );
 }
