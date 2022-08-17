@@ -55,6 +55,7 @@ function FaceDetection() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [webcam.current?.video?.readyState])
 
+  // test for github issue
   return (
     <div className="App">
       <StyledBody>
