@@ -13,7 +13,6 @@ import styled from 'styled-components';
 const StyledImg = styled.img`
     margin: 0px 90px;
     height: 83px;
-  
     }
 `;
 
@@ -23,11 +22,8 @@ const StyledBody = styled.body`
     display: flex;
     align-items: center;
     justify-content: center;
-
     }
 `;
-
-
 
 function Copyright(props: any) {
   return (
@@ -41,8 +37,6 @@ function Copyright(props: any) {
     </Typography>
   );
 }
-
-
 
 const SignIn = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
