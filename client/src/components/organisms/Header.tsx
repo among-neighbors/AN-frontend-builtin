@@ -31,9 +31,12 @@ const StyledImg2 = styled.img`
 `;
 
 const StyledUp = styled.img`
-
-    width: 400px;
   
+    width: 500px;
+    background-position: 10% 100px;
+    position: fixed;
+    right: 0px;
+    up: 0px;
     }
 `;
 
@@ -79,6 +82,7 @@ const Header = () => {
   return (
     <AppBar style={{ background: '#F5F5F5'  }} elevation={0}  position='fixed' >
       <Container maxWidth='xl'>
+      <StyledUp src="/img/up.png"/>
         <Toolbar disableGutters sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
@@ -130,14 +134,14 @@ const Header = () => {
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
               flexDirection:'row',
-            }} padding={1} margin={5}>
+            }} padding={2} margin={7}>
               
             
             {pages.map((page) => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block', width:'140px', textAlign:'center' , fontSize:'24px' }}
+                sx={{ my: 2, color: 'black', display: 'block', width:'140px', textAlign:'center' , fontSize:'24px', fontWeight: 900}}
                 component={Link}
                 to={page.link}
               > 
