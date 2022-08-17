@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Home from '~/components/organisms/HomeLayout';
+import Home from '../components/organisms/HomeLayout';
 import Header from '../components/organisms/Header';
 const HomePage = (props: any) => {
   useEffect(() => {
