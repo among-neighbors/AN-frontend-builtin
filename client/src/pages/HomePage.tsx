@@ -11,8 +11,6 @@ const HomePage = (props: any) => {
   <Header />
   <Home />
  
-  
-
   </>;
 };
 

@@ -27,6 +27,7 @@
     "@types/react-bootstrap": "^0.32.30",
     "@types/react-webcam": "^3.0.0",
     "@types/styled-components": "^5.1.26",
+    "@vladmandic/face-api": "^1.7.1",
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
     "axios-utils": "^1.1.0",
