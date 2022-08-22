@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { MoteCamAdviceMessage } from "../src/components/organisms/MoteCamMessage";
-import { useLocale } from "../hooks/useLocale";
+//import { useLocale } from "../hooks/useLocale";
 
 
 const useSpeech = ( messages: MoteCamAdviceMessage[] ) => {
 
-    const { languageCode } = useLocale()
+    //const { languageCode } = useLocale()
+
+    const languageCode = 'en-US' ;
 
     useEffect( () => {
 

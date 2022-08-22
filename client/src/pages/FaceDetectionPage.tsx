@@ -1,13 +1,13 @@
-import { useRef, useEffect } from "react";
-
 import "@tensorflow/tfjs-core";
 import "@tensorflow/tfjs-converter";
 import "@tensorflow/tfjs-backend-webgl";
-import * as faceLandmarksDetection from "@tensorflow-models/face-landmarks-detection";
-import Webcam from "react-webcam";
-import { MediaPipeFaceMesh } from "@tensorflow-models/face-landmarks-detection/dist/types";
-import { draw } from "../components/atoms/mask";
 import styled from 'styled-components';
+import { 
+  Box,
+  Heading,
+} from '@chakra-ui/react'
+import { MoteCamComponent } from "../components/organisms/MoteCamComponent";
+
 
 const StyledBody = styled.body`
     height: 100vh;
@@ -19,75 +19,33 @@ const StyledBody = styled.body`
 `;
 
 function FaceDetection() {
-  const webcam = useRef<Webcam>(null);
-  const canvas = useRef<HTMLCanvasElement>(null);
 
-  const runFaceDetect = async () => {
-    const model = await faceLandmarksDetection.load(
-        faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
-    );
-    detect(model);
-  };
+  const localizedStrings = { 
+    APP_TITLE: "AN-frontend-bultin",
+    START_SHOOTING: "Start photo shooting.",
+    END_SHOOTING: "Endt photo shooting.",
+    PICTURE_DID_TAKE: "Pretty Good photo was taken!",
+    GUIDE_MSG_POSITION_GOOD: "It is just good face position",
+    GUIDE_MSG_POSITION_TOO_UPPER: "Be a little lower",
+    GUIDE_MSG_POSITION_TOO_LOWER: "Be a little upper",
+    GUIDE_MSG_POSITION_TOO_RIGHT: "Be a little to the right",
+    GUIDE_MSG_POSITION_TOO_LEFT: "Be a little to the left",
+    GUIDE_MSG_SIZE_GOOD: "Just the right face size",
+    GUIDE_MSG_SIZE_TOO_SMALL: "The face is too small. Bring the face closer to the camera.",
+    GUIDE_MSG_SIZE_TOO_BIG: "The face is too big. Move away from the camera a little more.",
+    GUIDE_MSG_AGE_LOOKALIKE: "Look like %age years old",
+    PHOTO_COMPLETION_TITLE: "Completed",}
 
-  const detect = async (model: MediaPipeFaceMesh) => {
-    if (webcam.current && canvas.current) {
-      const webcamCurrent = webcam.current as any;
-      if (webcamCurrent.video.readyState === 4) {
-        const video = webcamCurrent.video;
-        const videoWidth = webcamCurrent.video.videoWidth;
-        const videoHeight = webcamCurrent.video.videoHeight;
-        canvas.current.width = videoWidth;
-        canvas.current.height = videoHeight;
-        const predictions = await model.estimateFaces({
-          input: video,
-        });
-        const ctx = canvas.current.getContext("2d") as CanvasRenderingContext2D;
-        requestAnimationFrame(() => {
-          draw(predictions, ctx, videoWidth, videoHeight);
-        });
-        detect(model);
-      }
-    }
-  };
-
-  useEffect(() => {
-    runFaceDetect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [webcam.current?.video?.readyState])
-
-  // test for github issue
   return (
-    <div className="App">
-      <StyledBody>
-      <Webcam
-        audio={false}
-        ref={webcam}
-        style={{
-          position: "absolute",
-          margin: "auto",
-          textAlign: "center",
-          top: 100,
-          left: 0,
-          right: 0,
-          zIndex: 9,
-        }}
-      />
-      <canvas
-        ref={canvas}
-        style={{
-          position: "absolute",
-          margin: "auto",
-          textAlign: "center",
-          top: 100,
-          left: 0,
-          right: 0,
-          zIndex: 9,
-        }}
-      />
-      </StyledBody>
-     
-    </div>
-  );
+    <Box mx={'auto'} as='main' maxWidth={'420px'}>
+      <Heading h={"40px"} my={4} w='100%' textAlign='center'>
+        {localizedStrings.APP_TITLE}
+      </Heading>
+      <Box>
+        <MoteCamComponent />
+      </Box>
+    </Box>   
+  )
 }
 
 export default FaceDetection;

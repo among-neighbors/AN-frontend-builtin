@@ -1,0 +1,19 @@
+.videoFrame {
+    position: relative;
+  }
+  
+.drawCanvas {
+    /* transform: rotateY(180deg); */
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 10;
+}
+  
+.videoWebcam{
+    transform: rotateY(180deg);
+}
+  
+/* #canvasPhoto {
+    display: none;
+} */
