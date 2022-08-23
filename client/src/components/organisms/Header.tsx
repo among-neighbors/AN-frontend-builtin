@@ -134,7 +134,7 @@ const Header = () => {
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
               flexDirection:'row',
-            }} padding={2} margin={7}>
+            }} padding={2} margin={3}>
               
             
             {pages.map((page) => (
