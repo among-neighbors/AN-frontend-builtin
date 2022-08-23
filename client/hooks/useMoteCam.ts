@@ -35,20 +35,23 @@ const useMOTECam = (): MoteCamType => {
     const languageCode = 'en-US' ;
 
     const localizedStrings = { 
-        APP_TITLE: "AN-frontend-bultin",
-        START_SHOOTING: "Start photo shooting.",
-        END_SHOOTING: "Endt photo shooting.",
-        PICTURE_DID_TAKE: "Pretty Good photo was taken!",
-        GUIDE_MSG_POSITION_GOOD: "It is just good face position",
-        GUIDE_MSG_POSITION_TOO_UPPER: "Be a little lower",
-        GUIDE_MSG_POSITION_TOO_LOWER: "Be a little upper",
-        GUIDE_MSG_POSITION_TOO_RIGHT: "Be a little to the right",
-        GUIDE_MSG_POSITION_TOO_LEFT: "Be a little to the left",
-        GUIDE_MSG_SIZE_GOOD: "Just the right face size",
-        GUIDE_MSG_SIZE_TOO_SMALL: "The face is too small. Bring the face closer to the camera.",
-        GUIDE_MSG_SIZE_TOO_BIG: "The face is too big. Move away from the camera a little more.",
-        GUIDE_MSG_AGE_LOOKALIKE: "Look like %age years old",
-        PHOTO_COMPLETION_TITLE: "Completed",}
+        APP_TITLE: "Start face recognition for custom service :)",
+    START_SHOOTING: "Start photo shooting.",
+    END_SHOOTING: "End photo shooting.",
+    PICTURE_DID_TAKE: "Pretty Good photo was taken!",
+    GUIDE_MSG_POSITION_GOOD: "It is just good face position",
+    GUIDE_MSG_POSITION_TOO_UPPER: "Be a little lower",
+    GUIDE_MSG_POSITION_TOO_LOWER: "Be a little upper",
+    GUIDE_MSG_POSITION_TOO_RIGHT: "Be a little to the right",
+    GUIDE_MSG_POSITION_TOO_LEFT: "Be a little to the left",
+    GUIDE_MSG_SIZE_GOOD: "Just the right face size",
+    GUIDE_MSG_SIZE_TOO_SMALL: "The face is too small. Bring the face closer to the camera.",
+    GUIDE_MSG_SIZE_TOO_BIG: "The face is too big. Move away from the camera a little more.",
+    GUIDE_MSG_EXP_GOOD: "Good facial expression!",
+    GUIDE_MSG_EXP_NEUTRAL: "Face expression is a little serious.",
+    GUIDE_MSG_EXP_OTHERS: "Relax a little",
+    GUIDE_MSG_AGE_LOOKALIKE: "Look like %age years old",
+    PHOTO_COMPLETION_TITLE: "Completed"}
 
     const startMoteCam = async () => {
 
@@ -343,7 +346,7 @@ const useMOTECam = (): MoteCamType => {
         let tooBig = (ratio > highRatio)
         let msg = ""
         if( isSufficient ){
-            msg = `${localizedStrings.GUIDE_MSG_SIZE_GOOD}: ${Math.floor(ratio*100)}%`
+            msg = `${localizedStrings.GUIDE_MSG_SIZE_GOOD}`
         }else if( tooSmall ){
             msg = `${localizedStrings.GUIDE_MSG_SIZE_TOO_SMALL}`
         }else if( tooBig ){

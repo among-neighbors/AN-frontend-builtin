@@ -1,9 +1,7 @@
 import { 
     Box,
     Heading,
-    Text,
     Image,
-    Button,
     Spinner,
     VStack,
 } from '@chakra-ui/react'
@@ -19,49 +17,73 @@ import {
 import { useMOTECam } from "../../../hooks/useMoteCam";
 import { MoteCamMessage } from "./MoteCamMessage";
 import styles from "../../../styles/MoteCam.module.css";
+import styled from 'styled-components';
+import Button from '@mui/material/Button';
+
+const StyledContainer = styled.div`
+    
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    }
+`;
+
+const StyledBody = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+    position: absolute;
+
+    }
+`;
+
 
 const MoteCamComponent = () => {
 
     const moteCam = useMOTECam()
-    const localizedStrings = { 
-        APP_TITLE: "AN-frontend-bultin",
-        START_SHOOTING: "Start photo shooting.",
-        END_SHOOTING: "Endt photo shooting.",
-        PICTURE_DID_TAKE: "Pretty Good photo was taken!",
-        GUIDE_MSG_POSITION_GOOD: "It is just good face position",
-        GUIDE_MSG_POSITION_TOO_UPPER: "Be a little lower",
-        GUIDE_MSG_POSITION_TOO_LOWER: "Be a little upper",
-        GUIDE_MSG_POSITION_TOO_RIGHT: "Be a little to the right",
-        GUIDE_MSG_POSITION_TOO_LEFT: "Be a little to the left",
-        GUIDE_MSG_SIZE_GOOD: "Just the right face size",
-        GUIDE_MSG_SIZE_TOO_SMALL: "The face is too small. Bring the face closer to the camera.",
-        GUIDE_MSG_SIZE_TOO_BIG: "The face is too big. Move away from the camera a little more.",
-        GUIDE_MSG_AGE_LOOKALIKE: "Look like %age years old",
-        PHOTO_COMPLETION_TITLE: "Completed",}
-
-
     return (
         <>
-            <VStack my={4}>
+         <StyledBody>
+
+         <Heading h={"40px"} my={4} w='100%' textAlign='center'>
+             { !(moteCam.isStarted) && "Start face recognition for custom service :)"}
+             
+             { moteCam.isStarted && <MoteCamMessage {...moteCam.moteCamAdvice} />}   
+             </Heading>
+         
+           
+            <VStack my={4} >
+            <StyledContainer>
                 {
                     (moteCam.isStarted === true && moteCam.isReady === false) && 
                         <Spinner
-                        thickness='4px'
+                        thickness='6px'
                         speed='0.65s'
                         emptyColor='gray.200'
-                        color='blue.500'
+                        color='black'
                         size='xl'
                         my={8}
                         />
+                        
                 }
+               </StyledContainer> 
                 <Box my={4} id="video-frame" className={styles.videoFrame} display={ moteCam.isReady === true ? 'block' : 'none' }>
                     <video ref={moteCam.videoRef} playsInline className={styles.videoWebcam}></video>
                     <canvas ref={moteCam.canvasRef} id="canvas" className={styles.drawCanvas} />
                 </Box>
-                <Button my={4} mx='auto' size='lg' w='80%' colorScheme='blue' onClick={moteCam.startAndStop}>{ moteCam.isStarted ? "Stop" : "Start" }</Button>
-                { moteCam.isStarted && <MoteCamMessage {...moteCam.moteCamAdvice} />}                
+                <StyledContainer>
+              
+                <Button fullWidth variant='contained' color="secondary" sx={{ mt: 3, mb: 2 }}  onClick={moteCam.startAndStop}>
+                { moteCam.isStarted ? "Stop" : "Start" }
+                </Button>
+                </StyledContainer>
+             
             </VStack>
-
+            
+            {/* 
+            완벽하게 사진이 찍히고 난 후 서버에 저장까지 이어지는 경우
             <Modal isOpen={moteCam.isTakenPhoto} onClose={moteCam.dismissTakenPhoto}>
                 <ModalOverlay />
                 <ModalContent>
@@ -72,10 +94,12 @@ const MoteCamComponent = () => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button my={4} colorScheme='blue' onClick={moteCam.downloadPhoto}>写真を保存</Button>
+                        
+                        <Button my={4} colorScheme='blue' onClick={moteCam.downloadPhoto}></Button>
                     </ModalFooter>
                 </ModalContent>
-            </Modal>        
+            </Modal>         */}
+            </StyledBody>
         </>
     )
 }

@@ -12,7 +12,6 @@ import ComplaintPage from './pages/ComplaintPage';
 import CommunityPage from './pages/CommunityPage';
 import NoticeViewPage from './pages/NoticeViewPage';
 import FaceDetection from './pages/FaceDetectionPage';
-import FaceDetectionLoad from './pages/FaceDetectionLoad';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -22,7 +21,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/faceDetectionLoad' element={<FaceDetectionLoad />} />
             <Route path='/faceDetection' element={<FaceDetection />} />
             <Route path='/sign' element={<SignPage />} />
             <Route path='/notice' element={<NoticePage />} />

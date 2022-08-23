@@ -1,5 +1,5 @@
 export default {
-    APP_TITLE: "이웃사이-빌트인",
+    APP_TITLE: "맞춤형 서비스를 위해 얼굴 인식을 시작합니다",
     START_SHOOTING: "얼굴 인식을 시작합니다.",
     END_SHOOTING: "얼굴 인식을 종료합니다.",
     PICTURE_DID_TAKE: "얼굴 인식이 완 되었습니다.",
