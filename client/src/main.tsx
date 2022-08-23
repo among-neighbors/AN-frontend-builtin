@@ -51,7 +51,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       }
       #root {
         display: flex;
-        padding-top: 70px;
+       
       }
     `}</style>
   </React.StrictMode>,

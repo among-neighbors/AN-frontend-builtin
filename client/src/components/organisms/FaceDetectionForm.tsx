@@ -4,15 +4,17 @@ import { MoteCamComponent } from "./MoteCamComponent";
 
 const StyledBody = styled.body`
     height: 100vh;
-    width:100vh;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #EC8034;
     
     }
 `;
 
 const StyledContainer = styled.div`
-    height: 100vh;
-    width:100%;
+  
     display: flex;
     align-items: center;
     flex-direction:column;
@@ -23,10 +25,11 @@ const StyledContainer = styled.div`
 `;
 
 
+
 const StyledBackground = styled.img`
 position: absolute;
 height:100vh;
-width:100vw;
+width:100%;
 left: 0%;
 right: 0%;
 top: 0%;
@@ -41,15 +44,14 @@ const FaceDetectionForm = () => {
     <StyledBody>
        
    <div >
+ 
    <StyledBackground src='img/faceDetectionBg.png'/>
-   
-   <StyledContainer>
-
+ 
+    
     <MoteCamComponent /> 
 
-    
-    </StyledContainer>
-          </div>
+ 
+    </div>
     </StyledBody>
   );
 };

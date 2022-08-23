@@ -24,20 +24,11 @@ const StyledContainer = styled.div`
     
     display: flex;
     align-items: center;
-
     justify-content: center;
     }
 `;
 
-const StyledBody = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction:column;
-    justify-content: center;
-    position: absolute;
 
-    }
-`;
 
 
 const MoteCamComponent = () => {
@@ -45,14 +36,15 @@ const MoteCamComponent = () => {
     const moteCam = useMOTECam()
     return (
         <>
-         <StyledBody>
-
-         <Heading h={"40px"} my={4} w='100%' textAlign='center'>
+        
+        <StyledContainer>
+        <Heading h={"40px"} my={4} w='100%' textAlign='center'>
              { !(moteCam.isStarted) && "Start face recognition for custom service :)"}
              
              { moteCam.isStarted && <MoteCamMessage {...moteCam.moteCamAdvice} />}   
              </Heading>
          
+        </StyledContainer>
            
             <VStack my={4} >
             <StyledContainer>
@@ -99,7 +91,7 @@ const MoteCamComponent = () => {
                     </ModalFooter>
                 </ModalContent>
             </Modal>         */}
-            </StyledBody>
+         
         </>
     )
 }
