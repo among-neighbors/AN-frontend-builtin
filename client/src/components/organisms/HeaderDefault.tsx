@@ -30,7 +30,6 @@ const StyledImg2 = styled.img`
     }
 `;
 
-
 const pages: {
   name: string;
   link: string;
@@ -63,14 +62,16 @@ const HeaderDefault = () => {
   };
 
   return (
-    <AppBar style={{ background: 'white'  }} elevation={0}  position='fixed' >
+    <AppBar style={{ background: 'white' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-      
-        <Toolbar disableGutters sx={{
-              display: { xs: 'none', md: 'flex' },
-              justifyContent: 'space-between',
-              flexDirection:'row',
-            }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}
+        >
           <Typography
             variant='h6'
             noWrap
@@ -86,10 +87,7 @@ const HeaderDefault = () => {
             }}
           >
             <StyledImg src='/img/Logo2.png' />
-   
           </Typography>
-
-        
 
           <Typography
             variant='h5'
@@ -109,31 +107,39 @@ const HeaderDefault = () => {
             }}
           >
             <StyledImg src='/img/Logo2.png' />
-      
           </Typography>
-        
-          
-          <Box sx={{
+
+          <Box
+            sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
-              flexDirection:'row',
-            }} padding={2} margin={3}>
-              
-            
+              flexDirection: 'row',
+            }}
+            padding={2}
+            margin={2}
+          >
             {pages.map((page) => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block', width:'140px', textAlign:'center' , fontSize:'24px', fontWeight: 900}}
+                sx={{
+                  my: 2,
+                  color: 'black',
+                  display: 'block',
+                  width: '140px',
+                  textAlign: 'center',
+                  fontSize: '24px',
+                  fontWeight: 900,
+                }}
                 component={Link}
                 to={page.link}
-              > 
-                {page.name} 
+              >
+                {page.name}
               </Button>
             ))}
-             <Tooltip title='Open settings'>
+            <Tooltip title='Open settings'>
               <IconButton onClick={handleCloseUserMenu} component={Link} to='/sign' sx={{ p: 0 }}>
-              <StyledImg2 src='/img/house.png' />
+                <StyledImg2 src='/img/house.png' />
               </IconButton>
             </Tooltip>
             <Menu
@@ -159,8 +165,6 @@ const HeaderDefault = () => {
               ))}
             </Menu>
           </Box>
-
-        
         </Toolbar>
       </Container>
     </AppBar>

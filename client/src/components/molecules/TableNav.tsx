@@ -28,7 +28,7 @@ interface TableNavProps {
 
 const defaultStyleOfTableNavButton = {
   whiteSpace: 'nowrap',
-  height: '50px',
+  height: '48px',
   width: '130px',
   borderRadius: '0',
 };
@@ -36,7 +36,7 @@ const defaultStyleOfTableNavButton = {
 const clickedStyleOfTableNavButton = {
   ...defaultStyleOfTableNavButton,
   fontWeight: 700,
-  fontSize: '20px',
+  fontSize: '18px',
   color: '#ED843C',
   outline: 'solid 1px #ED843C',
   zIndex: 1,
@@ -45,7 +45,7 @@ const clickedStyleOfTableNavButton = {
 const nonClickedStyleOfTableNavButton = {
   ...defaultStyleOfTableNavButton,
   outline: 'solid 1px #BDBDBD',
-  fontSize: '20px',
+  fontSize: '18px',
   color: '#808080',
 };
 
