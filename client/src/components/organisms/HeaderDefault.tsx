@@ -116,7 +116,7 @@ const HeaderDefault = () => {
               flexDirection: 'row',
             }}
             padding={2}
-            margin={2}
+            margin={3}
           >
             {pages.map((page) => (
               <Button

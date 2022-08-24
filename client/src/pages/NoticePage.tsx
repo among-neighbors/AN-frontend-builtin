@@ -42,12 +42,10 @@ const NoticePage = () => {
 
   return (
     <>
-     
-     <HeaderDefault />
+      <HeaderDefault />
       <div className='noticePage'>
+        <TableNav type='notice' />
 
-      <TableNav type='notice' />
-        
         <BoardTable labels={['공지 ID', '제목', '공지 유형', '작성자', '등록일']} rows={rows} />
       </div>
       <style jsx>{`
