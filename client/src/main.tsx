@@ -12,6 +12,8 @@ import ComplaintPage from './pages/ComplaintPage';
 import CommunityPage from './pages/CommunityPage';
 import NoticeViewPage from './pages/NoticeViewPage';
 import FaceDetection from './pages/FaceDetectionPage';
+import ComplaintViewPage from './pages/ComplaintViewPage';
+import CommunityViewPage from './pages/CommunityViewPage';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -27,7 +29,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path=':id' element={<NoticeViewPage />} />
             </Route>
             <Route path='/complaint' element={<ComplaintPage />} />
+            <Route path='/complaint'>
+              <Route path=':id' element={<ComplaintViewPage />} />
+            </Route>
             <Route path='/community' element={<CommunityPage />} />
+            <Route path='/community'>
+              <Route path=':id' element={<CommunityViewPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </Provider>
