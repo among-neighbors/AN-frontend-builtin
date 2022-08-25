@@ -40,11 +40,11 @@ const pages: {
   },
   {
     name: '민원',
-    link: 'complaint',
+    link: '/complaint',
   },
   {
     name: '커뮤니티',
-    link: 'community',
+    link: '/community',
   },
 ];
 const settings = ['로그아웃'];

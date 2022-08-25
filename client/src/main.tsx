@@ -18,7 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider theme={theme}>
       <Provider store={tableNavStore}>
         <BrowserRouter>
-          
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/faceDetection' element={<FaceDetection />} />
@@ -51,7 +50,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       }
       #root {
         display: flex;
-       
       }
     `}</style>
   </React.StrictMode>,

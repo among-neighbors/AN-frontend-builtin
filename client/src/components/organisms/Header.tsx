@@ -50,11 +50,11 @@ const pages: {
   },
   {
     name: '민원',
-    link: 'complaint',
+    link: '/complaint',
   },
   {
     name: '커뮤니티',
-    link: 'community',
+    link: '/community',
   },
 ];
 const settings = ['로그아웃'];
@@ -80,14 +80,17 @@ const Header = () => {
   };
 
   return (
-    <AppBar style={{ background: '#F5F5F5'  }} elevation={0}  position='fixed' >
+    <AppBar style={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-      <StyledUp src="/img/up.png"/>
-        <Toolbar disableGutters sx={{
-              display: { xs: 'none', md: 'flex' },
-              justifyContent: 'space-between',
-              flexDirection:'row',
-            }}>
+        <StyledUp src='/img/up.png' />
+        <Toolbar
+          disableGutters
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}
+        >
           <Typography
             variant='h6'
             noWrap
@@ -103,10 +106,7 @@ const Header = () => {
             }}
           >
             <StyledImg src='/img/Logo2.png' />
-   
           </Typography>
-
-        
 
           <Typography
             variant='h5'
@@ -126,31 +126,39 @@ const Header = () => {
             }}
           >
             <StyledImg src='/img/Logo2.png' />
-      
           </Typography>
-        
-          
-          <Box sx={{
+
+          <Box
+            sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
-              flexDirection:'row',
-            }} padding={2} margin={3}>
-              
-            
+              flexDirection: 'row',
+            }}
+            padding={2}
+            margin={3}
+          >
             {pages.map((page) => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block', width:'140px', textAlign:'center' , fontSize:'24px', fontWeight: 900}}
+                sx={{
+                  my: 2,
+                  color: 'black',
+                  display: 'block',
+                  width: '140px',
+                  textAlign: 'center',
+                  fontSize: '24px',
+                  fontWeight: 900,
+                }}
                 component={Link}
                 to={page.link}
-              > 
-                {page.name} 
+              >
+                {page.name}
               </Button>
             ))}
-             <Tooltip title='Open settings'>
+            <Tooltip title='Open settings'>
               <IconButton onClick={handleCloseUserMenu} component={Link} to='/sign' sx={{ p: 0 }}>
-              <StyledImg2 src='/img/house.png' />
+                <StyledImg2 src='/img/house.png' />
               </IconButton>
             </Tooltip>
             <Menu
@@ -176,8 +184,6 @@ const Header = () => {
               ))}
             </Menu>
           </Box>
-
-        
         </Toolbar>
       </Container>
     </AppBar>
