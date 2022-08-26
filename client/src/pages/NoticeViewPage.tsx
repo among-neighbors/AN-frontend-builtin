@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 
 import Board from '~/components/organisms/Board';
 import TableNav from '~/components/molecules/TableNav';
+import HeaderDefault from '~/components/organisms/HeaderDefault';
 
 interface Data {
   ID: string;
@@ -45,7 +46,7 @@ const NoticeViewPage = () => {
   return (
     <>
       <div className='noticeViewPage'>
-      
+      <HeaderDefault />
         <TableNav type='notice' />
         <Board row={row} />
        
