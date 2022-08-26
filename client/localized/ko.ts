@@ -1,0 +1,16 @@
+export default {
+    APP_TITLE: "맞춤형 서비스를 위해 얼굴 인식을 시작합니다",
+    START_SHOOTING: "얼굴 인식을 시작합니다.",
+    END_SHOOTING: "얼굴 인식을 종료합니다.",
+    PICTURE_DID_TAKE: "얼굴 인식이 완 되었습니다.",
+    GUIDE_MSG_POSITION_GOOD: "얼굴 위치가 적당합니다.😀",
+    GUIDE_MSG_POSITION_TOO_UPPER: "얼굴을 조금만 낮추어주세요.",
+    GUIDE_MSG_POSITION_TOO_LOWER: "얼굴을 조금만 높여주세요.",
+    GUIDE_MSG_POSITION_TOO_RIGHT: "얼굴을 조금만 왼쪽으로 이동해주세요.",
+    GUIDE_MSG_POSITION_TOO_LEFT: "얼굴을 조금만 오른쪽으로 이동해주세요.",
+    GUIDE_MSG_SIZE_GOOD: "화면 내의 얼굴 크기가 적절합니다.🙆",
+    GUIDE_MSG_SIZE_TOO_SMALL: "화면 내의 얼굴이 너무 작습니다. 조금만 더 가까이 와주세요.",
+    GUIDE_MSG_SIZE_TOO_BIG: "화면 내의 얼굴이 너무 멉니다. 조금 떨어져 주세요.",
+    GUIDE_MSG_AGE_LOOKALIKE: "%age처럼 보입니다.",
+    PHOTO_COMPLETION_TITLE: "완료",
+}

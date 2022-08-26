@@ -12,17 +12,16 @@ import ComplaintPage from './pages/ComplaintPage';
 import CommunityPage from './pages/CommunityPage';
 import NoticeViewPage from './pages/NoticeViewPage';
 import FaceDetection from './pages/FaceDetectionPage';
-import FaceDetectionLoad from './pages/FaceDetectionLoad';
+import ComplaintViewPage from './pages/ComplaintViewPage';
+import CommunityViewPage from './pages/CommunityViewPage';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={tableNavStore}>
         <BrowserRouter>
-          
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/faceDetectionLoad' element={<FaceDetectionLoad />} />
             <Route path='/faceDetection' element={<FaceDetection />} />
             <Route path='/sign' element={<SignPage />} />
             <Route path='/notice' element={<NoticePage />} />
@@ -30,7 +29,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path=':id' element={<NoticeViewPage />} />
             </Route>
             <Route path='/complaint' element={<ComplaintPage />} />
+            <Route path='/complaint'>
+              <Route path=':id' element={<ComplaintViewPage />} />
+            </Route>
             <Route path='/community' element={<CommunityPage />} />
+            <Route path='/community'>
+              <Route path=':id' element={<CommunityViewPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </Provider>
@@ -53,7 +58,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       }
       #root {
         display: flex;
-        padding-top: 70px;
       }
     `}</style>
   </React.StrictMode>,

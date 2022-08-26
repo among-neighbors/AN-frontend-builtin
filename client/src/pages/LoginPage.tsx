@@ -1,6 +1,5 @@
-
-import { SyntheticEvent, useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { SyntheticEvent, useState } from 'react';
+import { Form } from 'react-bootstrap';
 //import {  RouteComponentProps } from 'react-router-dom';
 import FormContainer from '../components/organisms/FormContainer';
 import styled from 'styled-components';
@@ -10,23 +9,23 @@ import styled from 'styled-components';
 //   }
 
 const StyledApplyInput = styled.input`
-    background-color: #EC8034;
-    width: 405px;
-    height: 56px;
-    color: #000;
+  background-color: #ec8034;
+  width: 405px;
+  height: 56px;
+  color: #000;
+  font-size: 20px;
+  padding-left: 10px;
+  text-align: left;
+  border: solid;
+  margin: 16px;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-width: 1px;
+  border-radius: 8px;
+  ::placeholder {
+    color: rgba(0, 0, 0, 0.6);
     font-size: 20px;
-    padding-left: 10px;
     text-align: left;
-    border:solid;
-    margin: 16px;
-    border-color:rgba(0,0,0,0.5);
-    border-width: 1px;
-    border-radius: 8px;
-    ::placeholder{
-        color: rgba(0,0,0,0.6);
-        font-size: 20px;
-        text-align: left;
-    }
+  }
 `;
 
 const StyledApplyButton = styled.button`
@@ -62,61 +61,60 @@ const StyledImg = styled.img`
     }
 `;
 
-  //const Login = ({ history }: Props) => {
-    const LoginPage = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+//const Login = ({ history }: Props) => {
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const submitHandler = async (e: SyntheticEvent) => {
-      e.preventDefault()
-  
-      await fetch('#', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      })
-  
-      //history.push('/')
-    }
-  
-    return (
+  const submitHandler = async (e: SyntheticEvent) => {
+    e.preventDefault();
 
-      <StyledBody>
-        <FormContainer>
+    await fetch('#', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    //history.push('/')
+  };
+
+  return (
+    <StyledBody>
+      <FormContainer>
         <Form onSubmit={submitHandler}>
-        <StyledImg  src="../../img/Logo.png" />
+          <StyledImg src='../../img/Logo.png' />
           <Form.Group controlId='email' className='my-3'>
-         
             <StyledApplyInput
               type='email'
               placeholder='Email'
               value={email}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(event.target.value)
+              }
             />
           </Form.Group>
-  
+
           <Form.Group controlId='password' className='my-3'>
-            
             <StyledApplyInput
               type='password'
               placeholder='Password'
               value={password}
-              
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword(event.target.value)
+              }
             />
           </Form.Group>
-          <StyledApplyButton type='submit' className='my-3'>Login</StyledApplyButton>
+          <StyledApplyButton type='submit' className='my-3'>
+            Login
+          </StyledApplyButton>
         </Form>
       </FormContainer>
-     
+    </StyledBody>
+  );
+};
 
-      </StyledBody>
-      
-    )
-  }
-  
 export default LoginPage;

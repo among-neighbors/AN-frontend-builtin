@@ -7,6 +7,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.8",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@headlessui/react": "^1.6.6",
@@ -27,6 +28,7 @@
     "@types/react-bootstrap": "^0.32.30",
     "@types/react-webcam": "^3.0.0",
     "@types/styled-components": "^5.1.26",
+    "@vladmandic/face-api": "^1.7.1",
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
     "axios-utils": "^1.1.0",
