@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import TableNav from '~/components/molecules/TableNav';
+import Header from '~/components/organisms/Header';
+import HeaderDefault from '~/components/organisms/HeaderDefault';
 import BoardTable from '~/components/organisms/Table';
 
 interface Data {
@@ -40,11 +42,9 @@ const NoticePage = () => {
 
   return (
     <>
+      <HeaderDefault />
       <div className='noticePage'>
-        
         <TableNav type='notice' />
-
-        
 
         <BoardTable labels={['공지 ID', '제목', '공지 유형', '작성자', '등록일']} rows={rows} />
       </div>

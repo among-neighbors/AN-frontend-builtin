@@ -65,7 +65,7 @@ interface TableProps {
 
 const BoardTable = ({ labels, rows }: TableProps) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(6);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -78,6 +78,7 @@ const BoardTable = ({ labels, rows }: TableProps) => {
 
   return (
     <Paper
+      elevation={0}
       sx={{
         width: '100%',
         overflow: 'hidden',
@@ -93,7 +94,7 @@ const BoardTable = ({ labels, rows }: TableProps) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap' }}
+                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap', fontSize: '18px' }}
                 >
                   {column.label}
                 </TableCell>
@@ -119,7 +120,7 @@ const BoardTable = ({ labels, rows }: TableProps) => {
                         <TableCell
                           key={column.id}
                           align={column.align}
-                          style={{ whiteSpace: 'nowrap' }}
+                          style={{ whiteSpace: 'nowrap', fontSize: '18px' }}
                         >
                           {column.format && typeof value === 'boolean'
                             ? column.format(value)
@@ -147,7 +148,7 @@ const BoardTable = ({ labels, rows }: TableProps) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[]}
         component='div'
         count={rows.length}
         rowsPerPage={rowsPerPage}

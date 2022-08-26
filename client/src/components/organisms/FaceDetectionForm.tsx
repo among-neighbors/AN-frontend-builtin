@@ -13,19 +13,6 @@ const StyledBody = styled.body`
     }
 `;
 
-const StyledContainer = styled.div`
-  
-    display: flex;
-    align-items: center;
-    flex-direction:column;
-    justify-content: center;
-    position: absolute;
-
-    }
-`;
-
-
-
 const StyledBackground = styled.img`
 position: absolute;
 height:100vh;

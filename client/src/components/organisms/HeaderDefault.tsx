@@ -30,16 +30,6 @@ const StyledImg2 = styled.img`
     }
 `;
 
-const StyledUp = styled.img`
-  
-    width: 500px;
-    background-position: 10% 100px;
-    position: fixed;
-    right: 0px;
-    up: 0px;
-    }
-`;
-
 const pages: {
   name: string;
   link: string;
@@ -59,17 +49,9 @@ const pages: {
 ];
 const settings = ['로그아웃'];
 
-const Header = () => {
+const HeaderDefault = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -80,9 +62,8 @@ const Header = () => {
   };
 
   return (
-    <AppBar style={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
+    <AppBar sx={{ background: 'white' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-        <StyledUp src='/img/up.png' />
         <Toolbar
           disableGutters
           sx={{
@@ -190,4 +171,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderDefault;

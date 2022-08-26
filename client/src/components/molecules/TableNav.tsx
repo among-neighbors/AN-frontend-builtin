@@ -28,21 +28,24 @@ interface TableNavProps {
 
 const defaultStyleOfTableNavButton = {
   whiteSpace: 'nowrap',
-  height: '40px',
-  width: '105px',
+  height: '48px',
+  width: '130px',
   borderRadius: '0',
 };
 
 const clickedStyleOfTableNavButton = {
   ...defaultStyleOfTableNavButton,
   fontWeight: 700,
-  outline: 'solid 1px #f6be9a',
+  fontSize: '18px',
+  color: '#ED843C',
+  outline: 'solid 1px #ED843C',
   zIndex: 1,
 };
 
 const nonClickedStyleOfTableNavButton = {
   ...defaultStyleOfTableNavButton,
   outline: 'solid 1px #BDBDBD',
+  fontSize: '18px',
   color: '#808080',
 };
 
@@ -95,7 +98,7 @@ const TableNav = ({ type, state }: TableNavProps) => {
       <style jsx>{`
         .tableNav {
           display: flex;
-          margin: 10px 0 55px 0;
+          margin: 200px 0 55px 0;
           gap: 1px;
         }
       `}</style>
