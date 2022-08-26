@@ -62,7 +62,7 @@ const HeaderDefault = () => {
   };
 
   return (
-    <AppBar style={{ background: 'white' }} elevation={0} position='fixed'>
+    <AppBar sx={{ background: 'white' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
         <Toolbar
           disableGutters

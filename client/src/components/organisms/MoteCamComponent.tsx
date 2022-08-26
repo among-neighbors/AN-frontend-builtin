@@ -49,7 +49,7 @@ const MoteCamComponent = () => {
             <VStack my={4} >
             <StyledContainer>
                 {
-                    (moteCam.isStarted === true && moteCam.isReady === false) && 
+                    (moteCam.isStarted && !moteCam.isReady) && 
                         <Spinner
                         thickness='6px'
                         speed='0.65s'
