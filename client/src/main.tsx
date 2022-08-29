@@ -14,6 +14,7 @@ import NoticeViewPage from './pages/NoticeViewPage';
 import FaceDetection from './pages/FaceDetectionPage';
 import ComplaintViewPage from './pages/ComplaintViewPage';
 import CommunityViewPage from './pages/CommunityViewPage';
+import HomePageElder from './pages/HomePageElder';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/elder' element={<HomePageElder />} />
             <Route path='/faceDetection' element={<FaceDetection />} />
             <Route path='/sign' element={<SignPage />} />
             <Route path='/notice' element={<NoticePage />} />
