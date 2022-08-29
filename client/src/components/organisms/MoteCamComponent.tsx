@@ -74,12 +74,12 @@ const MoteCamComponent = () => {
              
             </VStack>
             
-            {/* 
-            완벽하게 사진이 찍히고 난 후 서버에 저장까지 이어지는 경우
+            
+            {/* 완벽하게 사진이 찍히고 난 후 */}
             <Modal isOpen={moteCam.isTakenPhoto} onClose={moteCam.dismissTakenPhoto}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>{localizedStrings.PHOTO_COMPLETION_TITLE}</ModalHeader>
+                    <ModalHeader>{"완료"}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <Image ref={moteCam.photoRef} id='photo' alt="photo"></Image>
@@ -87,10 +87,10 @@ const MoteCamComponent = () => {
 
                     <ModalFooter>
                         
-                        <Button my={4} colorScheme='blue' onClick={moteCam.downloadPhoto}></Button>
+                        {/* <Button my={4} colorScheme='blue' onClick={moteCam.downloadPhoto}></Button> */}
                     </ModalFooter>
                 </ModalContent>
-            </Modal>         */}
+            </Modal>        
          
         </>
     )
