@@ -14,24 +14,23 @@ const StyledBody = styled.body`
     }
 `;
 
-// const StyledBackground = styled.img`
-// position: absolute;
-// height:100vh;
-// width:100%;
-// left: 0%;
-// right: 0%;
-// top: 0%;
-// bottom: 0%;
-//     }
-// `;
+const StyledBackground = styled.img`
+position: absolute;
+height:100vh;
+width:100%;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+    }
+`;
 
 const FaceDetectionForm = () => {
   return (
     <StyledBody>
       <div>
-        {/* <StyledBackground src='img/faceDetectionBg.png'/>
-         */}
         <ChakraProvider>
+          <StyledBackground src='img/faceDetectionBg.png' />
           <MoteCamComponent />
         </ChakraProvider>
       </div>

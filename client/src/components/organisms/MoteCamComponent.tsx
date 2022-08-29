@@ -73,14 +73,13 @@ const MoteCamComponent = () => {
       <Modal isOpen={moteCam.isTakenPhoto} onClose={moteCam.dismissTakenPhoto}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{'Complete face recognition :)'}</ModalHeader>
+          <ModalHeader textAlign='center'>{'Complete face recognition :)'}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Image ref={moteCam.photoRef} id='photo' alt='photo'></Image>
           </ModalBody>
-
           <ModalFooter>
-            {/* <Button my={4} colorScheme='blue' onClick={moteCam.downloadPhoto}></Button> */}
+            <Button color='primary'>OK</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
