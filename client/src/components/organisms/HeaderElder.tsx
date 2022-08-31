@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 67px;
@@ -27,7 +26,7 @@ const StyledImg2 = styled.img`
 
 const StyledUp = styled.img`
   
-    width: 500px;
+    width: 400px;
     background-position: 10% 100px;
     position: fixed;
     right: 0px;

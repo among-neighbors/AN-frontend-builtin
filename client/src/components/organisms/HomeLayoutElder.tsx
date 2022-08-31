@@ -32,17 +32,17 @@ const pages: {
   {
     name: '공지',
     link: '/noticeElder',
-    src: "/img/notice.png",
+    src: '/img/notice.png',
   },
   {
     name: '민원',
     link: '/complaintElder',
-    src:"/img/complaint.png",
+    src: '/img/complaint.png',
   },
   {
     name: '커뮤니티',
     link: '/communityElder',
-    src:"/img/community.png"
+    src: '/img/community.png',
   },
 ];
 
@@ -56,7 +56,7 @@ const StyledBtn = styled.img`
 
 const StyledDown = styled.img`
   
-    width: 420px;
+    width: 350px;
     background-position: 10% 100px;
     position: fixed;
     left: 0px;
@@ -93,62 +93,51 @@ const HomeElder = () => {
   };
 
   return (
-
-    
     <StyledBody>
-   
-
-   
-   <Box 
+      <Box
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+        }}
+        padding={2}
+        margin={3}
+      >
+        {pages.map((page) => (
+          <Button
+            variant='outlined'
+            key={page.name}
+            onClick={handleCloseNavMenu}
             sx={{
-              display: { xs: 'none', md: 'flex' },
-              justifyContent: 'space-between',
-              flexDirection: 'row',
+              my: 2,
+              color: 'black',
+              display: 'block',
+              width: '272px',
+              height: '261px',
+              textAlign: 'center',
+              fontSize: '24px',
+              fontWeight: 900,
+              margin: '108px',
+              borderRadius: '40px',
+              border: '4px solid #EC8034',
             }}
-            padding={2}
-            margin={3}
+            component={Link}
+            to={page.link}
           >
-            {pages.map((page) => (
-              <Button
-                variant="outlined" 
-                key={page.name}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: 'black',
-                  display: 'block',
-                  width: '272px',
-                  height:'261px',
-                  textAlign: 'center',
-                  fontSize: '24px',
-                  fontWeight: 900,
-                  margin:'108px',
-                  borderRadius: '40px',
-                  border: '4px solid #EC8034',
-                }}
-                component={Link}
-                to={page.link}
-              >
-                <div>
-                <StyledBtn src={page.src}/>
-                </div>
-                
-                {page.name}
-              </Button>
-            ))}
-            
-            
-          </Box>
-    <IconButton  sx={{ p: 0}}>
-              <StyledImg src='/img/warning.png' />
-    </IconButton>
-    <StyledDown src="/img/down_elder.png"/>
-    
-  
+            <div>
+              <StyledBtn src={page.src} />
+            </div>
 
+            {page.name}
+          </Button>
+        ))}
+      </Box>
+      <IconButton sx={{ p: 0 }}>
+        <StyledImg src='/img/warning.png' />
+      </IconButton>
+      <StyledDown src='/img/down_elder.png' />
     </StyledBody>
   );
 };
 
 export default HomeElder;
-
