@@ -13,6 +13,7 @@ import { MoteCamMessage } from './MoteCamMessage';
 import styles from '../../../styles/MoteCam.module.css';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import { MoteCamAge } from './MoteCamAge';
 
 const StyledContainer = styled.div`
     
@@ -24,6 +25,20 @@ const StyledContainer = styled.div`
 
 const MoteCamComponent = () => {
   const moteCam = useMOTECam();
+
+  const handleUI = () => {
+    const detectedAge = <MoteCamAge {...moteCam.moteCamAge} />;
+    console.log(detectedAge.props.age.message);
+    var detextedAgeNum: number = Number(detectedAge.props.age.message);
+    console.log(detextedAgeNum);
+    if (detextedAgeNum > 65) {
+      window.location.href = '/elder';
+    } else {
+      window.location.href = '/';
+    }
+    // window.location.href = '/elder';
+    // window.location.href = '/';
+  };
   return (
     <>
       <StyledContainer>
@@ -74,12 +89,16 @@ const MoteCamComponent = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader textAlign='center'>{'Complete face recognition :)'}</ModalHeader>
+
+          {/* <ModalHeader textAlign='center'>{<MoteCamAge {...moteCam.moteCamAge} />}</ModalHeader> */}
           <ModalCloseButton />
           <ModalBody>
             <Image ref={moteCam.photoRef} id='photo' alt='photo'></Image>
           </ModalBody>
           <ModalFooter>
-            <Button color='primary'>OK</Button>
+            <Button color='primary' onClick={handleUI}>
+              OK
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

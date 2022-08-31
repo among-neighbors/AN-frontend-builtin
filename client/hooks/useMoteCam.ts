@@ -6,7 +6,7 @@ import {
   MoteCamAdviceMessage,
 } from '../src/components/organisms/MoteCamMessage';
 import { speakMessage } from '../hooks/useSpeech';
-import { MoteCamAgeType } from '~/components/organisms/MoteCamAge';
+import { MoteCamAgeType, MoteCamAgeMessage } from '~/components/organisms/MoteCamAge';
 //import { useLocale } from "../hooks/useLocale";
 
 const MODEL_PATH = '/model';
@@ -20,6 +20,7 @@ type MoteCamType = {
   dismissTakenPhoto: () => void;
   downloadPhoto: () => void;
   moteCamAdvice: MoteCamAdviceType;
+  moteCamAge: MoteCamAgeType;
   videoRef: RefObject<HTMLVideoElement>;
   canvasRef: RefObject<HTMLCanvasElement>;
   photoRef: RefObject<HTMLImageElement>;
@@ -58,7 +59,7 @@ const useMOTECam = (): MoteCamType => {
     GUIDE_MSG_EXP_GOOD: 'Good facial expression!',
     GUIDE_MSG_EXP_NEUTRAL: 'Face expression is a little serious.',
     GUIDE_MSG_EXP_OTHERS: 'Relax a little',
-    GUIDE_MSG_AGE_LOOKALIKE: 'Look like %age years old',
+    GUIDE_MSG_AGE_LOOKALIKE: '%age',
     PHOTO_COMPLETION_TITLE: 'Completed',
   };
 
@@ -400,7 +401,7 @@ const useMOTECam = (): MoteCamType => {
   // }
 
   // Age
-  const expectedAge = (age: number): MoteCamAdviceMessage => {
+  const expectedAge = (age: number): MoteCamAgeMessage => {
     const ageMsg = localizedStrings.GUIDE_MSG_AGE_LOOKALIKE.replace('%age', `${Math.round(age)}`);
     return {
       fulfilled: true,
@@ -481,6 +482,7 @@ const useMOTECam = (): MoteCamType => {
     dismissTakenPhoto: dismissTakenPhoto,
     downloadPhoto: downloadPhoto,
     moteCamAdvice: moteCamAdvice,
+    moteCamAge: moteCamAge,
     videoRef: videoRef,
     canvasRef: canvasRef,
     photoRef: photoRef,
