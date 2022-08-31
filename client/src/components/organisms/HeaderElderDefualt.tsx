@@ -75,9 +75,9 @@ const HeaderElder = () => {
   };
 
   return (
-    <AppBar style={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
+    <AppBar style={{ background: '#FFF' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-        <StyledUp src='/img/up_elder.png' />
+
         <Toolbar
           disableGutters
           sx={{

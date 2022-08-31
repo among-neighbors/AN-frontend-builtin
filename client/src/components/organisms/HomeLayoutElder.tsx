@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { borderRadius } from '@mui/system';
 const StyledBody = styled.body`
     height: 100vh;
     background-color: #F5F5F5;
@@ -26,25 +27,29 @@ bottom: 50px;
 const pages: {
   name: string;
   link: string;
+  src: string;
 }[] = [
   {
     name: '공지',
-    link: '/notice',
+    link: '/noticeElder',
+    src: "/img/notice.png",
   },
   {
     name: '민원',
-    link: '/complaint',
+    link: '/complaintElder',
+    src:"/img/complaint.png",
   },
   {
     name: '커뮤니티',
-    link: '/community',
+    link: '/communityElder',
+    src:"/img/community.png"
   },
 ];
-const settings = ['로그아웃'];
 
-const StyledIllust = styled.img`
+const StyledBtn = styled.img`
   
-    width: 450px;
+    width: 200px;
+    height: 200px;
   
     }
 `;
@@ -58,12 +63,6 @@ const StyledDown = styled.img`
     bottom: 0px;
     }
 `;
-
-
-
-
-
-
 
 const HomeElder = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -100,7 +99,7 @@ const HomeElder = () => {
    
 
    
-   <Box
+   <Box 
             sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
@@ -111,20 +110,29 @@ const HomeElder = () => {
           >
             {pages.map((page) => (
               <Button
+                variant="outlined" 
                 key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
                   color: 'black',
                   display: 'block',
-                  width: '140px',
+                  width: '272px',
+                  height:'261px',
                   textAlign: 'center',
                   fontSize: '24px',
                   fontWeight: 900,
+                  margin:'108px',
+                  borderRadius: '40px',
+                  border: '4px solid #EC8034',
                 }}
                 component={Link}
                 to={page.link}
               >
+                <div>
+                <StyledBtn src={page.src}/>
+                </div>
+                
                 {page.name}
               </Button>
             ))}

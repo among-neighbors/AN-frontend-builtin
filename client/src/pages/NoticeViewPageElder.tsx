@@ -3,8 +3,10 @@ import { useParams } from 'react-router';
 
 import Board from '~/components/organisms/Board';
 import TableNav from '~/components/molecules/TableNav';
-import HeaderDefault from '~/components/organisms/HeaderDefault';
-
+import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
+import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 interface Data {
   ID: string;
   title: string;
@@ -14,7 +16,14 @@ interface Data {
   date: string;
 }
 
-const NoticeViewPage = () => {
+const StyledImg = styled.img`
+    margin: 0px 2px;
+    height: 120px;
+  
+    }
+`;
+
+const NoticeViewPageElder = () => {
   const [row, setRow] = useState<Data | null>(null);
   const params = useParams();
 
@@ -46,7 +55,28 @@ const NoticeViewPage = () => {
   return (
     <>
       <div className='noticeViewPage'>
-      <HeaderDefault />
+      <HeaderElderDefualt />
+      <Typography
+            variant='h6'
+            noWrap
+            component={Link}
+            to='/noticeElder'
+            sx={{
+              mr: 4,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              fontSize: '24px',
+              color:'black',
+              letterSpacing: '.1rem',
+              textDecoration: 'none',
+              textAlign: 'center',
+              margin: '120px 0 0px 0'
+            }}
+          >
+            <StyledImg src='/img/noticeHeader.png' />
+  
+          </Typography>
         <TableNav type='notice' />
         <Board row={row} />
        
@@ -56,12 +86,10 @@ const NoticeViewPage = () => {
         display:flex;
         flex-direction:column;
         align-items:center;
-        margin: 200px 0 55px 0;
       }
-
       `}</style>
     </>
   );
 };
 
-export default NoticeViewPage;
+export default NoticeViewPageElder;

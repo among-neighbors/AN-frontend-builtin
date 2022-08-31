@@ -43,11 +43,6 @@ const StyledDown = styled.img`
 `;
 
 
-
-
-
-
-
 const Home = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,19 +55,14 @@ const Home = () => {
   return (
     <StyledBody>
    
-  
-   
     <StyledIllust src='img/homeIllust.png'/>
     <IconButton  sx={{ p: 0}}>
               <StyledImg src='/img/warning.png' />
     </IconButton>
     <StyledDown src="/img/down.png"/>
     
-  
-
     </StyledBody>
   );
 };
 
 export default Home;
-
