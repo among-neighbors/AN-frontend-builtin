@@ -48,9 +48,9 @@ const pages: {
 
 const StyledBtn = styled.img`
   
-    width: 200px;
-    height: 200px;
-  
+    width: 140px;
+    height: 140px;
+    margin: 20px;
     }
 `;
 
