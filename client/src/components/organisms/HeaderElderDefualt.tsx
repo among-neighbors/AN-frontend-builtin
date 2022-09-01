@@ -10,7 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 67px;
@@ -75,9 +74,8 @@ const HeaderElder = () => {
   };
 
   return (
-    <AppBar style={{ background: '#FFF' }} elevation={0} position='fixed'>
+    <AppBar sx={{ background: '#FFF' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-
         <Toolbar
           disableGutters
           sx={{

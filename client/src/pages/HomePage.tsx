@@ -6,12 +6,12 @@ const HomePage = (props: any) => {
   useEffect(() => {
     console.log(props);
   }, []);
-  return <>
-  
-  <Header />
-  <Home />
- 
-  </>;
+  return (
+    <>
+      <Header />
+      <Home />
+    </>
+  );
 };
 
 const mapStateToProps = (state: any) => {

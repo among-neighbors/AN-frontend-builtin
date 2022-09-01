@@ -80,7 +80,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar style={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
+    <AppBar sx={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
         <StyledUp src='/img/up.png' />
         <Toolbar

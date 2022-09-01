@@ -9,6 +9,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import styled from 'styled-components';
+import axios from 'axios';
+import { handleRefreshAccountAccessToken } from '~/others/store';
+import { useNavigate } from 'react-router';
 
 const StyledImg = styled.img`
     margin: 0px 90px;
@@ -27,7 +30,7 @@ const StyledBody = styled.body`
 
 function Copyright(props: any) {
   return (
-    <Typography variant='body2'  color='text.secondary' align='center' {...props}>
+    <Typography variant='body2' color='text.secondary' align='center' {...props}>
       {'Copyright © '}
       <Link color='inherit' href='https://mui.com/'>
         Your Website
@@ -39,62 +42,83 @@ function Copyright(props: any) {
 }
 
 const SignIn = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      const res = await axios.post(
+        'https://neighbor42.com:8181/api/v1/auth/accounts/login',
+        {
+          username: data.get('username'),
+          passwd: data.get('password'),
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        },
+      );
+      handleRefreshAccountAccessToken(res.data.response.accessToken);
+      navigate('/');
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
     <StyledBody>
-    <Container component='main' maxWidth='xs'>
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifycontent: 'center',
-        }}
-      >
-         <StyledImg  src="../../img/Logo.png" />
-        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin='normal'
-            required
-            fullWidth
-            id='email'
-            label='Email Address'
-            name='email'
-            autoComplete='email'
-            autoFocus
-          />
-          <TextField
-            margin='normal'
-            required
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            autoComplete='current-password'
-          />
-          <FormControlLabel
-            control={<Checkbox value='remember' color='primary' />}
-            label='Remember me'
-          />
-          <Button type='submit' fullWidth variant='contained' color="secondary" sx={{ mt: 3, mb: 2 }}>
-            Sign In
-          </Button>
-
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifycontent: 'center',
+          }}
+        >
+          <StyledImg src='../../img/Logo.png' />
+          <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin='normal'
+              required
+              fullWidth
+              id='email'
+              label='Email Address'
+              name='email'
+              autoComplete='email'
+              autoFocus
+            />
+            <TextField
+              margin='normal'
+              required
+              fullWidth
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
+            />
+            <FormControlLabel
+              control={<Checkbox value='remember' color='primary' />}
+              label='Remember me'
+            />
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='secondary'
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+          </Box>
         </Box>
-      </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
-    </Container>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
+      </Container>
     </StyledBody>
   );
 };

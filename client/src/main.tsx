@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignPage from './pages/SignPage';
 import HomePage from './pages/HomePage';
 import { Provider } from 'react-redux';
-import { tableNavStore } from './others/store';
+import { store } from './others/store';
 import NoticePage from './pages/NoticePage';
 import ComplaintPage from './pages/ComplaintPage';
 import CommunityPage from './pages/CommunityPage';
@@ -21,12 +21,14 @@ import NoticeViewPageElder from './pages/NoticeViewPageElder';
 import ComplaintViewPageElder from './pages/ComplaintViewPageElder';
 import CommunityPageElder from './pages/CommunityPageElder';
 import CommunityViewPageElder from './pages/CommunityViewPageElder';
+import Checker from './components/organisms/Checker';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={tableNavStore}>
-        <BrowserRouter>
+  <>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Checker />
+        <ThemeProvider theme={theme}>
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/elder' element={<HomePageElder />} />
@@ -59,10 +61,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path=':id' element={<CommunityViewPageElder />} />
             </Route>
           </Routes>
-        </BrowserRouter>
-      </Provider>
-    </ThemeProvider>
-    <style jsx global>{`
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
+    {/* <style jsx global='true'>{`
       * {
         margin: 0;
         padding: 0;
@@ -81,6 +83,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       #root {
         display: flex;
       }
-    `}</style>
-  </React.StrictMode>,
+    `}</style> */}
+  </>,
 );
