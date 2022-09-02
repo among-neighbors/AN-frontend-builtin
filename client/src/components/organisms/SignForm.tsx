@@ -19,7 +19,7 @@ const StyledImg = styled.img`
     }
 `;
 
-const StyledBody = styled.body`
+const StyledBody = styled.div`
     height: 100vh;
     background-color: #EC8034;
     display: flex;
@@ -61,7 +61,7 @@ const SignIn = () => {
         },
       );
       handleRefreshAccountAccessToken(res.data.response.accessToken);
-      navigate('/');
+      navigate('/faceDetection');
     } catch (err) {
       alert(err);
     }
@@ -86,10 +86,10 @@ const SignIn = () => {
               margin='normal'
               required
               fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
+              id='username'
+              label='Username'
+              name='username'
+              autoComplete='username'
               autoFocus
             />
             <TextField
@@ -101,10 +101,6 @@ const SignIn = () => {
               type='password'
               id='password'
               autoComplete='current-password'
-            />
-            <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
-              label='Remember me'
             />
             <Button
               type='submit'

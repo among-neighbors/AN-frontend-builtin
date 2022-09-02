@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { MoteCamComponent } from './MoteCamComponent';
 
-const StyledBody = styled.body`
+const StyledBody = styled.div`
     height: 100vh;
     width:100%;
     display: flex;

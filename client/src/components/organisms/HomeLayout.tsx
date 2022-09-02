@@ -2,9 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
 
-
-
-const StyledBody = styled.body`
+const StyledBody = styled.div`
     height: 100vh;
     background-color: #F5F5F5;
     display: flex;
@@ -24,7 +22,6 @@ bottom: 50px;
     }
 `;
 
-
 const StyledIllust = styled.img`
   
     width: 450px;
@@ -42,7 +39,6 @@ const StyledDown = styled.img`
     }
 `;
 
-
 const Home = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,13 +50,11 @@ const Home = () => {
 
   return (
     <StyledBody>
-   
-    <StyledIllust src='img/homeIllust.png'/>
-    <IconButton  sx={{ p: 0}}>
-              <StyledImg src='/img/warning.png' />
-    </IconButton>
-    <StyledDown src="/img/down.png"/>
-    
+      <StyledIllust src='img/homeIllust.png' />
+      <IconButton sx={{ p: 0 }}>
+        <StyledImg src='/img/warning.png' />
+      </IconButton>
+      <StyledDown src='/img/down.png' />
     </StyledBody>
   );
 };
