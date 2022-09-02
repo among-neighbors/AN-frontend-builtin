@@ -55,6 +55,7 @@ const NoticeViewPage = () => {
         display:flex;
         flex-direction:column;
         align-items:center;
+        margin: 200px 0 55px 0;
       }
       `}</style>
     </>

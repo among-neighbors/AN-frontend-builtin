@@ -1,6 +1,7 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import * as React from 'react';
 import styled from 'styled-components';
-import { MoteCamComponent } from "./MoteCamComponent";
+import { MoteCamComponent } from './MoteCamComponent';
 
 const StyledBody = styled.body`
     height: 100vh;
@@ -24,21 +25,15 @@ bottom: 0%;
     }
 `;
 
-
 const FaceDetectionForm = () => {
-
   return (
     <StyledBody>
-       
-   <div >
- 
-   <StyledBackground src='img/faceDetectionBg.png'/>
- 
-    
-    <MoteCamComponent /> 
-
- 
-    </div>
+      <div>
+        <ChakraProvider>
+          <StyledBackground src='img/faceDetectionBg.png' />
+          <MoteCamComponent />
+        </ChakraProvider>
+      </div>
     </StyledBody>
   );
 };

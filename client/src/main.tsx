@@ -14,6 +14,13 @@ import NoticeViewPage from './pages/NoticeViewPage';
 import FaceDetection from './pages/FaceDetectionPage';
 import ComplaintViewPage from './pages/ComplaintViewPage';
 import CommunityViewPage from './pages/CommunityViewPage';
+import HomePageElder from './pages/HomePageElder';
+import NoticePageElder from './pages/NoticePageElder';
+import ComplaintPageElder from './pages/ComplaintPageElder';
+import NoticeViewPageElder from './pages/NoticeViewPageElder';
+import ComplaintViewPageElder from './pages/ComplaintViewPageElder';
+import CommunityPageElder from './pages/CommunityPageElder';
+import CommunityViewPageElder from './pages/CommunityViewPageElder';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -22,8 +29,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/elder' element={<HomePageElder />} />
             <Route path='/faceDetection' element={<FaceDetection />} />
             <Route path='/sign' element={<SignPage />} />
+            {/* Default */}
             <Route path='/notice' element={<NoticePage />} />
             <Route path='/notice'>
               <Route path=':id' element={<NoticeViewPage />} />
@@ -35,6 +44,19 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path='/community' element={<CommunityPage />} />
             <Route path='/community'>
               <Route path=':id' element={<CommunityViewPage />} />
+            </Route>
+            {/* Elder */}
+            <Route path='/noticeElder' element={<NoticePageElder />} />
+            <Route path='/noticeElder'>
+              <Route path=':id' element={<NoticeViewPageElder />} />
+            </Route>
+            <Route path='/complaintElder' element={<ComplaintPageElder />} />
+            <Route path='/complaintElder'>
+              <Route path=':id' element={<ComplaintViewPageElder />} />
+            </Route>
+            <Route path='/communityElder' element={<CommunityPageElder />} />
+            <Route path='/communityElder'>
+              <Route path=':id' element={<CommunityViewPageElder />} />
             </Route>
           </Routes>
         </BrowserRouter>

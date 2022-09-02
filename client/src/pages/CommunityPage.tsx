@@ -50,6 +50,7 @@ const CommunityPage = () => {
       </div>
       <style jsx>{`
         .communityPage {
+          margin: 200px 0 55px 0;
           display: flex;
           flex-direction: column;
           align-items: center;

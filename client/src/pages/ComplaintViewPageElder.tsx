@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-
+import styled from 'styled-components';
 import Board from '~/components/organisms/Board';
 import TableNav from '~/components/molecules/TableNav';
 import HeaderDefault from '~/components/organisms/HeaderDefault';
+import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
+import { Link } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 interface Data {
   ID: string;
@@ -14,7 +17,14 @@ interface Data {
   date: string;
 }
 
-const NoticeViewPage = () => {
+const StyledImg = styled.img`
+    margin: 0px 2px;
+    height: 120px;
+  
+    }
+`;
+
+const ComplaintViewPage = () => {
   const [row, setRow] = useState<Data | null>(null);
   const params = useParams();
 
@@ -45,23 +55,40 @@ const NoticeViewPage = () => {
 
   return (
     <>
-      <div className='noticeViewPage'>
-      <HeaderDefault />
-        <TableNav type='notice' />
+      <HeaderElderDefualt />
+      <div className='ComplaintViewPage'>
+      <Typography
+            variant='h6'
+            noWrap
+            component={Link}
+            to='/noticeElder'
+            sx={{
+              mr: 4,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              fontSize: '24px',
+              color:'black',
+              letterSpacing: '.1rem',
+              textDecoration: 'none',
+              textAlign: 'center',
+              margin: '120px 0 10px 0'
+            }}
+          >
+            <StyledImg src='/img/complaintHeader.png' />
+            </Typography>
         <Board row={row} />
-       
       </div>
       <style>{`
-      .noticeViewPage{
+      .ComplaintViewPage{
         display:flex;
         flex-direction:column;
         align-items:center;
-        margin: 200px 0 55px 0;
-      }
 
+      }
       `}</style>
     </>
   );
 };
 
-export default NoticeViewPage;
+export default ComplaintViewPage;
