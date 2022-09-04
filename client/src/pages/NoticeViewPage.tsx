@@ -46,10 +46,9 @@ const NoticeViewPage = () => {
   return (
     <>
       <div className='noticeViewPage'>
-      <HeaderDefault />
+        <HeaderDefault />
         <TableNav type='notice' />
-        <Board row={row} />
-       
+        {/* <Board row={row} /> */}
       </div>
       <style>{`
       .noticeViewPage{

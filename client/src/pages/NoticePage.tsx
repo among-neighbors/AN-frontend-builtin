@@ -46,16 +46,16 @@ const NoticePage = () => {
       <div className='noticePage'>
         <TableNav type='notice' />
 
-        <BoardTable labels={['공지 ID', '제목', '공지 유형', '작성자', '등록일']} rows={rows} />
+        {/* <BoardTable labels={['공지 ID', '제목', '공지 유형', '작성자', '등록일']} rows={rows} /> */}
       </div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .noticePage {
           margin: 200px 0 55px 0;
           display: flex;
           flex-direction: column;
           align-items: center;
         }
-      `}</style>
+      `}</style> */}
     </>
   );
 };

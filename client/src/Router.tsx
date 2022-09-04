@@ -26,6 +26,8 @@ import NoticeViewPage from './pages/NoticeViewPage';
 import NoticePage from './pages/NoticePage';
 import FaceDetection from './pages/FaceDetectionPage';
 import HomePageElder from './pages/HomePageElder';
+import ViewPage from './pages/ViewPage';
+import ListPage from './pages/ListPage';
 
 interface RouterProps {
   state: RootState;
@@ -45,17 +47,17 @@ const Router = ({ state }: RouterProps) => {
             <Route path='/faceDetection' element={<FaceDetection />} />
             <Route path='/sign' element={<SignPage />} />
             {/* Default */}
-            <Route path='/notice' element={<NoticePage />} />
+            <Route path='/notice' element={<ListPage type='notice' />} />
             <Route path='/notice'>
-              <Route path=':id' element={<NoticeViewPage />} />
+              <Route path=':id' element={<ViewPage type='notice' />} />
             </Route>
-            <Route path='/complaint' element={<ComplaintPage />} />
+            <Route path='/complaint' element={<ListPage type='complaint' />} />
             <Route path='/complaint'>
-              <Route path=':id' element={<ComplaintViewPage />} />
+              <Route path=':id' element={<ViewPage type='complaint' />} />
             </Route>
-            <Route path='/community' element={<CommunityPage />} />
+            <Route path='/community' element={<ListPage type='community' />} />
             <Route path='/community'>
-              <Route path=':id' element={<CommunityViewPage />} />
+              <Route path=':id' element={<ViewPage type='community' />} />
             </Route>
             {/* Elder */}
             <Route path='/noticeElder' element={<NoticePageElder />} />

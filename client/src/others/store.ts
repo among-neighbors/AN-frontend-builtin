@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import { Obj } from './integrateInterface';
 
 const ACTION_FROM_NOTICE = 'actionToNotice',
   ACTION_FROM_COMMUNITY = 'actionToCommunity';
@@ -9,8 +10,9 @@ const ACTION_TO_HANDLE_HELP_SIDE_BAR = 'actionToHandleHelpSideBar',
 const ACTION_TO_REFRESH_ACCOUNT_ACCESS_TOKEN = 'actionToRefreshAccountAccessToken',
   ACTION_TO_CHECK_FACE_DETECTION = 'actionToCheckFaceDetecion';
 
-interface TableNavState {
-  [key: string]: number;
+const ACTION_TO_GET_READY_FOR_REQUEST_API = 'actionToGetReadyForRequestAPI';
+
+interface TableNavState extends Obj<number> {
   notice: number;
   community: number;
 }
@@ -24,6 +26,7 @@ interface RootState {
   helpSideBarReducer: boolean;
   tableNavReducer: TableNavState;
   accessTokenReducer: accessTokenState;
+  readyForRequestAPIReducer: boolean;
 }
 
 const tableNavReducer = (
@@ -86,10 +89,20 @@ const accessTokenReducer = (
   }
 };
 
+const readyForRequestAPIReducer = (state = false, action: { type: string }) => {
+  switch (action.type) {
+    case ACTION_TO_GET_READY_FOR_REQUEST_API:
+      return true;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   tableNavReducer,
   helpSideBarReducer,
   accessTokenReducer,
+  readyForRequestAPIReducer,
 });
 
 const store = createStore(rootReducer);
@@ -127,13 +140,21 @@ const handleRefreshIsFaceDetectionOK = (isFaceDetection: boolean) => {
   });
 };
 
+const getReadyForRequestAPI = () => {
+  store.dispatch({
+    type: ACTION_TO_GET_READY_FOR_REQUEST_API,
+  });
+};
+
 export {
   store,
+  TableNavState,
   handleTableNav,
   handleHelpSideBar,
   closeHelpSideBar,
   handleRefreshAccountAccessToken,
   handleRefreshIsFaceDetectionOK,
+  getReadyForRequestAPI,
   RootState,
   accessTokenState,
 };
