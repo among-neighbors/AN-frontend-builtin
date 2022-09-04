@@ -1,11 +1,7 @@
-
-import FaceDetectionForm from "~/components/organisms/FaceDetectionForm";
+import FaceDetectionForm from '~/components/organisms/FaceDetectionForm';
 
 function FaceDetection() {
-
-  return (
-    <FaceDetectionForm/>
-  )
+  return <FaceDetectionForm />;
 }
 
 export default FaceDetection;

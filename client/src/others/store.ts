@@ -7,7 +7,7 @@ const ACTION_TO_HANDLE_HELP_SIDE_BAR = 'actionToHandleHelpSideBar',
   ACTION_TO_CLOSE_HELP_SIDE_BAR = 'actionToCloseHelpSideBar';
 
 const ACTION_TO_REFRESH_ACCOUNT_ACCESS_TOKEN = 'actionToRefreshAccountAccessToken',
-  ACTION_TO_REFRESH_PROFILE_ACCESS_TOKEN = 'actionToRefreshProfileAccessToken';
+  ACTION_TO_CHECK_FACE_DETECTION = 'actionToCheckFaceDetecion';
 
 interface TableNavState {
   [key: string]: number;
@@ -17,7 +17,7 @@ interface TableNavState {
 
 interface accessTokenState {
   accountAccessToken: string;
-  profileAccessToken: string;
+  isFaceDetectionOK: boolean;
 }
 
 interface RootState {
@@ -66,20 +66,20 @@ const helpSideBarReducer = (state: boolean = false, action: { type: string }) =>
 const accessTokenReducer = (
   state = {
     accountAccessToken: '',
-    profileAccessToken: '',
+    isFaceDetectionOK: false,
   },
-  action: { type: string; accessToken: string },
+  action: { type: string; accessToken: string; isFaceDetection: boolean },
 ) => {
   switch (action.type) {
     case ACTION_TO_REFRESH_ACCOUNT_ACCESS_TOKEN:
       return {
         accountAccessToken: action.accessToken,
-        profileAccessToken: state.profileAccessToken,
+        isFaceDetectionOK: state.isFaceDetectionOK,
       };
-    case ACTION_TO_REFRESH_PROFILE_ACCESS_TOKEN:
+    case ACTION_TO_CHECK_FACE_DETECTION:
       return {
         accountAccessToken: state.accountAccessToken,
-        profileAccessToken: action.accessToken,
+        isFaceDetectionOK: action.isFaceDetection,
       };
     default:
       return state;
@@ -119,10 +119,11 @@ const handleRefreshAccountAccessToken = (accessToken: string) => {
     accessToken,
   });
 };
-const handleRefreshProfileAccessToken = (accessToken: string) => {
+
+const handleRefreshIsFaceDetectionOK = (isFaceDetection: boolean) => {
   store.dispatch({
-    type: ACTION_TO_REFRESH_PROFILE_ACCESS_TOKEN,
-    accessToken,
+    type: ACTION_TO_CHECK_FACE_DETECTION,
+    isFaceDetection,
   });
 };
 
@@ -132,7 +133,7 @@ export {
   handleHelpSideBar,
   closeHelpSideBar,
   handleRefreshAccountAccessToken,
-  handleRefreshProfileAccessToken,
+  handleRefreshIsFaceDetectionOK,
   RootState,
   accessTokenState,
 };

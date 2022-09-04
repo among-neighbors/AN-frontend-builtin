@@ -42,6 +42,7 @@ const theme = (isHelpSideBar: boolean) => {
         contrastText: '#fff',
       },
     },
+    breakpoints,
   });
 };
 

@@ -41,7 +41,7 @@ function Copyright(props: any) {
   );
 }
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -70,6 +70,7 @@ const Router = ({ state }: RouterProps) => {
             <Route path='/communityElder'>
               <Route path=':id' element={<CommunityViewPageElder />} />
             </Route>
+            <Route path='/*'> </Route>
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
