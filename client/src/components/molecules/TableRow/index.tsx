@@ -4,14 +4,14 @@ import {
   isProcessedCommunityPostData,
 } from '~/others/integrateInterface';
 import { TableRowForMobileProps, TableRowForCommentProps } from './interface';
-import { stringByRange, stringByCategory, handledDate } from '~/others/integrateVariable';
+import { categoryByType, rangeByType } from '~/others/integrateVariable';
 
 const TableRowForMobile: React.FC<TableRowForMobileProps> = ({ row }) => {
   if (isProcessedNoticePostData(row)) {
     return (
       <StyledTableRowForMobile>
         <div>{row.title}</div>
-        <p>{`${row.id} | ${stringByRange[row.type]} | ${row.writer} | ${row.date}`}</p>
+        <p>{`${row.id} | ${rangeByType[row.type]} | ${row.writer} | ${row.date}`}</p>
       </StyledTableRowForMobile>
     );
   }
@@ -20,7 +20,7 @@ const TableRowForMobile: React.FC<TableRowForMobileProps> = ({ row }) => {
     return (
       <StyledTableRowForMobile>
         <div>{row.title}</div>
-        <p>{`${row.id} | ${stringByRange[row.type]} | ${stringByCategory[row.category]} | ${
+        <p>{`${row.id} | ${rangeByType[row.type]} | ${categoryByType[row.category]} | ${
           row.writer
         } | ${row.date}`}</p>
       </StyledTableRowForMobile>
@@ -36,14 +36,14 @@ const TableRowForMobile: React.FC<TableRowForMobileProps> = ({ row }) => {
   );
 };
 
-// const TableRowForComment: React.FC<TableRowForCommentProps> = ({ commentData }) => {
-//   const { comment, writer, date } = commentData;
-//   return (
-//     <StyledTableRowForComment>
-//       <div>{comment}</div>
-//       <p>{`${writer} | ${date}`}</p>
-//     </StyledTableRowForComment>
-//   );
-// };
+const TableRowForComment: React.FC<TableRowForCommentProps> = ({ commentData }) => {
+  const { comment, writer, date } = commentData;
+  return (
+    <StyledTableRowForComment>
+      <div>{comment}</div>
+      <p>{`${writer} | ${date}`}</p>
+    </StyledTableRowForComment>
+  );
+};
 
-export { TableRowForMobile };
+export { TableRowForMobile, TableRowForComment };

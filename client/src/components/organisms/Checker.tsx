@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import useInterval from 'use-interval';
 import {
   accessTokenState,
-  getReadyForRequestAPI,
   handleRefreshAccountAccessToken,
   // handleRefreshProfileAccessToken,
   RootState,
@@ -28,7 +27,7 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     try {
       const res = await myAxios('post', 'api/v1/auth/account-token', null, true);
       handleRefreshAccountAccessToken(res.data.response.accessToken);
-      // console.log(res.data.response.accessToken);
+      console.log(res.data.response.accessToken);
     } catch (err) {
       console.log(err);
     } finally {
@@ -53,19 +52,17 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
   }, []);
 
   useEffect(() => {
-    if (!accountKey) {
-      return;
-    }
-    getReadyForRequestAPI;
-
-    if (accountAccessToken !== '') {
-      console.log('....');
+    if (!accountKey) return;
+    if (accountAccessToken !== '' && isFaceDetectionOK === true) {
       navigate('/');
     }
-
     if (accountAccessToken === '') {
       const isAllowPath = allowPath.some((path) => location.pathname === path);
-      navigate('/sign');
+      if (!isAllowPath) navigate('/sign');
+    }
+    if (accountAccessToken !== '' && isFaceDetectionOK == true) {
+      console.log(isFaceDetectionOK);
+      if (location.pathname === '/sign') navigate('/');
     }
   }, [accountKey, location.pathname]);
 

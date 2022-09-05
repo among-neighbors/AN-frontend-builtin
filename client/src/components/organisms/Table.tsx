@@ -25,13 +25,12 @@ interface Column {
 
 interface TableProps {
   type: string;
-  rows: ProcessedTypePostDataArray | null;
+  rows: ProcessedTypePostDataArray;
   isFirstPage: boolean;
   isLastPage: boolean;
 }
 
 const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage }) => {
-  console.log(type);
   const location = useLocation();
   const navigate = useNavigate();
   const queryObj = Object(parse(location.search));
@@ -62,7 +61,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap', fontSize: '18px' }}
+                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap' }}
                 >
                   {column.label}
                 </TableCell>
@@ -70,7 +69,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows?.map((row, index) => {
+            {rows.map((row, index) => {
               return (
                 <React.Fragment key={index}>
                   <TableRow
@@ -120,10 +119,10 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
               display: 'none',
             },
           }}
-          rowsPerPageOptions={[5]}
+          rowsPerPageOptions={[10]}
           component='div'
-          count={isLastPage ? 20 - (isFirstPage ? 5 : 0) : 21 - (isFirstPage ? 5 : 0)}
-          rowsPerPage={5}
+          count={isLastPage ? 20 - (isFirstPage ? 10 : 0) : 21 - (isFirstPage ? 10 : 0)}
+          rowsPerPage={10}
           page={isFirstPage ? 0 : 1}
           onPageChange={handleChangePage}
         />

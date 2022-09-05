@@ -6,20 +6,16 @@ const APIbyType: Obj<string> = {
   community: `api/v1/communities`,
 };
 
-const stringByRange: Obj<string> = {
+const rangeByType: Obj<string> = {
   ALL: '전체',
   LINE: '라인',
 };
 
-const stringByCategory: Obj<string> = {
+const categoryByType: Obj<string> = {
   QNA: '질문글',
   SELLING: '팝니다',
   BUYING: '삽니다',
   PLAIN: '기본글',
 };
 
-const handledDate = (createdDate: string) => {
-  return createdDate.substring(0, 5);
-};
-
-export { APIbyType, stringByRange, handledDate, stringByCategory };
+export { APIbyType, rangeByType, categoryByType };
