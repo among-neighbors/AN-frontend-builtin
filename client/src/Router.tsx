@@ -1,16 +1,10 @@
 import { ThemeProvider } from '@mui/material';
-// import theme from './others/myTheme';
-import Header from './components/organisms/Header';
 import theme from './others/colorTheme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignPage from './pages/SignPage';
 import HomePage from './pages/HomePage';
-// import ListPage from './pages/ListPage';
 import { connect } from 'react-redux';
 import { RootState } from './others/store';
-// import ViewPage from './pages/ViewPage';
-// import WrittingPage from './pages/WrittingPage';
-import { Navigate } from 'react-router-dom';
 import Checker from './components/organisms/Checker';
 import CommunityViewPageElder from './pages/CommunityViewPageElder';
 import CommunityPageElder from './pages/CommunityPageElder';
@@ -18,12 +12,6 @@ import ComplaintViewPageElder from './pages/ComplaintViewPageElder';
 import ComplaintPageElder from './pages/ComplaintPageElder';
 import NoticeViewPageElder from './pages/NoticeViewPageElder';
 import NoticePageElder from './pages/NoticePageElder';
-import CommunityViewPage from './pages/CommunityViewPage';
-import CommunityPage from './pages/CommunityPage';
-import ComplaintViewPage from './pages/ComplaintViewPage';
-import ComplaintPage from './pages/ComplaintPage';
-import NoticeViewPage from './pages/NoticeViewPage';
-import NoticePage from './pages/NoticePage';
 import FaceDetection from './pages/FaceDetectionPage';
 import HomePageElder from './pages/HomePageElder';
 import ViewPage from './pages/ViewPage';
@@ -37,16 +25,13 @@ const Router = ({ state }: RouterProps) => {
   return (
     <>
       <BrowserRouter>
-        <ThemeProvider theme={theme(false)}>
-          <Checker />
-        </ThemeProvider>
+        <ThemeProvider theme={theme(false)}>{/* <Checker /> */}</ThemeProvider>
         <ThemeProvider theme={theme(state.helpSideBarReducer)}>
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/elder' element={<HomePageElder />} />
             <Route path='/faceDetection' element={<FaceDetection />} />
-            <Route path='/sign' element={<SignPage />} />
             {/* Default */}
+            <Route path='/sign' element={<SignPage />} />
             <Route path='/notice' element={<ListPage type='notice' />} />
             <Route path='/notice'>
               <Route path=':id' element={<ViewPage type='notice' />} />
@@ -60,6 +45,7 @@ const Router = ({ state }: RouterProps) => {
               <Route path=':id' element={<ViewPage type='community' />} />
             </Route>
             {/* Elder */}
+            <Route path='/elder' element={<HomePageElder />} />
             <Route path='/noticeElder' element={<NoticePageElder />} />
             <Route path='/noticeElder'>
               <Route path=':id' element={<NoticeViewPageElder />} />

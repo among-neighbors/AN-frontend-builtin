@@ -1,10 +1,7 @@
-import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import TableNav from '~/components/molecules/TableNav';
-// import PageHeader from '~/components/organisms/PageHeader';
 import BoardTable from '~/components/organisms/Table';
 import myAxios from '~/others/myAxios';
 import { RootState } from '~/others/store';
@@ -19,12 +16,20 @@ import {
   isDeliveredNoticePostDataArray,
 } from '~/others/integrateInterface';
 import { ListPageProps } from './interface';
-import { APIbyType } from '~/others/integrateVariable';
+import { APIbyType, handledDate } from '~/others/integrateVariable';
 import HeaderDefault from '~/components/organisms/HeaderDefault';
 import styled from 'styled-components';
 
 const StyledBody = styled.div`
       margin: 200px 0 55px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+`;
+
+const StyledBoard = styled.div`
+      
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -58,6 +63,8 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI }: ListPagePr
       true,
       accountAccessToken,
     );
+    // 삭제 필요
+    console.log(`${APIbyType[type]}${querys[type]}`);
     setTableData(res.data.response);
   };
 
@@ -86,15 +93,10 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI }: ListPagePr
       ) : (
         <></>
       )} */}
-      {rows && (
-        <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} />
-      )}
+
+      <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} />
     </Box>
   );
-};
-
-const handledDate = (createdDate: string) => {
-  return createdDate.substring(0, 10);
 };
 
 const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray | null => {
