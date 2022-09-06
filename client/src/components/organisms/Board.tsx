@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { ProcessedTypePostData } from '~/others/integrateInterface';
-import { rangeByType, categoryByType } from '~/others/integrateVariable';
+import { stringByRange, stringByCategory, handledDate } from '~/others/integrateVariable';
 import BoardNav from '../molecules/BoardNav';
 
 interface BoardProps {
@@ -10,6 +10,7 @@ interface BoardProps {
 }
 
 const Board: React.FC<BoardProps> = ({ boardData, type }) => {
+  console.log('Board');
   return (
     <Box sx={{ maxWidth: '1200px', width: '100%' }}>
       <Box
@@ -38,10 +39,10 @@ const Board: React.FC<BoardProps> = ({ boardData, type }) => {
             },
           }}
         >
-          {boardData.range && <p>{`유형 : ${rangeByType[boardData.range]}`}</p>}
-          {boardData.category && <p>{`카테고리 : ${categoryByType[boardData.category]}`}</p>}
+          {boardData.range && <p>{`유형 : ${stringByRange[boardData.range]}`}</p>}
+          {boardData.category && <p>{`카테고리 : ${stringByCategory[boardData.category]}`}</p>}
           <p>{`작성자 : ${boardData.writer}`}</p>
-          <p>{`등록일 : ${boardData.date}`}</p>
+          <p>{`등록일 : ${handledDate(boardData.date)}`}</p>
         </Box>
       </Box>
       <Box
