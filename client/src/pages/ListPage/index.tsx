@@ -5,7 +5,7 @@ import TableNav from '~/components/molecules/TableNav';
 import BoardTable from '~/components/organisms/Table';
 import myAxios from '~/others/myAxios';
 import { RootState } from '~/others/store';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { parse } from 'query-string';
 import {
   Obj,
@@ -19,6 +19,8 @@ import { ListPageProps } from './interface';
 import { APIbyType, handledDate } from '~/others/integrateVariable';
 import HeaderDefault from '~/components/organisms/HeaderDefault';
 import styled from 'styled-components';
+import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
+import Typography from '@mui/material/Typography';
 
 const StyledBody = styled.div`
       margin: 200px 0 55px 0;
@@ -27,16 +29,23 @@ const StyledBody = styled.div`
       align-items: center;
     }
 `;
-
-const StyledBoard = styled.div`
-      
+const StyledBodyElder = styled.div`
+      margin: 0px 0 55px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 `;
 
-const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI }: ListPageProps) => {
+
+const StyledImg = styled.img`
+    margin: 0px 2px;
+    height: 120px;
+  
+    }
+`;
+
+const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: ListPageProps) => {
   const location = useLocation();
   const [tableData, setTableData] = useState<TableDataProps>({
     list: [],
@@ -75,14 +84,45 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI }: ListPagePr
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-      <HeaderDefault />
-      <StyledBody>
+      {mode === 'elder' ? (<HeaderElderDefualt/>) : (<HeaderDefault />)}
+      {mode === 'elder' ? (<Typography
+            variant='h6'
+            noWrap
+            component={Link}
+            to='/noticeElder'
+            sx={{
+              mr: 4,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              fontSize: '24px',
+              color:'black',
+              letterSpacing: '.1rem',
+              textDecoration: 'none',
+              textAlign: 'center',
+              margin: '120px 0 0px 0'
+            }}
+          >
+            {type === 'community' ? (<><StyledImg src='/img/communityHeader.png' /></>) : (<></>)}
+            {type === 'complaint' ? (<> <StyledImg src='/img/complaintHeader.png' /></>) : (<></>)}
+            {type === 'notice' ? (<><StyledImg src='/img/noticeHeader.png' /></>) : (<></>)}
+  
+          </Typography>) : (<></>)}
+    
+      {mode === 'elder' ? (<> <StyledBodyElder>
+        {type === 'notice' || type === 'community' ? (
+          <TableNav type={type} isPageMove={false} />
+        ) : (
+          <> </>
+        )}
+      </StyledBodyElder></>) : (<> <StyledBody>
         {type === 'notice' || type === 'community' ? (
           <TableNav type={type} isPageMove={false} />
         ) : (
           <></>
         )}
-      </StyledBody>
+      </StyledBody></>)}
+     
 
       {/* {type === 'complaint' || type === 'community' ? (
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'right', paddingRight: '20px' }}>
@@ -93,8 +133,8 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI }: ListPagePr
       ) : (
         <></>
       )} */}
-
       <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} />
+      
     </Box>
   );
 };

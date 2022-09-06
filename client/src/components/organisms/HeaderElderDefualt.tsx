@@ -53,7 +53,7 @@ const StyledUp = styled.img`
 // ];
 // const settings = ['로그아웃'];
 
-const HeaderElder = () => {
+const HeaderElderDefualt = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -183,4 +183,4 @@ const HeaderElder = () => {
   );
 };
 
-export default HeaderElder;
+export default HeaderElderDefualt;
