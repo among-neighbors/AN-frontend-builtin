@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { ProcessedTypePostData } from '~/others/integrateInterface';
-import { stringByRange, stringByCategory, handledDate } from '~/others/integrateVariable';
+import { stringByScope, stringByCategory, handledDate } from '~/others/integrateVariable';
 import BoardNav from '../molecules/BoardNav';
 
 interface BoardProps {
@@ -10,7 +10,6 @@ interface BoardProps {
 }
 
 const Board: React.FC<BoardProps> = ({ boardData, type }) => {
-  console.log('Board');
   return (
     <Box sx={{ maxWidth: '1200px', width: '100%' }}>
       <Box
@@ -39,7 +38,7 @@ const Board: React.FC<BoardProps> = ({ boardData, type }) => {
             },
           }}
         >
-          {boardData.range && <p>{`유형 : ${stringByRange[boardData.range]}`}</p>}
+          {boardData.scope && <p>{`유형 : ${stringByScope[boardData.scope]}`}</p>}
           {boardData.category && <p>{`카테고리 : ${stringByCategory[boardData.category]}`}</p>}
           <p>{`작성자 : ${boardData.writer}`}</p>
           <p>{`등록일 : ${handledDate(boardData.date)}`}</p>
@@ -55,7 +54,7 @@ const Board: React.FC<BoardProps> = ({ boardData, type }) => {
           marginBottom: '5px',
         }}
       >
-        {boardData.body.split('\n').map((str, index) => {
+        {boardData.content.split('\n').map((str, index) => {
           return (
             <Typography
               key={index}

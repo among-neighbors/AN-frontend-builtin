@@ -10,23 +10,29 @@ interface ProcessedCommonPostData extends Obj<string> {
   date: string;
 }
 
-type ColumnId = 'id' | 'title' | 'range' | 'category' | 'writer' | 'date';
+type ColumnId = 'id' | 'title' | 'scope' | 'category' | 'writer' | 'date';
 
-type Range = 'ALL' | 'LINE';
+type Scope = 'ALL' | 'LINE';
 
 type Category = 'QNA' | 'SELLING' | 'BUYING' | 'PLAIN';
 
+type Bool = 'true' | 'false';
+
 interface ProcessedNoticePostData extends ProcessedCommonPostData {
-  range: Range;
+  scope: Scope;
+  isMine: Bool;
 }
+
 interface ProcessedComplaintPostData extends ProcessedCommonPostData {}
+
 interface ProcessedCommunityPostData extends ProcessedCommonPostData {
-  range: Range;
+  scope: Scope;
   category: Category;
+  isMine: Bool;
 }
 
 const isProcessedNoticePostData = (data: any): data is ProcessedNoticePostData => {
-  return data.category === undefined && data.range !== undefined;
+  return data.category === undefined && data.scope !== undefined;
 };
 
 const isProcessedCommunityPostData = (data: any): data is ProcessedCommunityPostData => {
@@ -56,16 +62,21 @@ interface DeliveredCommunityPostData extends DeliveredCommonPostData {
     lineName: string;
     houseName: string;
   };
-  range: Range;
+  scope: Scope;
   category: Category;
   like: number;
+  isMine: boolean;
 }
 
 interface DeliveredNoticePostData extends DeliveredCommonPostData {
-  writer: string;
-  range: Range;
+  writer: {
+    id: number;
+    name: string;
+  };
+  scope: Scope;
   expiredDate: string;
   releaseLine: string;
+  isMine: boolean;
 }
 
 interface DeliveredComplaintPostData extends DeliveredCommonPostData {
@@ -108,9 +119,14 @@ interface TableDataProps {
 }
 
 interface CommentData {
-  writer: string;
-  comment: string;
-  date: string;
+  id: number;
+  writer: {
+    name: string;
+    houseName: string;
+    lineName: string;
+  };
+  text: string;
+  createdDate: string;
 }
 
 export {

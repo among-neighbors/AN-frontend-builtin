@@ -8,7 +8,7 @@ const ACTION_TO_HANDLE_HELP_SIDE_BAR = 'actionToHandleHelpSideBar',
   ACTION_TO_CLOSE_HELP_SIDE_BAR = 'actionToCloseHelpSideBar';
 
 const ACTION_TO_REFRESH_ACCOUNT_ACCESS_TOKEN = 'actionToRefreshAccountAccessToken',
-  ACTION_TO_CHECK_FACE_DETECTION = 'actionToCheckFaceDetecion';
+  ACTION_TO_REFRESH_PROFILE_ACCESS_TOKEN = 'actionToRefreshProfileAccessToken';
 
 const ACTION_TO_GET_READY_FOR_REQUEST_API = 'actionToGetReadyForRequestAPI';
 
@@ -19,7 +19,7 @@ interface TableNavState extends Obj<number> {
 
 interface accessTokenState {
   accountAccessToken: string;
-  isFaceDetectionOK: boolean;
+  profileAccessToken: string;
 }
 
 interface RootState {
@@ -55,7 +55,7 @@ const tableNavReducer = (
   }
 };
 
-const helpSideBarReducer = (state: boolean = false, action: { type: string }) => {
+const helpSideBarReducer = (state = false, action: { type: string }) => {
   switch (action.type) {
     case ACTION_TO_HANDLE_HELP_SIDE_BAR:
       return !state;
@@ -69,20 +69,20 @@ const helpSideBarReducer = (state: boolean = false, action: { type: string }) =>
 const accessTokenReducer = (
   state = {
     accountAccessToken: '',
-    isFaceDetectionOK: false,
+    profileAccessToken: '',
   },
-  action: { type: string; accessToken: string; isFaceDetection: boolean },
+  action: { type: string; accessToken: string },
 ) => {
   switch (action.type) {
     case ACTION_TO_REFRESH_ACCOUNT_ACCESS_TOKEN:
       return {
         accountAccessToken: action.accessToken,
-        isFaceDetectionOK: state.isFaceDetectionOK,
+        profileAccessToken: state.profileAccessToken,
       };
-    case ACTION_TO_CHECK_FACE_DETECTION:
+    case ACTION_TO_REFRESH_PROFILE_ACCESS_TOKEN:
       return {
         accountAccessToken: state.accountAccessToken,
-        isFaceDetectionOK: action.isFaceDetection,
+        profileAccessToken: action.accessToken,
       };
     default:
       return state;
@@ -133,10 +133,10 @@ const handleRefreshAccountAccessToken = (accessToken: string) => {
   });
 };
 
-const handleRefreshIsFaceDetectionOK = (isFaceDetection: boolean) => {
+const handleRefreshProfileAccessToken = (accessToken: string) => {
   store.dispatch({
-    type: ACTION_TO_CHECK_FACE_DETECTION,
-    isFaceDetection,
+    type: ACTION_TO_REFRESH_PROFILE_ACCESS_TOKEN,
+    accessToken,
   });
 };
 
@@ -153,7 +153,7 @@ export {
   handleHelpSideBar,
   closeHelpSideBar,
   handleRefreshAccountAccessToken,
-  handleRefreshIsFaceDetectionOK,
+  handleRefreshProfileAccessToken,
   getReadyForRequestAPI,
   RootState,
   accessTokenState,

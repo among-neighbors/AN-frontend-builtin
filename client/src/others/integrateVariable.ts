@@ -6,7 +6,7 @@ const APIbyType: Obj<string> = {
   community: `api/v1/communities`,
 };
 
-const stringByRange: Obj<string> = {
+const stringByScope: Obj<string> = {
   ALL: '전체',
   LINE: '라인',
 };
@@ -19,7 +19,20 @@ const stringByCategory: Obj<string> = {
 };
 
 const handledDate = (createdDate: string) => {
-  return createdDate.substring(0, 5);
+  return createdDate.substring(0, 10);
 };
 
-export { APIbyType, stringByRange, handledDate, stringByCategory };
+const ColorsByProfileIndex = [
+  '#fff',
+  '#E7602A',
+  '#EE8933',
+  '#E1BA75',
+  '#6F8A6A',
+  '#265431',
+  '#1F4C73',
+  '#3B82BF',
+  '#F2AE30',
+  '#D98D62',
+];
+
+export { APIbyType, stringByScope, handledDate, stringByCategory, ColorsByProfileIndex };

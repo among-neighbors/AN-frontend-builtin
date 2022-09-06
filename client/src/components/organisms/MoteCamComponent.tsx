@@ -14,7 +14,7 @@ import styles from '../../../styles/MoteCam.module.css';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { MoteCamAge } from './MoteCamAge';
-import { accessTokenState, handleRefreshIsFaceDetectionOK, RootState } from '~/others/store';
+
 const StyledContainer = styled.div`
     
     display: flex;
@@ -32,10 +32,8 @@ const MoteCamComponent: React.FC = () => {
     var detextedAgeNum: number = Number(detectedAge.props.age.message);
     console.log(detextedAgeNum);
     if (detextedAgeNum > 65) {
-      handleRefreshIsFaceDetectionOK(true);
       window.location.href = '/elder';
     } else {
-      handleRefreshIsFaceDetectionOK(true);
       window.location.href = '/';
     }
     // window.location.href = '/elder';

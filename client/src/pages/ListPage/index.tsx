@@ -1,11 +1,13 @@
+import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import TableNav from '~/components/molecules/TableNav';
 import BoardTable from '~/components/organisms/Table';
 import myAxios from '~/others/myAxios';
 import { RootState } from '~/others/store';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { parse } from 'query-string';
 import {
   Obj,
@@ -23,7 +25,7 @@ import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import Typography from '@mui/material/Typography';
 
 const StyledBody = styled.div`
-      margin: 200px 0 55px 0;
+      margin: 110px 0 55px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -37,13 +39,11 @@ const StyledBodyElder = styled.div`
     }
 `;
 
-
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 120px;
-  
-    }
-`;
+  }
+  `;
 
 const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: ListPageProps) => {
   const location = useLocation();
@@ -57,13 +57,11 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
 
   const getListData = async () => {
     const URLQueryData = parse(location.search);
-    const { page, range, category } = URLQueryData;
+    const { page, scope, category } = URLQueryData;
     const querys: Obj<string> = {
-      notice: `?page=${page ?? 1}&count=10&range=${range ?? 'ALL'}`,
-      complaint: `?page=${page ?? 1}&count=10`,
-      community: `?page=${page ?? 1}&count=10&range=${range ?? 'ALL'}&category=${
-        category ?? 'ALL'
-      }`,
+      notice: `?page=${page ?? 1}&count=5&scope=${scope ?? 'ALL'}`,
+      complaint: `?page=${page ?? 1}&count=5`,
+      community: `?page=${page ?? 1}&count=5&scope=${scope ?? 'ALL'}&category=${category ?? 'ALL'}`,
     };
     const res = await myAxios(
       'get',
@@ -72,7 +70,6 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
       true,
       accountAccessToken,
     );
-    // 삭제 필요
     console.log(`${APIbyType[type]}${querys[type]}`);
     setTableData(res.data.response);
   };
@@ -84,57 +81,77 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-      {mode === 'elder' ? (<HeaderElderDefualt/>) : (<HeaderDefault />)}
-      {mode === 'elder' ? (<Typography
-            variant='h6'
-            noWrap
-            component={Link}
-            to='/noticeElder'
-            sx={{
-              mr: 4,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              fontSize: '24px',
-              color:'black',
-              letterSpacing: '.1rem',
-              textDecoration: 'none',
-              textAlign: 'center',
-              margin: '120px 0 0px 0'
-            }}
-          >
-            {type === 'community' ? (<><StyledImg src='/img/communityHeader.png' /></>) : (<></>)}
-            {type === 'complaint' ? (<> <StyledImg src='/img/complaintHeader.png' /></>) : (<></>)}
-            {type === 'notice' ? (<><StyledImg src='/img/noticeHeader.png' /></>) : (<></>)}
-  
-          </Typography>) : (<></>)}
-    
-      {mode === 'elder' ? (<> <StyledBodyElder>
-        {type === 'notice' || type === 'community' ? (
-          <TableNav type={type} isPageMove={false} />
-        ) : (
-          <> </>
-        )}
-      </StyledBodyElder></>) : (<> <StyledBody>
-        {type === 'notice' || type === 'community' ? (
-          <TableNav type={type} isPageMove={false} />
-        ) : (
-          <></>
-        )}
-      </StyledBody></>)}
-     
-
-      {/* {type === 'complaint' || type === 'community' ? (
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'right', paddingRight: '20px' }}>
-          <Button component={Link} to={`/${type}/writing`} variant='contained'>
-            {buttonTextByType[type]}
-          </Button>
-        </Box>
+      {mode === 'elder' ? <HeaderElderDefualt /> : <HeaderDefault />}
+      {mode === 'elder' ? (
+        <Typography
+          variant='h6'
+          noWrap
+          component={Link}
+          to='/noticeElder'
+          sx={{
+            mr: 4,
+            display: { xs: 'none', md: 'flex' },
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            fontSize: '24px',
+            color: 'black',
+            letterSpacing: '.1rem',
+            textDecoration: 'none',
+            textAlign: 'center',
+            margin: '50px 0 0px 0',
+          }}
+        >
+          {type === 'community' ? (
+            <>
+              <StyledImg src='/img/communityHeader.png' />
+            </>
+          ) : (
+            <></>
+          )}
+          {type === 'complaint' ? (
+            <>
+              {' '}
+              <StyledImg src='/img/complaintHeader.png' />
+            </>
+          ) : (
+            <></>
+          )}
+          {type === 'notice' ? (
+            <>
+              <StyledImg src='/img/noticeHeader.png' />
+            </>
+          ) : (
+            <></>
+          )}
+        </Typography>
       ) : (
         <></>
-      )} */}
+      )}
+
+      {mode === 'elder' ? (
+        <>
+          {' '}
+          <StyledBodyElder>
+            {type === 'notice' || type === 'community' ? (
+              <TableNav type={type} isPageMove={false} />
+            ) : (
+              <> </>
+            )}
+          </StyledBodyElder>
+        </>
+      ) : (
+        <>
+          {' '}
+          <StyledBody>
+            {type === 'notice' || type === 'community' ? (
+              <TableNav type={type} isPageMove={false} />
+            ) : (
+              <></>
+            )}
+          </StyledBody>
+        </>
+      )}
       <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} />
-      
     </Box>
   );
 };
@@ -142,12 +159,12 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
 const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray | null => {
   if (list.length === 0) return null;
   if (isDeliveredCommunityPostDataArray(list)) {
-    return list.map(({ id, title, content, createdDate, writer, range, category }) => {
+    return list.map(({ id, title, content, createdDate, writer, scope, category }) => {
       return {
         id,
         title,
         content,
-        range,
+        scope,
         category,
         writer: writer.name,
         date: handledDate(createdDate),
@@ -155,13 +172,13 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
     });
   }
   if (isDeliveredNoticePostDataArray(list)) {
-    return list.map(({ id, title, content, createdDate, writer, range }) => {
+    return list.map(({ id, title, content, createdDate, writer, scope, isMine }) => {
       return {
         id,
         title,
         content,
-        range,
-        writer,
+        scope,
+        writer: writer.name,
         date: handledDate(createdDate),
       };
     });
@@ -178,10 +195,10 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
   });
 };
 
-// const buttonTextByType: Obj<string> = {
-//   complaint: '민원 작성',
-//   community: '글쓰기',
-// };
+const buttonTextByType: Obj<string> = {
+  complaint: '민원 작성',
+  community: '글쓰기',
+};
 
 const mapStateToProps = (state: RootState) => {
   return {

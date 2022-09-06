@@ -7,11 +7,8 @@ import { connect } from 'react-redux';
 import { RootState } from './others/store';
 import Checker from './components/organisms/Checker';
 import CommunityViewPageElder from './pages/CommunityViewPageElder';
-import CommunityPageElder from './pages/CommunityPageElder';
 import ComplaintViewPageElder from './pages/ComplaintViewPageElder';
-import ComplaintPageElder from './pages/ComplaintPageElder';
 import NoticeViewPageElder from './pages/NoticeViewPageElder';
-import NoticePageElder from './pages/NoticePageElder';
 import FaceDetection from './pages/FaceDetectionPage';
 import HomePageElder from './pages/HomePageElder';
 import ViewPage from './pages/ViewPage';
@@ -25,7 +22,9 @@ const Router = ({ state }: RouterProps) => {
   return (
     <>
       <BrowserRouter>
-        <ThemeProvider theme={theme(false)}>{/* <Checker /> */}</ThemeProvider>
+        <ThemeProvider theme={theme(false)}>
+          <Checker />
+        </ThemeProvider>
         <ThemeProvider theme={theme(state.helpSideBarReducer)}>
           <Routes>
             <Route path='/' element={<HomePage />} />
@@ -34,29 +33,29 @@ const Router = ({ state }: RouterProps) => {
             <Route path='/sign' element={<SignPage />} />
             <Route path='/notice' element={<ListPage type='notice' mode='dafualt' />} />
             <Route path='/notice'>
-              <Route path=':id' element={<ViewPage type='notice' />} />
+              <Route path=':id' element={<ViewPage type='notice' mode='dafualt' />} />
             </Route>
             <Route path='/complaint' element={<ListPage type='complaint' mode='dafualt' />} />
             <Route path='/complaint'>
-              <Route path=':id' element={<ViewPage type='complaint' />} />
+              <Route path=':id' element={<ViewPage type='complaint' mode='dafualt' />} />
             </Route>
             <Route path='/community' element={<ListPage type='community' mode='dafualt' />} />
             <Route path='/community'>
-              <Route path=':id' element={<ViewPage type='community' />} />
+              <Route path=':id' element={<ViewPage type='community' mode='dafualt' />} />
             </Route>
             {/* Elder */}
             <Route path='/elder' element={<HomePageElder />} />
             <Route path='/noticeElder' element={<ListPage type='notice' mode='elder' />} />
             <Route path='/noticeElder'>
-              <Route path=':id' element={<NoticeViewPageElder />} />
+              <Route path=':id' element={<ViewPage type='notice' mode='elder' />} />
             </Route>
             <Route path='/complaintElder' element={<ListPage type='complaint' mode='elder' />} />
             <Route path='/complaintElder'>
-              <Route path=':id' element={<ComplaintViewPageElder />} />
+              <Route path=':id' element={<ViewPage type='notice' mode='elder' />} />
             </Route>
             <Route path='/communityElder' element={<ListPage type='community' mode='elder' />} />
             <Route path='/communityElder'>
-              <Route path=':id' element={<CommunityViewPageElder />} />
+              <Route path=':id' element={<ViewPage type='notice' mode='elder' />} />
             </Route>
             <Route path='/*'> </Route>
           </Routes>

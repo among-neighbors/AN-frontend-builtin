@@ -31,13 +31,13 @@ interface TableProps {
 }
 
 const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage }) => {
-  console.log(type);
   const location = useLocation();
   const navigate = useNavigate();
   const queryObj = Object(parse(location.search));
   const page = queryObj.page ?? '1';
 
   const handleChangePage = (event: unknown, newPage: number) => {
+    event;
     queryObj['page'] = (Number(page) + newPage - (page === '1' ? 0 : 1)).toString();
     const queryStr = new URLSearchParams(queryObj).toString();
     navigate({
@@ -62,7 +62,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap', fontSize: '18px' }}
+                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap' }}
                 >
                   {column.label}
                 </TableCell>
@@ -122,7 +122,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
           }}
           rowsPerPageOptions={[5]}
           component='div'
-          count={isLastPage ? 20 - (isFirstPage ? 5 : 0) : 21 - (isFirstPage ? 5 : 0)}
+          count={isLastPage ? 20 - (isFirstPage ? 10 : 0) : 11 - (isFirstPage ? 10 : 0)}
           rowsPerPage={5}
           page={isFirstPage ? 0 : 1}
           onPageChange={handleChangePage}
@@ -142,13 +142,13 @@ interface TypeInfoData {
 const dataOfTypes: Obj<TypeInfoData> = {
   notice: {
     labels: ['공지 ID', '제목', '공지 유형', '작성자', '등록일'],
-    ids: ['id', 'title', 'range', 'writer', 'date'],
+    ids: ['id', 'title', 'scope', 'writer', 'date'],
     minWidths: [80, 300, 90, 110, 150],
     formats: [],
   },
   community: {
     labels: ['게시글 ID', '제목', '게시글 유형', '카테고리', '작성자', '등록일'],
-    ids: ['id', 'title', 'range', 'category', 'writer', 'date'],
+    ids: ['id', 'title', 'scope', 'category', 'writer', 'date'],
     minWidths: [80, 300, 90, 100, 110, 150],
     formats: [
       undefined,
@@ -175,7 +175,7 @@ const dataOfTypes: Obj<TypeInfoData> = {
   },
   complaint: {
     labels: ['민원 ID', '제목', '작성자', '등록일'],
-    ids: ['id', 'title', 'range', 'date'],
+    ids: ['id', 'title', 'scope', 'date'],
     minWidths: [80, 300, 110, 150],
     formats: [],
   },
