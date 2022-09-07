@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
     }
 `;
 
-const MoteCamComponent = () => {
+const MoteCamComponent: React.FC = () => {
   const moteCam = useMOTECam();
 
   const handleUI = () => {

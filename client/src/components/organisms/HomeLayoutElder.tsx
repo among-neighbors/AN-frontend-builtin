@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { borderRadius } from '@mui/system';
-const StyledBody = styled.body`
+const StyledBody = styled.div`
     height: 100vh;
     background-color: #F5F5F5;
     display: flex;

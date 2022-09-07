@@ -44,7 +44,7 @@ const StyledApplyButton = styled.button`
     }
 `;
 
-const StyledBody = styled.body`
+const StyledBody = styled.div`
     height: 100vh;
     background-color: #EC8034;
     display: flex;
