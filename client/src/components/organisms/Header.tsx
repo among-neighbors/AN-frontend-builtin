@@ -12,17 +12,81 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SquareImg from '../atoms/Img';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { fontSize } from '@mui/system';
+import myAxios from '~/others/myAxios';
+import { useEffect, useState } from 'react';
 
-const pages = ['공지', '민원', '커뮤니티'];
-const settings = ['내 정보', '로그아웃'];
+const StyledImg = styled.img`
+    margin: 0px 2px;
+    height: 67px;
+  
+    }
+`;
+// 이미지와 텍스트를 감싸고 있는 요소
+const StyledWrap = styled.div`
+  position: relative;
 
-const UserHeader = () => {
+    }
+`;
+
+const StyledImg2 = styled.img`
+    margin: 0px 2px;
+    height: 75px;
+  
+    }
+`;
+
+const StyledUp = styled.img`
+  
+    width: 500px;
+    background-position: 10% 100px;
+    position: fixed;
+    right: 0px;
+    up: 0px;
+    }
+`;
+
+const pages: {
+  name: string;
+  link: string;
+}[] = [
+  {
+    name: '공지',
+    link: '/notice',
+  },
+  {
+    name: '민원',
+    link: '/complaint',
+  },
+  {
+    name: '커뮤니티',
+    link: '/community',
+  },
+];
+const settings = ['로그아웃'];
+
+interface houseData {
+  lineName: string;
+  houseName: string;
+}
+
+interface ProfileHomeProps {
+  accountAccessToken: string;
+}
+
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [profileList, setProfileList] = useState<houseData[]>([]);
+  const [isProfileHome, setIsProfileHome] = useState(true);
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -36,105 +100,83 @@ const UserHeader = () => {
   };
 
   return (
-    <AppBar position='fixed'>
+    <AppBar sx={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-        <Toolbar disableGutters>
+        <StyledUp src='/img/up.png' />
+        <Toolbar
+          disableGutters
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}
+        >
           <Typography
             variant='h6'
             noWrap
-            component='a'
-            href='/'
+            component={Link}
+            to='/'
             sx={{
-              mr: 2,
+              mr: 4,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.1rem',
-              color: 'inherit',
               textDecoration: 'none',
-              alignItems: 'center',
             }}
           >
-            <SquareImg src='img/iconWhite.png' />
-            이웃사이
+            <StyledImg src='/img/Logo2.png' />
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size='large'
-              aria-label='account of current user'
-              aria-controls='menu-appbar'
-              aria-haspopup='true'
-              onClick={handleOpenNavMenu}
-              color='inherit'
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id='menu-appbar'
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
 
           <Typography
             variant='h5'
             noWrap
-            component='a'
-            href=''
+            component={Link}
+            to='/'
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
+              flexGrow: 4,
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.1rem',
-              color: 'inherit',
+              color: 'black',
               textDecoration: 'none',
               alignItems: 'center',
             }}
           >
-            <SquareImg src='img/iconWhite.png' />
-            이웃사이
+            <StyledImg src='/img/Logo2.png' />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+            }}
+            padding={2}
+            margin={3}
+          >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  my: 2,
+                  color: 'black',
+                  display: 'block',
+                  width: '140px',
+                  textAlign: 'center',
+                  fontSize: '24px',
+                  fontWeight: 900,
+                }}
+                component={Link}
+                to={page.link}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title='Open settings'>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='최윤석' src='/static/images/avatar/2.jpg' />
-              </IconButton>
-            </Tooltip>
+           
             <Menu
               sx={{ mt: '45px' }}
               id='menu-appbar'
@@ -164,4 +206,4 @@ const UserHeader = () => {
   );
 };
 
-export default UserHeader;
+export default Header;
