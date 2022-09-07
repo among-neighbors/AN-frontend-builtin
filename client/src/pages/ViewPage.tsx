@@ -21,9 +21,15 @@ import Typography from '@mui/material/Typography';
 
 const StyledImg = styled.img`
     margin: 0px 1px;
-    height: 110px;
+    height: 10px;
   }
   `;
+
+  const StyledMargin = styled.div`
+      margin: 110px 0 55px 0;
+     
+    }
+`;
 interface ViewPageProps {
   type: string;
   accessToken: accessTokenState;
@@ -67,7 +73,7 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
       const { writer, scope } = viewData;
       setBoardData({
         ...commonViewData,
-        writer,
+        writer: writer.name,
         scope,
       });
       return;
@@ -137,7 +143,7 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
           )}
         </Typography>
       ) : (
-        <></>
+        <StyledMargin></StyledMargin>
       )}
       {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <></>}
       {boardData && <Board type={type} boardData={boardData} />}

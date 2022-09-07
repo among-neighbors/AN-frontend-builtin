@@ -28,9 +28,10 @@ interface TableProps {
   rows: ProcessedTypePostDataArray | null;
   isFirstPage: boolean;
   isLastPage: boolean;
+  mode: string;
 }
 
-const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage }) => {
+const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,mode }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const queryObj = Object(parse(location.search));
@@ -54,19 +55,27 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
         maxWidth: '1500px',
       }}
     >
-      <TableContainer>
-        <Table stickyHeader aria-label='sticky table'>
+      <TableContainer >
+        <Table stickyHeader aria-label='sticky table' >
           <TableHead>
             <TableRow sx={{ display: { xs: 'none', sm: 'none', md: 'table-row' } }}>
-              {columns(type).map((column) => (
+              {mode==='elder'? (<>{columns(type).map((column) => (
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap' }}
+                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap',fontSize: '24px' }}
                 >
                   {column.label}
                 </TableCell>
-              ))}
+              ))}</>) : (<>{columns(type).map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap',fontSize: '18px' }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}</>)}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -81,18 +90,32 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage 
                     tabIndex={-1}
                     sx={{ display: { xs: 'none', sm: 'none', md: 'table-row' } }}
                   >
-                    {columns(type).map((column) => {
+                    {mode==='elder'? (<>{columns(type).map((column) => {
                       const value = row[column.id];
                       return (
+                      
                         <TableCell
                           key={column.id}
                           align={column.align}
-                          style={{ whiteSpace: 'nowrap' }}
+                          style={{ whiteSpace: 'nowrap' ,fontSize: '24px'}}
                         >
                           {column.format ? column.format(value) : value}
                         </TableCell>
                       );
-                    })}
+                    })}</>) : (<>{columns(type).map((column) => {
+                      const value = row[column.id];
+                      return (
+                      
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          style={{ whiteSpace: 'nowrap' ,fontSize: '18px'}}
+                        >
+                          {column.format ? column.format(value) : value}
+                        </TableCell>
+                      );
+                    })}</>)}
+                    
                   </TableRow>
                   <TableRow
                     component={Link}

@@ -24,19 +24,10 @@ import styled from 'styled-components';
 import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import Typography from '@mui/material/Typography';
 
-const StyledBody = styled.div`
-      margin: 110px 0 55px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-`;
-const StyledBodyElder = styled.div`
-      margin: 0px 0 55px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+const StyledMargin = styled.div`
+margin: 110px 0 55px 0;
+
+}
 `;
 
 const StyledImg = styled.img`
@@ -125,33 +116,11 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
           )}
         </Typography>
       ) : (
-        <></>
+        <><StyledMargin></StyledMargin></>
       )}
-
-      {mode === 'elder' ? (
-        <>
-          {' '}
-          <StyledBodyElder>
-            {type === 'notice' || type === 'community' ? (
-              <TableNav type={type} isPageMove={false} />
-            ) : (
-              <> </>
-            )}
-          </StyledBodyElder>
-        </>
-      ) : (
-        <>
-          {' '}
-          <StyledBody>
-            {type === 'notice' || type === 'community' ? (
-              <TableNav type={type} isPageMove={false} />
-            ) : (
-              <></>
-            )}
-          </StyledBody>
-        </>
-      )}
-      <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} />
+      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <></>}
+      <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} mode={mode}/>
+     
     </Box>
   );
 };

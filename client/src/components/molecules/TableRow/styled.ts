@@ -15,7 +15,7 @@ const DefaultTableRow = styled.div`
   }
   & > p {
     color: #999;
-    font-size: 14px;
+    font-size: 20px;
   }
 `;
 

@@ -18,23 +18,23 @@ const Board: React.FC<BoardProps> = ({ boardData, type }) => {
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          height: '80px',
-          borderTop: 'solid #666 3px',
+          height: '100px',
+          borderTop: 'solid #666 4px',
         }}
       >
-        <Typography variant='h5' sx={{ padding: '11px 10px', height: '50px' }}>
+        <Typography variant='h4' sx={{ padding: '11px 10px', height: 'px' }}>
           {boardData.title}
         </Typography>
         <Box
           sx={{
             display: 'flex',
             width: '100%',
-            maxWidth: '600px',
+            maxWidth: '800px',
             padding: '0 12px',
             justifyContent: 'space-between',
             '& p': {
               color: '#666',
-              fontSize: '14px',
+              fontSize: '20px',
             },
           }}
         >
@@ -51,7 +51,7 @@ const Board: React.FC<BoardProps> = ({ boardData, type }) => {
           minHeight: '350px',
           borderWidth: '1.5px 0',
           padding: '30px 10px 50px 10px',
-          marginBottom: '5px',
+          marginBottom: '4px',
         }}
       >
         {boardData.content.split('\n').map((str, index) => {
@@ -62,6 +62,7 @@ const Board: React.FC<BoardProps> = ({ boardData, type }) => {
                 lineHeight: '24px',
                 marginBottom: '9px',
                 whiteSpace: 'pre-wrap',
+                fontSize: '20px',
               }}
             >
               {str}
