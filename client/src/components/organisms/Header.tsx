@@ -76,7 +76,7 @@ interface ProfileHomeProps {
   accountAccessToken: string;
 }
 
-const Header: React.FC<ProfileHomeProps> = ({ accountAccessToken }) => {
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const [profileList, setProfileList] = useState<houseData[]>([]);
@@ -98,20 +98,6 @@ const Header: React.FC<ProfileHomeProps> = ({ accountAccessToken }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const getProfileList = async () => {
-    const res = await myAxios('get', 'api/v1/accounts/profiles', null, true, accountAccessToken);
-    setProfileList(res.data.response.list);
-  };
-
-  useEffect(() => {
-    if (!isProfileHome) return;
-    try {
-      getProfileList();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [isProfileHome]);
 
   return (
     <AppBar sx={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
@@ -190,16 +176,7 @@ const Header: React.FC<ProfileHomeProps> = ({ accountAccessToken }) => {
                 {page.name}
               </Button>
             ))}
-            <Tooltip title='Open settings'>
-            <IconButton onClick={handleCloseUserMenu} component={Link} to='/sign' sx={{ p: 0 }}>
-              <StyledWrap>
-              <StyledImg2 src='/img/house.png' />
-              {isProfileHome ? (  <Typography variant='h5'  sx={{ padding: '11px 10px', height: '50px', position: 'absolute',top: '15.5%',left: '10%' , right: '10%', }}>307동 104호</Typography>) : (<></>)}
-                {/* <StyledText>307동 104호</StyledText>  */}
-              
-              </StyledWrap>
-              </IconButton>
-            </Tooltip>
+           
             <Menu
               sx={{ mt: '45px' }}
               id='menu-appbar'
