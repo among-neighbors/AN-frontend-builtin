@@ -30,8 +30,14 @@ margin: 110px 0 55px 0;
 }
 `;
 
+const StyledMargin2 = styled.div`
+margin: 50px 0 0 0;
+
+}
+`;
+
 const StyledImg = styled.img`
-    margin: 0px 2px;
+    margin: 70px 0 0 0;
     height: 120px;
   }
   `;
@@ -118,7 +124,7 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
       ) : (
         <><StyledMargin></StyledMargin></>
       )}
-      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <></>}
+      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <StyledMargin2></StyledMargin2>}
       <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} mode={mode}/>
      
     </Box>

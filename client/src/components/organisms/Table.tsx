@@ -63,7 +63,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap',fontSize: '24px' }}
+                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap',fontSize: '21px' }}
                 >
                   {column.label}
                 </TableCell>
@@ -97,7 +97,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,
                         <TableCell
                           key={column.id}
                           align={column.align}
-                          style={{ whiteSpace: 'nowrap' ,fontSize: '24px'}}
+                          style={{ whiteSpace: 'nowrap' ,fontSize: '21px'}}
                         >
                           {column.format ? column.format(value) : value}
                         </TableCell>

@@ -20,8 +20,8 @@ import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 
 const StyledImg = styled.img`
-    margin: 0px 1px;
-    height: 10px;
+    margin: 70px 0 0 0;
+    height: 120px;
   }
   `;
 
@@ -29,6 +29,12 @@ const StyledImg = styled.img`
       margin: 110px 0 55px 0;
      
     }
+`;
+
+const StyledDiv = styled.div`
+margin: 30px 0 0 0;
+
+}
 `;
 interface ViewPageProps {
   type: string;
@@ -145,7 +151,9 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
       ) : (
         <StyledMargin></StyledMargin>
       )}
+     
       {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <></>}
+      <StyledDiv></StyledDiv>
       {boardData && <Board type={type} boardData={boardData} />}
     </Box>
   );
