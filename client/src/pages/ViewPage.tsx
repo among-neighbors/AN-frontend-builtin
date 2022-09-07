@@ -79,11 +79,7 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
       const { writer, scope } = viewData;
       setBoardData({
         ...commonViewData,
-<<<<<<< HEAD
-        writer ,
-=======
         writer: writer.name,
->>>>>>> a434b6c1054d1f70f36c32169b1e3b626ee34e3a
         scope,
       });
       return;
