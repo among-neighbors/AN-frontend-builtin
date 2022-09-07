@@ -32,7 +32,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledDiv = styled.div`
-margin: 30px 0 0 0;
+margin: 60px 0 0 0;
 
 }
 `;
@@ -151,8 +151,7 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
       ) : (
         <StyledMargin></StyledMargin>
       )}
-     
-      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <></>}
+
       <StyledDiv></StyledDiv>
       {boardData && <Board type={type} boardData={boardData} />}
     </Box>

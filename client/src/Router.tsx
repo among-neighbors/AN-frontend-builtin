@@ -51,11 +51,11 @@ const Router = ({ state }: RouterProps) => {
             </Route>
             <Route path='/complaintElder' element={<ListPage type='complaint' mode='elder' />} />
             <Route path='/complaintElder'>
-              <Route path=':id' element={<ViewPage type='notice' mode='elder' />} />
+              <Route path=':id' element={<ViewPage type='complaint' mode='elder' />} />
             </Route>
             <Route path='/communityElder' element={<ListPage type='community' mode='elder' />} />
             <Route path='/communityElder'>
-              <Route path=':id' element={<ViewPage type='notice' mode='elder' />} />
+              <Route path=':id' element={<ViewPage type='community' mode='elder' />} />
             </Route>
             <Route path='/*'> </Route>
           </Routes>
