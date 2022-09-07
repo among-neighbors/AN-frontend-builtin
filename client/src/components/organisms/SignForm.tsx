@@ -38,7 +38,7 @@ const SignIn: React.FC = () => {
       const res = await myAxios('post', 'api/v1/auth/accounts/login', body, true);
 
       handleRefreshAccountAccessToken(res.data.response.accessToken);
-      navigate('/');
+      navigate('/faceDetection');
     } catch (err) {
       alert(err);
     }
