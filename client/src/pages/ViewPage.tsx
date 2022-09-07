@@ -20,10 +20,22 @@ import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
 
 const StyledImg = styled.img`
-    margin: 0px 1px;
-    height: 110px;
+    margin: 70px 0 0 0;
+    height: 120px;
   }
   `;
+
+  const StyledMargin = styled.div`
+      margin: 110px 0 55px 0;
+     
+    }
+`;
+
+const StyledDiv = styled.div`
+margin: 60px 0 0 0;
+
+}
+`;
 interface ViewPageProps {
   type: string;
   accessToken: accessTokenState;
@@ -67,7 +79,11 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
       const { writer, scope } = viewData;
       setBoardData({
         ...commonViewData,
+<<<<<<< HEAD
         writer ,
+=======
+        writer: writer.name,
+>>>>>>> a434b6c1054d1f70f36c32169b1e3b626ee34e3a
         scope,
       });
       return;
@@ -137,9 +153,10 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
           )}
         </Typography>
       ) : (
-        <></>
+        <StyledMargin></StyledMargin>
       )}
-      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <></>}
+
+      <StyledDiv></StyledDiv>
       {boardData && <Board type={type} boardData={boardData} />}
     </Box>
   );
