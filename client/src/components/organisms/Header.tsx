@@ -156,11 +156,11 @@ const Header = () => {
                 {page.name}
               </Button>
             ))}
-            <Tooltip title='Open settings'>
+            {/* <Tooltip title='Open settings'>
               <IconButton onClick={handleCloseUserMenu} component={Link} to='/sign' sx={{ p: 0 }}>
                 <StyledImg2 src='/img/house.png' />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
             <Menu
               sx={{ mt: '45px' }}
               id='menu-appbar'
