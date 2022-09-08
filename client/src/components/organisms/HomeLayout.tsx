@@ -125,6 +125,41 @@ const Home = () => {
                   </Box>
       </Menu>
 
+      {/* <Menu
+          open={Boolean(anchorElHelpCall)}
+          onClose={handleCloseHelpCallModal}
+          sx={{ mt: '10px', '& ul': {padding: 0,},}}>
+        <Box sx={{ position: 'fixed', right: '40px', bottom: '170px', width: '350px', height: '150px', ...shadowCssForMUI }}>
+            <Typography
+                sx={{
+                        fontSize: '18px',
+                        lineHeight: '28px',
+                        height: '95px',
+                        alignItems: 'center',
+                        paddingTop: '40px',
+                        textAlign:'center',
+
+                      }}>
+                103동 1201호에서 긴급 도움 요청!
+            </Typography>
+            
+            
+            <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                <Button
+                    variant='outlined'
+                    color='inherit'
+                    sx={{ height: '32px' }}
+                  >거절</Button>
+                <Button
+                    variant='contained'
+                    color='success'
+                    sx={{ height: '32px', width: "198px" }}
+                
+                  >수락</Button>
+            </Box>
+                  </Box>
+      </Menu> */}
+
       <StyledDown src='/img/down.png' />
     </StyledBody>
   );
