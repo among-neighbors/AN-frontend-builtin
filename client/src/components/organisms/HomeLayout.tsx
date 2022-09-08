@@ -50,15 +50,6 @@ const StyledDown = styled.img`
     }
 `;
 
-const StyledMenu = styled.img`
-  
-    width: 420px;
-    background-position: 10% 100px;
-    position: fixed;
-    left: 0px;
-    bottom: 50px;
-    }
-`;
 
 
 const Home = () => {

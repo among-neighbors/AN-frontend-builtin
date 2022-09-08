@@ -23,7 +23,7 @@ const useSpeech = ( messages: MoteCamAdviceMessage[] ) => {
       } 
     }, [messages])
 
-    const selectMessage = ( msgs: MoteCamAdviceMessage[] ): string => {
+    const selectMessage = ( msgs: MoteCamAdviceMessage[] ): string => { 
       const idx = Math.floor( Math.random() * msgs.length )
       return msgs[idx].message
     }
