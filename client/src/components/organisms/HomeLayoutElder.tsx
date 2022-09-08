@@ -149,7 +149,7 @@ const HomeElder = () => {
           open={Boolean(anchorElHelpCall)}
           onClose={handleCloseHelpCallModal}
           sx={{  mt: '10px', '& ul': {padding: 0,},}}>
-        <Box sx={{ opacity: 1, position: 'fixed', right: '33%', bottom: '33%', width: '740px', height: '360px', ...shadowCssForMUI }}>
+        <Box sx={{ opacity: 1, position: 'fixed', right: '25%', bottom: '25%', width: '740px', height: '360px',backgroundColor: 'white', ...shadowCssForMUI }}>
             <Typography
                 sx={{
                         fontSize: '30px',
@@ -184,39 +184,50 @@ const HomeElder = () => {
       </Menu> */}
 
       <Menu
-          open={Boolean(anchorElHelpCall)}
-          onClose={handleCloseHelpCallModal}
-          sx={{  mt: '10px', '& ul': {padding: 0,},}}>
-        <Box sx={{ opacity: 1, position: 'fixed', right: '33%', bottom: '33%', width: '740px', height: '360px', ...shadowCssForMUI }}>
-            <Typography
-                sx={{
-                        fontSize: '30px',
-                        lineHeight: '80px',
-                        height: '190px',
-                        alignItems: 'center',
-                        paddingTop: '110px',
-                        textAlign:'center',
-                      }}>
-                103동 1201호에서 긴급 도움 요청!
-            </Typography>
-            <Typography>
-                <br/>
-            </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-                <Button
-                    variant='outlined'
-                    color='inherit'
-                    sx={{ height: '70px', fontSize: '30px', }}
-                
-                  >돌아가기</Button>
-                <Button
-                    variant='contained'
-                    color='error'
-                    sx={{ height: '70px', width: '350px', fontSize: '30px', }}
-                    
-                  >수락</Button>
-            </Box>
-                  </Box>
+        open={Boolean(anchorElHelpCall)}
+        onClose={handleCloseHelpCallModal}
+        sx={{ mt: '10px', '& ul': { padding: 0 } }}
+      >
+        <Box
+          sx={{
+            opacity: 1,
+            position: 'fixed',
+            right: '25%',
+            bottom: '25%',
+            width: '740px',
+            height: '360px',
+            backgroundColor: 'white',
+            ...shadowCssForMUI,
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: '30px',
+              lineHeight: '80px',
+              height: '190px',
+              alignItems: 'center',
+              paddingTop: '110px',
+              textAlign: 'center',
+            }}
+          >
+            103동 1201호에서 긴급 도움 요청!
+          </Typography>
+          <Typography>
+            <br />
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+            <Button variant='outlined' color='inherit' sx={{ height: '70px', fontSize: '30px' }}>
+              돌아가기
+            </Button>
+            <Button
+              variant='contained'
+              color='success'
+              sx={{ height: '70px', width: '350px', fontSize: '30px' }}
+            >
+              수락
+            </Button>
+          </Box>
+        </Box>
       </Menu>
       <StyledDown src='/img/down_elder.png' />
     </StyledBody>
