@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import { accessTokenState, handleHelpSideBar } from '~/others/store';
+import { accessTokenState, handleHelpSideBar, ProfileState } from '~/others/store';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { shadowCssForMUI } from '~/others/cssLibrary';
@@ -11,8 +11,6 @@ import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
-import { type } from 'os';
-import myAxios from '~/others/myAxios';
 
 const StyledBody = styled.div`
     height: 100vh;
@@ -53,58 +51,32 @@ const StyledDown = styled.img`
 
 interface HomePageProps {
   accessToken: accessTokenState;
-}
-
-interface ProfileData {
-  id: number;
-  name: string;
-  lineName: string;
-  houseName: string;
+  profileData: ProfileState;
 }
 
 //웹소켓 주소
 const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
 
-const Home = ({ accessToken }: HomePageProps) => {
+const Home = ({ accessToken, profileData }: HomePageProps) => {
   //도움 요청한 집 호수
   let requestHouseName = '';
-  //우리 집 호수
-  let myHouseName = '';
-  let myLineName = '';
+
   //객체 생성
   var client = Stomp.client(WSS_FEED_URL);
   const [isFirst, setIsFirst] = useState(true);
-  //subscribe 할 때 라인 구독 정보에 이용
-  const [profileList, setProfileList] = useState<ProfileData[]>([]);
-  //라인 구독 정보 불러옴
-  const getProfileList = async () => {
-    console.log(accessToken.accountAccessToken);
-    const res = await myAxios(
-      'get',
-      'api/v1/accounts/profiles',
-      null,
-      true,
-      accessToken.accountAccessToken,
-    );
-    setProfileList(res.data.response.list);
-    myHouseName = profileList[0].houseName;
-    myLineName = profileList[0].lineName;
-  };
 
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
-  const [anchorElHelpCalRequest, setAnchorElHelpCallRequest] = React.useState<null | HTMLElement>(
-    null,
-  );
+
   const sendHelpRequest = () => {
     setAnchorElHelpCall(null);
     client.publish({ destination: '/pub/alert', body: JSON.stringify({ text: '도와주세요' }) });
   };
   const sendHelpResponse = () => {
-    setAnchorElHelpCallRequest(null);
+    console.log('내집 이름이다 아이가', profileData.houseName);
     //라인 추가해야함
     client.publish({
       destination: '/pub/accept',
-      body: JSON.stringify({ target: myHouseName }),
+      body: JSON.stringify({ target: profileData.houseName }),
     });
     setIsRequest(false);
   };
@@ -119,42 +91,43 @@ const Home = ({ accessToken }: HomePageProps) => {
   const dismissRequest = () => {
     setIsRequest(false);
   };
-
+  let isDone = true;
   useEffect(() => {
-    if (isFirst) {
-      getProfileList();
-      setIsFirst(false);
-    }
-    if (!client.connected) {
+    if (
+      accessToken.accountAccessToken != ' ' &&
+      profileData.houseName != '' &&
+      profileData.lineName != '' &&
+      isDone
+    )
       // connect(header,연결 성공시 콜백,에러발생시 콜백)
       client.connect(
         { Authorization: accessToken.accountAccessToken },
         function () {
           console.log('Connected');
+          isDone = false;
+
           //subscribe(subscribe url,해당 url로 메시지를 받을때마다 실행할 함수)
           client.subscribe('/user/queue/error', function (e) {
             //e.body에 전송된 data가 들어있다
             console.log(JSON.parse(e.body)['message']);
           });
           //라인 정보 등록
-          // const destination = '/sub/line/' + profileList[0].lineName;
-          client.subscribe('/sub/line/103', function (e) {
+          const destination = '/sub/line/' + profileData.lineName;
+          client.subscribe(destination, function (e) {
             //e.body에 전송된 data가 들어있다
-
             requestHouseName = JSON.parse(e.body)['house'];
-            console.log('houseName', requestHouseName);
-            setIsRequest(true);
+            console.log('requestHouseName', requestHouseName);
+
+            if (requestHouseName != null && requestHouseName != profileData.houseName) {
+              setIsRequest(true);
+            }
           });
-          // setIsHome(false);
         },
         function (e: { body: string }) {
           //에러 콜백
           console.log(JSON.parse(e.body));
         },
       );
-    } else {
-      console.log('이미 연결 돰');
-    }
   });
 
   return (
