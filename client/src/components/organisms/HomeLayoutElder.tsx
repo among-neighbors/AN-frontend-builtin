@@ -22,8 +22,8 @@ const StyledBody = styled.div`
 `;
 
 const StyledImg = styled.img`
-width: 104px;
-height: 101px;
+width: 154px;
+height: 151px;
 position: fixed;
 right: 50px;
 bottom: 50px;
