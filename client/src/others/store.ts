@@ -17,6 +17,8 @@ interface TableNavState extends Obj<number> {
   community: number;
 }
 
+export type AppDispatch = typeof store.dispatch;
+
 interface accessTokenState {
   accountAccessToken: string;
   profileAccessToken: string;

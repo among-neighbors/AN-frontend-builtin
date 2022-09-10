@@ -25,10 +25,6 @@ bottom: 0%;
     }
 `;
 
-interface FaceDetectiomProps {
-  token: string;
-}
-
 const FaceDetectionForm = () => {
   return (
     <StyledBody>

@@ -1,13 +1,25 @@
 import Home from '../components/organisms/HomeLayout';
 import Header from '../components/organisms/Header';
+import { accessTokenState, handleHelpSideBar, RootState } from '~/others/store';
+import { connect } from 'react-redux';
 
-const HomePage = () => {
+interface HomeProps {
+  accessToken: accessTokenState;
+}
+const HomePage = ({ accessToken }: HomeProps) => {
   return (
     <>
       <Header />
-      <Home />
+      <Home accessToken={accessToken} />
     </>
   );
 };
 
-export default HomePage;
+const mapStateToProps = (state: RootState) => {
+  return {
+    accessToken: state.accessTokenReducer,
+    isReadyForRequestAPI: state.readyForRequestAPIReducer,
+  };
+};
+
+export default connect(mapStateToProps)(HomePage);

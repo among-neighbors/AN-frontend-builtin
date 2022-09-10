@@ -122,11 +122,22 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
           )}
         </Typography>
       ) : (
-        <><StyledMargin></StyledMargin></>
+        <>
+          <StyledMargin></StyledMargin>
+        </>
       )}
-      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <StyledMargin2></StyledMargin2>}
-      <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} mode={mode}/>
-     
+      {type === 'community' || type === 'notice' ? (
+        <TableNav type={type} />
+      ) : (
+        <StyledMargin2></StyledMargin2>
+      )}
+      <BoardTable
+        type={type}
+        rows={rows}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        mode={mode}
+      />
     </Box>
   );
 };

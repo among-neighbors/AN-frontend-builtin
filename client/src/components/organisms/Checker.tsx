@@ -41,12 +41,13 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
   useEffect(() => {
     if (!accountKey) return;
     getReadyForRequestAPI();
+    // console.log(accountAccessToken);
     // if (accountAccessToken !== '') {
     //   navigate('/');
     // }
     if (accountAccessToken === '') {
       const isAllowPath = allowPath.some((path) => location.pathname === path);
-      if (!isAllowPath) navigate('/sign');
+      navigate('/sign');
     }
   }, [accountKey, profileKey, location.pathname]);
 
