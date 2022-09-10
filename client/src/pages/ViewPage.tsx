@@ -113,7 +113,7 @@ const ViewPage = ({
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {mode === 'elder' ? (
-        <HeaderElderDefualt />
+        <HeaderElderDefualt accessToken={accessToken} profileData={profileData} />
       ) : (
         <HeaderDefault accessToken={accessToken} profileData={profileData} />
       )}

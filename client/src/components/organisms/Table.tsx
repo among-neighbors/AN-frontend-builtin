@@ -31,7 +31,7 @@ interface TableProps {
   mode: string;
 }
 
-const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,mode }) => {
+const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage, mode }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const queryObj = Object(parse(location.search));
@@ -55,27 +55,35 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,
         maxWidth: '1500px',
       }}
     >
-      <TableContainer >
-        <Table stickyHeader aria-label='sticky table' >
+      <TableContainer>
+        <Table stickyHeader aria-label='sticky table'>
           <TableHead>
             <TableRow sx={{ display: { xs: 'none', sm: 'none', md: 'table-row' } }}>
-              {mode==='elder'? (<>{columns(type).map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap',fontSize: '21px' }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}</>) : (<>{columns(type).map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth, whiteSpace: 'nowrap',fontSize: '18px' }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}</>)}
+              {mode === 'elder' ? (
+                <>
+                  {columns(type).map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth, whiteSpace: 'nowrap', fontSize: '21px' }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {columns(type).map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth, whiteSpace: 'nowrap', fontSize: '18px' }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -90,32 +98,37 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,
                     tabIndex={-1}
                     sx={{ display: { xs: 'none', sm: 'none', md: 'table-row' } }}
                   >
-                    {mode==='elder'? (<>{columns(type).map((column) => {
-                      const value = row[column.id];
-                      return (
-                      
-                        <TableCell
-                          key={column.id}
-                          align={column.align}
-                          style={{ whiteSpace: 'nowrap' ,fontSize: '21px'}}
-                        >
-                          {column.format ? column.format(value) : value}
-                        </TableCell>
-                      );
-                    })}</>) : (<>{columns(type).map((column) => {
-                      const value = row[column.id];
-                      return (
-                      
-                        <TableCell
-                          key={column.id}
-                          align={column.align}
-                          style={{ whiteSpace: 'nowrap' ,fontSize: '18px'}}
-                        >
-                          {column.format ? column.format(value) : value}
-                        </TableCell>
-                      );
-                    })}</>)}
-                    
+                    {mode === 'elder' ? (
+                      <>
+                        {columns(type).map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              style={{ whiteSpace: 'nowrap', fontSize: '21px' }}
+                            >
+                              {column.format ? column.format(value) : value}
+                            </TableCell>
+                          );
+                        })}
+                      </>
+                    ) : (
+                      <>
+                        {columns(type).map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              style={{ whiteSpace: 'nowrap', fontSize: '18px' }}
+                            >
+                              {column.format ? column.format(value) : value}
+                            </TableCell>
+                          );
+                        })}
+                      </>
+                    )}
                   </TableRow>
                   <TableRow
                     component={Link}
@@ -145,7 +158,7 @@ const BoardTable: React.FC<TableProps> = ({ type, rows, isFirstPage, isLastPage,
           }}
           rowsPerPageOptions={[5]}
           component='div'
-          count={isLastPage ? 20 - (isFirstPage ? 10 : 0) : 11 - (isFirstPage ? 10 : 0)}
+          count={isLastPage ? 10 - (isFirstPage ? 5 : 0) : 11 - (isFirstPage ? 5 : 0)}
           rowsPerPage={5}
           page={isFirstPage ? 0 : 1}
           onPageChange={handleChangePage}

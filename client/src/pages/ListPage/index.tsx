@@ -85,7 +85,7 @@ const ListPage = ({
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
       {mode === 'elder' ? (
-        <HeaderElderDefualt />
+        <HeaderElderDefualt accessToken={accessToken} profileData={profileData} />
       ) : (
         <HeaderDefault accessToken={accessToken} profileData={profileData} />
       )}

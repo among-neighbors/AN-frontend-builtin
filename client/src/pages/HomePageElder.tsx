@@ -11,7 +11,7 @@ interface HomeProps {
 const HomePageElder = ({ accessToken, profileData }: HomeProps) => {
   return (
     <>
-      <HeaderElder />
+      <HeaderElder accessToken={accessToken} profileData={profileData} />
       <HomeElder accessToken={accessToken} profileData={profileData} />
     </>
   );
