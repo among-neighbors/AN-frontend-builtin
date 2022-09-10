@@ -114,20 +114,8 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   useEffect(() => {
@@ -193,9 +181,13 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
               fontSize: '24px',
               fontWeight: 900,
-              margin: '108px',
+              margin: '80px',
               borderRadius: '40px',
-              border: '4px solid #EC8034',
+              border: '4px solid black',
+              '&:hover': {
+                border: '4px solid #EC8034',
+                borderRadius: '40px',
+              },
             }}
             component={Link}
             to={page.link}

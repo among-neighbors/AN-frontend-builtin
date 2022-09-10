@@ -34,7 +34,6 @@ const StyledImg2 = styled.img`
 const StyledUp = styled.img`
   
     width: 400px;
-    background-position: 10% 100px;
     position: fixed;
     right: 0px;
     up: 0px;
