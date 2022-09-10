@@ -12,10 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SquareImg from '../atoms/Img';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { fontSize } from '@mui/system';
-import { accessTokenState, handleHelpSideBar, ProfileState } from '~/others/store';
+import {
+  accessTokenState,
+  handleHelpSideBar,
+  handleRefreshAccountAccessToken,
+  ProfileState,
+} from '~/others/store';
+import myAxios from '~/others/myAxios';
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 67px;
@@ -73,15 +79,21 @@ interface HeadereProps {
 }
 
 const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const navigate = useNavigate();
+  const handleLogOutAndRedirect = async () => {
+    handleCloseUserMenu();
+    handleRefreshAccountAccessToken('');
+    await myAxios('get', `api/v1/auth/accounts/logout`, null, true, accessToken.accountAccessToken);
+
+    navigate('/sign');
   };
 
   return (
@@ -144,7 +156,6 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
             {pages.map((page) => (
               <Button
                 key={page.name}
-                onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
                   color: 'black',
@@ -162,7 +173,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
             ))}
 
             <StyledContainer>
-              <IconButton onClick={handleCloseUserMenu} component={Link} to='/sign' sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='/img/house.png' />
                 <StyledContainerText>
                   {profileData.lineName}동 {profileData.houseName}호
@@ -171,7 +182,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
             </StyledContainer>
 
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '60px' }}
               id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -186,11 +197,9 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleLogOutAndRedirect}>
+                <Typography textAlign='center'>로그아웃</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

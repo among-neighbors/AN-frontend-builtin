@@ -59,15 +59,15 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState, profileData }) => {
   useEffect(() => {
     if (!accountKey) return;
     getReadyForRequestAPI();
-    // console.log(accountAccessToken);
-    // if (accountAccessToken !== '') {
-    //   navigate('/');
-    // }
 
     if (accountAccessToken === '') {
       navigate('/sign');
     } else {
       getProfileList();
+    }
+
+    if (accountAccessToken !== '') {
+      if (location.pathname === '/sign') navigate('/');
     }
   }, [accountKey, profileKey, location.pathname]);
 
