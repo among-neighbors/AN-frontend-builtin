@@ -1,24 +1,27 @@
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Home from '../components/organisms/HomeLayout';
-import Header from '../components/organisms/Header';
+import { accessTokenState, handleHelpSideBar, RootState, ProfileState } from '~/others/store';
 import HeaderElder from '~/components/organisms/HeaderElder';
 import HomeElder from '~/components/organisms/HomeLayoutElder';
-const HomePageElder = (props: any) => {
-  useEffect(() => {
-    console.log(props);
-  }, []);
-  return <>
-  
-  <HeaderElder />
-  <HomeElder />
- 
-  </>;
+
+interface HomeProps {
+  accessToken: accessTokenState;
+  profileData: ProfileState;
+}
+
+const HomePageElder = ({ accessToken, profileData }: HomeProps) => {
+  return (
+    <>
+      <HeaderElder />
+      <HomeElder accessToken={accessToken} profileData={profileData} />
+    </>
+  );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    state,
+    accessToken: state.accessTokenReducer,
+    isReadyForRequestAPI: state.readyForRequestAPIReducer,
+    profileData: state.profileReducer,
   };
 };
 

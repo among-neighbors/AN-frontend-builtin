@@ -59,11 +59,10 @@ const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
 
 const Home = ({ accessToken, profileData }: HomePageProps) => {
   //도움 요청한 집 호수
-  let requestHouseName = '';
+  const [requestHouseName, setrequestHouseName] = useState<string>(' ');
 
   //객체 생성
   var client = Stomp.client(WSS_FEED_URL);
-  const [isFirst, setIsFirst] = useState(true);
 
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
 
@@ -79,6 +78,8 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
       body: JSON.stringify({ target: profileData.houseName }),
     });
     setIsRequest(false);
+    //요청 한 집 초기화
+    setrequestHouseName(' ');
   };
   const handleOpenHelpCallModal = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElHelpCall(event.currentTarget);
@@ -115,10 +116,10 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
           const destination = '/sub/line/' + profileData.lineName;
           client.subscribe(destination, function (e) {
             //e.body에 전송된 data가 들어있다
-            requestHouseName = JSON.parse(e.body)['house'];
+            setrequestHouseName(JSON.parse(e.body)['house']);
             console.log('requestHouseName', requestHouseName);
 
-            if (requestHouseName != null && requestHouseName != profileData.houseName) {
+            if (requestHouseName != ' ') {
               setIsRequest(true);
             }
           });
@@ -168,6 +169,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <Button
+              onClick={handleCloseHelpCallModal}
               variant='outlined'
               color='inherit'
               sx={{ height: '32px' }}
@@ -208,7 +210,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            103동 1201호에서 긴급 도움 요청!
+            {profileData.lineName}동 {requestHouseName}호에서 긴급 도움 요청!
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <Button

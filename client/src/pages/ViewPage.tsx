@@ -13,7 +13,7 @@ import {
 } from '~/others/integrateInterface';
 import { APIbyType } from '~/others/integrateVariable';
 import { connect } from 'react-redux';
-import { accessTokenState, RootState } from '~/others/store';
+import { accessTokenState, RootState, ProfileState } from '~/others/store';
 import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import HeaderDefault from '~/components/organisms/HeaderDefault';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ const StyledImg = styled.img`
   }
   `;
 
-  const StyledMargin = styled.div`
+const StyledMargin = styled.div`
       margin: 110px 0 55px 0;
      
     }
@@ -41,9 +41,16 @@ interface ViewPageProps {
   accessToken: accessTokenState;
   isReadyForRequestAPI: boolean;
   mode: string;
+  profileData: ProfileState;
 }
 
-const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPageProps) => {
+const ViewPage = ({
+  type,
+  accessToken,
+  isReadyForRequestAPI,
+  mode,
+  profileData,
+}: ViewPageProps) => {
   const [viewData, setViewData] = useState<DeliverdTypePostData | null>(null);
   const [boardData, setBoardData] = useState<ProcessedTypePostData | null>(null);
   const location = useLocation();
@@ -105,7 +112,11 @@ const ViewPage = ({ type, accessToken, isReadyForRequestAPI, mode }: ViewPagePro
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {mode === 'elder' ? <HeaderElderDefualt /> : <HeaderDefault />}
+      {mode === 'elder' ? (
+        <HeaderElderDefualt />
+      ) : (
+        <HeaderDefault accessToken={accessToken} profileData={profileData} />
+      )}
       {mode === 'elder' ? (
         <Typography
           variant='h6'
@@ -162,6 +173,7 @@ const mapStateToProps = (state: RootState) => {
   return {
     accessToken: state.accessTokenReducer,
     isReadyForRequestAPI: state.readyForRequestAPIReducer,
+    profileData: state.profileReducer,
   };
 };
 

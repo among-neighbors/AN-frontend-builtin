@@ -42,7 +42,13 @@ const StyledImg = styled.img`
   }
   `;
 
-const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: ListPageProps) => {
+const ListPage = ({
+  type,
+  accessToken,
+  isReadyForRequestAPI,
+  mode,
+  profileData,
+}: ListPageProps) => {
   const location = useLocation();
   const [tableData, setTableData] = useState<TableDataProps>({
     list: [],
@@ -65,7 +71,7 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
       `${APIbyType[type]}${querys[type]}`,
       null,
       true,
-      accountAccessToken,
+      accessToken.accountAccessToken,
     );
     console.log(`${APIbyType[type]}${querys[type]}`);
     setTableData(res.data.response);
@@ -78,7 +84,11 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-      {mode === 'elder' ? <HeaderElderDefualt /> : <HeaderDefault />}
+      {mode === 'elder' ? (
+        <HeaderElderDefualt />
+      ) : (
+        <HeaderDefault accessToken={accessToken} profileData={profileData} />
+      )}
       {mode === 'elder' ? (
         <Typography
           variant='h6'
@@ -181,15 +191,11 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
   });
 };
 
-const buttonTextByType: Obj<string> = {
-  complaint: '민원 작성',
-  community: '글쓰기',
-};
-
 const mapStateToProps = (state: RootState) => {
   return {
-    accountAccessToken: state.accessTokenReducer.accountAccessToken,
+    accessToken: state.accessTokenReducer,
     isReadyForRequestAPI: state.readyForRequestAPIReducer,
+    profileData: state.profileReducer,
   };
 };
 

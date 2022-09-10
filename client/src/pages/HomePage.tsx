@@ -10,7 +10,7 @@ interface HomeProps {
 const HomePage = ({ accessToken, profileData }: HomeProps) => {
   return (
     <>
-      <Header />
+      <Header accessToken={accessToken} profileData={profileData} />
 
       <Home accessToken={accessToken} profileData={profileData} />
     </>

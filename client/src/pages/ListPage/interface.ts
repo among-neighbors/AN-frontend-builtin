@@ -1,8 +1,11 @@
+import { accessTokenState, ProfileState } from '~/others/store';
+
 interface ListPageProps {
   type: string;
-  accountAccessToken: string;
+  accessToken: accessTokenState;
   isReadyForRequestAPI: boolean;
-  mode : string;
+  mode: string;
+  profileData: ProfileState;
 }
 
 export { ListPageProps };
