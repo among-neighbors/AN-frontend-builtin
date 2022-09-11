@@ -37,17 +37,17 @@ const pages: {
   {
     name: '공지',
     link: '/noticeElder',
-    src: '../../public/img/Notice.png',
+    src: '../../public/img/notice.png',
   },
   {
     name: '민원',
     link: '/complaintElder',
-    src: '../../public/img/Complaint.png',
+    src: '../../public/img/complaint.png',
   },
   {
     name: '커뮤니티',
     link: '/communityElder',
-    src: '../../public/img/Community.png',
+    src: '../../public/img/community.png',
   },
 ];
 
@@ -186,7 +186,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
             to={page.link}
           >
             <div>
-              <StyledBtn src='../../public/img/notice.png' />
+              <StyledBtn src={page.src} />
             </div>
 
             {page.name}
