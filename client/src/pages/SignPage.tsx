@@ -1,13 +1,7 @@
 import SignIn from '~/components/organisms/SignForm';
 
-const SignPage = () => {
-  return (
-    <>
-      <div>
-        <SignIn />
-      </div>
-    </>
-  );
+const SignPage: React.FC = () => {
+  return <SignIn />;
 };
 
 

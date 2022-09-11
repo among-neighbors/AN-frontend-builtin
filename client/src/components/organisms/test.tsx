@@ -17,7 +17,7 @@ const New = () => {
           fontSize: '1.6rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '14px',
+          gap: '20px',
         }}
       >
         <li>📖 TypeScripttt</li>
