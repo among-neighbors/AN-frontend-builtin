@@ -59,7 +59,7 @@ const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
 
 const Home = ({ accessToken, profileData }: HomePageProps) => {
   //도움 요청한 집 호수
-  const [requestHouseName, setrequestHouseName] = useState<string>(' ');
+  const [requestHouseName, setrequestHouseName] = useState('');
 
   //객체 생성
   var client = Stomp.client(WSS_FEED_URL);

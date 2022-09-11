@@ -111,12 +111,6 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
   const handleCloseHelpCallModal = () => {
     setAnchorElHelpCall(null);
   };
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   useEffect(() => {
     if (
@@ -171,7 +165,6 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
           <Button
             variant='outlined'
             key={page.name}
-            onClick={handleCloseNavMenu}
             sx={{
               my: 2,
               color: 'black',

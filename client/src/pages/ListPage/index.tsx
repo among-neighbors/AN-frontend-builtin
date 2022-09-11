@@ -61,10 +61,16 @@ const ListPage = ({
   const getListData = async () => {
     const URLQueryData = parse(location.search);
     const { page, scope, category } = URLQueryData;
+    var num;
+    {
+      mode === 'elder' ? (num = 4) : (num = 5);
+    }
     const querys: Obj<string> = {
-      notice: `?page=${page ?? 1}&count=5&scope=${scope ?? 'ALL'}`,
-      complaint: `?page=${page ?? 1}&count=5`,
-      community: `?page=${page ?? 1}&count=5&scope=${scope ?? 'ALL'}&category=${category ?? 'ALL'}`,
+      notice: `?page=${page ?? 1}&count=${num}&scope=${scope ?? 'ALL'}`,
+      complaint: `?page=${page ?? 1}&count=${num}`,
+      community: `?page=${page ?? 1}&count=${num}&scope=${scope ?? 'ALL'}&category=${
+        category ?? 'ALL'
+      }`,
     };
     const res = await myAxios(
       'get',
