@@ -63,6 +63,7 @@ interface Appet {
 const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
 
 const Home = ({ accessToken, profileData }: HomePageProps) => {
+  console.log(accessToken, profileData);
   //도움 요청한 집 호수
   const [requestHouseName, setrequestHouseName] = useState('');
   //도움을 수락한 호수
@@ -134,7 +135,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
             if (e.headers['type'] == 'alert') {
               console.log(JSON.parse(e.body)['house']);
               setrequestHouseName(JSON.parse(e.body)['house']);
-              console.log('requestHouseName', requestHouseName);
+
               if (requestHouseName != '') {
                 setrequestHouseName(requestHouseName);
 
@@ -143,6 +144,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
             } else if (e.headers['type'] == 'accept') {
               setacceptHouseName(JSON.parse(e.body)['accept_house']);
               settargetHouseName(JSON.parse(e.body)['target_house']);
+              console.log('수락한 집의 정보들..', JSON.parse(e.body));
 
               setIsAccept(true);
               //accept_house -> accepttHouseName

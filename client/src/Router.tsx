@@ -18,7 +18,7 @@ interface RouterProps {
 const Router = ({ state }: RouterProps) => {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='/builtin'>
         <ThemeProvider theme={theme(false)}>
           <Checker />
         </ThemeProvider>
