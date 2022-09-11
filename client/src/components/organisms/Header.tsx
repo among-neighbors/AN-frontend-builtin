@@ -84,18 +84,13 @@ const pages: {
 ];
 const settings = ['로그아웃'];
 
-
 interface HeadereProps {
   accessToken: accessTokenState;
   profileData: ProfileState;
 }
 
 const Header = ({ accessToken, profileData }: HeadereProps) => {
-
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const [profileList, setProfileList] = useState<houseData[]>([]);
-  const [isProfileHome, setIsProfileHome] = useState(true);
-
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
