@@ -138,6 +138,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
             padding={2}
             margin={3}
           >
+
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='/img/house.png' />
@@ -146,6 +147,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
+
             <Menu
               sx={{ mt: '65px' }}
               id='menu-appbar'

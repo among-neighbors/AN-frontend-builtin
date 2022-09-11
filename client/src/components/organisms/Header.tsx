@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import {
   accessTokenState,
   handleHelpSideBar,
@@ -17,10 +18,17 @@ import {
   ProfileState,
 } from '~/others/store';
 import myAxios from '~/others/myAxios';
+
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 67px;
   
+    }
+`;
+// 이미지와 텍스트를 감싸고 있는 요소
+const StyledWrap = styled.div`
+  position: relative;
+
     }
 `;
 
@@ -76,13 +84,18 @@ const pages: {
 ];
 const settings = ['로그아웃'];
 
+
 interface HeadereProps {
   accessToken: accessTokenState;
   profileData: ProfileState;
 }
 
 const Header = ({ accessToken, profileData }: HeadereProps) => {
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [profileList, setProfileList] = useState<houseData[]>([]);
+  const [isProfileHome, setIsProfileHome] = useState(true);
+
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -175,6 +188,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
                 {page.name}
               </Button>
             ))}
+
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu}>
                 <StyledImg2 src='/img/house.png' />
@@ -183,6 +197,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
+
             <Menu
               sx={{ mt: '70px' }}
               id='menu-appbar'
