@@ -54,11 +54,6 @@ interface HomePageProps {
   profileData: ProfileState;
 }
 
-interface Appet {
-  targetHouse: string;
-  acceptHouse: string;
-}
-
 //웹소켓 주소
 const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
 
