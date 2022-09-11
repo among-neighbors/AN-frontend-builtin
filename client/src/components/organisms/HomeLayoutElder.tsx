@@ -194,7 +194,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
         ))}
       </Box>
       <IconButton onClick={handleOpenHelpCallModal} sx={{ p: 0 }}>
-        <StyledImg src='/img/warning.png' />
+        <StyledImg src='../../public/img/warning.png' />
       </IconButton>
 
       <Menu

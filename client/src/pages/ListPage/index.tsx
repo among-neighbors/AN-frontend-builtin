@@ -115,7 +115,7 @@ const ListPage = ({
         >
           {type === 'community' ? (
             <>
-              <StyledImg src='/img/communityHeader.png' />
+              <StyledImg src='../../public/img/communityHeader.png' />
             </>
           ) : (
             <></>
@@ -123,14 +123,14 @@ const ListPage = ({
           {type === 'complaint' ? (
             <>
               {' '}
-              <StyledImg src='/img/complaintHeader.png' />
+              <StyledImg src='../../public/img/complaintHeader.png' />
             </>
           ) : (
             <></>
           )}
           {type === 'notice' ? (
             <>
-              <StyledImg src='/img/noticeHeader.png' />
+              <StyledImg src='../../public/img/noticeHeader.png' />
             </>
           ) : (
             <></>

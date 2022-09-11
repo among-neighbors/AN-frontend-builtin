@@ -137,7 +137,7 @@ const ViewPage = ({
         >
           {type === 'community' ? (
             <>
-              <StyledImg src='/img/communityHeader.png' />
+              <StyledImg src='../../public/img/communityHeader.png' />
             </>
           ) : (
             <></>
@@ -145,14 +145,14 @@ const ViewPage = ({
           {type === 'complaint' ? (
             <>
               {' '}
-              <StyledImg src='/img/complaintHeader.png' />
+              <StyledImg src='../../public/img/complaintHeader.png' />
             </>
           ) : (
             <></>
           )}
           {type === 'notice' ? (
             <>
-              <StyledImg src='/img/noticeHeader.png' />
+              <StyledImg src='../../public/img/noticeHeader.png' />
             </>
           ) : (
             <></>

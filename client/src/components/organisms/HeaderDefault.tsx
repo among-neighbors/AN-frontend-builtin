@@ -110,7 +110,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               textDecoration: 'none',
             }}
           >
-            <StyledImg src='/img/Logo2.png' />
+            <StyledImg src='../../public/img/Logo2.png' />
           </Typography>
 
           <Typography
@@ -130,7 +130,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               alignItems: 'center',
             }}
           >
-            <StyledImg src='/img/Logo2.png' />
+            <StyledImg src='../../public/img/Logo2.png' />
           </Typography>
 
           <Box
@@ -163,7 +163,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
 
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <StyledImg2 src='/img/house.png' />
+                <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
                   {profileData.lineName}동 {profileData.houseName}호
                 </StyledContainerText>

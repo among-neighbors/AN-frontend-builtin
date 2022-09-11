@@ -72,7 +72,6 @@ const pages: {
   },
 ];
 
-
 interface HeadereProps {
   accessToken: accessTokenState;
   profileData: ProfileState;
@@ -99,7 +98,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
   return (
     <AppBar sx={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
-        <StyledUp src='/img/up.png' />
+        <StyledUp src='../../public/img/up.png' />
         <Toolbar
           disableGutters
           sx={{
@@ -122,7 +121,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               textDecoration: 'none',
             }}
           >
-            <StyledImg src='/img/Logo2.png' />
+            <StyledImg src='../../public/img/Logo2.png' />
           </Typography>
 
           <Typography
@@ -142,7 +141,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               alignItems: 'center',
             }}
           >
-            <StyledImg src='/img/Logo2.png' />
+            <StyledImg src='../../public/img/Logo2.png' />
           </Typography>
 
           <Box
@@ -175,7 +174,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
 
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu}>
-                <StyledImg2 src='/img/house.png' />
+                <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
                   {profileData.lineName}동 {profileData.houseName}호
                 </StyledContainerText>
