@@ -57,7 +57,7 @@ const SignIn: React.FC = () => {
             justifycontent: 'center',
           }}
         >
-          <StyledImg src='../../img/Logo.png' />
+          <StyledImg src='../../public/img/Logo.png' />
           <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin='normal'
