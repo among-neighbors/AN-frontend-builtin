@@ -26,7 +26,7 @@
 
 <br>
 
-<img width="50%" alt="Screen Shot 2022-09-11 at 11 40 44 AM" src="https://user-images.githubusercontent.com/62577565/189509992-03e17b57-954c-4894-95d0-430a0917c9f5.png">
+<img width="50%" alt="Screen Shot 2022-09-11 at 11 40 44 AM" src="https://user-images.githubusercontent.com/62577565/189511726-2f7b41a7-7971-4047-b88e-4315aa6adc56.gif">
 
 <p>
 <img width="40%" alt="Screen Shot 2022-09-11 at 11 14 34 AM" src="https://user-images.githubusercontent.com/62577565/189509399-de0e5858-bd3e-4561-b4f1-74ca3fbdd6f9.png">
