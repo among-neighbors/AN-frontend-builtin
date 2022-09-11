@@ -72,6 +72,7 @@ const pages: {
   },
 ];
 
+
 interface HeadereProps {
   accessToken: accessTokenState;
   profileData: ProfileState;
