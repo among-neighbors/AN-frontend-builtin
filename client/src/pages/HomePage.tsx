@@ -1,6 +1,6 @@
 import Home from '../components/organisms/HomeLayout';
 import Header from '../components/organisms/Header';
-import { accessTokenState, handleHelpSideBar, RootState, ProfileState } from '~/others/store';
+import { accessTokenState, RootState, ProfileState } from '~/others/store';
 import { connect } from 'react-redux';
 
 interface HomeProps {

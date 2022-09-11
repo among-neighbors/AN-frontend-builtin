@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -174,7 +173,7 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
     });
   }
   if (isDeliveredNoticePostDataArray(list)) {
-    return list.map(({ id, title, content, createdDate, writer, scope, isMine }) => {
+    return list.map(({ id, title, content, createdDate, writer, scope }) => {
       return {
         id,
         title,

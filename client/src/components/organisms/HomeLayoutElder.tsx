@@ -11,7 +11,7 @@ import { shadowCssForMUI } from '~/others/cssLibrary';
 import Menu from '@mui/material/Menu';
 import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
-import { accessTokenState, handleHelpSideBar, ProfileState } from '~/others/store';
+import { accessTokenState, ProfileState } from '~/others/store';
 const StyledBody = styled.div`
     height: 100vh;
     background-color: #F5F5F5;

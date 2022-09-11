@@ -18,10 +18,10 @@ interface CheckerProps {
   profileData: ProfileState;
 }
 
-const Checker: React.FC<CheckerProps> = ({ accessTokenState, profileData }) => {
-  const { accountAccessToken, profileAccessToken } = accessTokenState;
+const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
+  const { accountAccessToken } = accessTokenState;
   const [accountKey, setAccountKey] = useState(false);
-  const [profileKey, setProfileKey] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -69,14 +69,12 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState, profileData }) => {
     if (accountAccessToken !== '') {
       if (location.pathname === '/sign') navigate('/');
     }
-  }, [accountKey, profileKey, location.pathname]);
+  }, [accountKey, location.pathname]);
 
   useInterval(checkAccountLogin, accountAccessToken === '' ? null : TIME_FOR_REFRESH_TOKEN);
 
   return <></>;
 };
-
-const allowPath = ['/', '/sign'];
 
 const TIME_FOR_REFRESH_TOKEN = 10000;
 

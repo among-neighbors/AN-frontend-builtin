@@ -24,3 +24,9 @@ dist-ssr
 
 # Dockerfile
 Dockerfile
+
+#cert for https
+.cert
+
+# vite.config.ts for localhost https
+vite.config.ts

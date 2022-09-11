@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Dispatch, SetStateAction } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,12 +8,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import SquareImg from '../atoms/Img';
 import { shadowCssForMUI } from '~/others/cssLibrary';
-import { useNavigate } from 'react-router';
 import { handleRefreshAccountAccessToken } from '~/others/store';
 import myAxios from '~/others/myAxios';
 
 const SignIn: React.FC = () => {
-  const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

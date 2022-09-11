@@ -6,15 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Tooltip from '@mui/material/Tooltip';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  accessTokenState,
-  handleHelpSideBar,
-  handleRefreshAccountAccessToken,
-  ProfileState,
-} from '~/others/store';
+import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 import { MenuItem } from '@mui/material';
 const StyledImg = styled.img`
@@ -28,16 +22,6 @@ const StyledImg2 = styled.img`
     margin: 0px 2px;
     height: 75px;
   
-    }
-`;
-
-const StyledUp = styled.img`
-  
-    width: 500px;
-    background-position: 10% 100px;
-    position: fixed;
-    right: 0px;
-    up: 0px;
     }
 `;
 
