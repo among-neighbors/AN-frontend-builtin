@@ -156,9 +156,9 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
 
   return (
     <StyledBody>
-      <StyledIllust src='img/homeIllust.png' />
+      <StyledIllust src='../../public/img/homeIllust.png' />
       <IconButton onClick={handleOpenHelpCallModal} sx={{ p: 0 }}>
-        <StyledImg src='/img/warning.png' />
+        <StyledImg src='../../public/img/warning.png' />
       </IconButton>
       <Menu
         open={Boolean(anchorElHelpCall)}
@@ -299,7 +299,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
           </Box>
         </Box>
       </Menu>
-      <StyledDown src='/img/down.png' />
+      <StyledDown src='../../public/img/down.png' />
     </StyledBody>
   );
 };
