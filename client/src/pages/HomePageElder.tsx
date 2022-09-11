@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { accessTokenState, handleHelpSideBar, RootState, ProfileState } from '~/others/store';
+import { accessTokenState, ProfileState } from '~/others/store';
 import HeaderElder from '~/components/organisms/HeaderElder';
 import HomeElder from '~/components/organisms/HomeLayoutElder';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import { accessTokenState, handleHelpSideBar, ProfileState } from '~/others/store';
+import { accessTokenState, ProfileState } from '~/others/store';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { shadowCssForMUI } from '~/others/cssLibrary';

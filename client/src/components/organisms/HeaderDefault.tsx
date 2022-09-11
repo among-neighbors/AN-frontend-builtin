@@ -5,22 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import SquareImg from '../atoms/Img';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { fontSize } from '@mui/system';
-import {
-  accessTokenState,
-  handleHelpSideBar,
-  handleRefreshAccountAccessToken,
-  ProfileState,
-} from '~/others/store';
+import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 const StyledImg = styled.img`
     margin: 0px 2px;
@@ -71,7 +61,6 @@ const pages: {
     link: '/community',
   },
 ];
-const settings = ['로그아웃'];
 
 interface HeadereProps {
   accessToken: accessTokenState;
@@ -172,7 +161,6 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               </Button>
             ))}
 
-
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='/img/house.png' />
@@ -181,7 +169,6 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
-
 
             <Menu
               sx={{ mt: '60px' }}

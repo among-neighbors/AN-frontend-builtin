@@ -1,6 +1,5 @@
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
-import TableNav from '~/components/molecules/TableNav';
 import Board from '~/components/organisms/Board';
 
 import { Link, useLocation } from 'react-router-dom';

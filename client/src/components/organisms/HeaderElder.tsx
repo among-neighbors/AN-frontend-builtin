@@ -6,15 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Tooltip from '@mui/material/Tooltip';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  accessTokenState,
-  handleHelpSideBar,
-  handleRefreshAccountAccessToken,
-  ProfileState,
-} from '~/others/store';
+import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 import MenuItem from '@mui/material/MenuItem';
 const StyledImg = styled.img`
@@ -138,7 +132,6 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
             padding={2}
             margin={3}
           >
-
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='/img/house.png' />

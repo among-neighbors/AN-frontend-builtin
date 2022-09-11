@@ -8,27 +8,16 @@ import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  accessTokenState,
-  handleHelpSideBar,
-  handleRefreshAccountAccessToken,
-  ProfileState,
-} from '~/others/store';
+import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 67px;
   
-    }
-`;
-// 이미지와 텍스트를 감싸고 있는 요소
-const StyledWrap = styled.div`
-  position: relative;
-
     }
 `;
 
@@ -82,7 +71,7 @@ const pages: {
     link: '/community',
   },
 ];
-const settings = ['로그아웃'];
+
 
 interface HeadereProps {
   accessToken: accessTokenState;
