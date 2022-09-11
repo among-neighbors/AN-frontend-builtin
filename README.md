@@ -82,7 +82,7 @@
 
 
 <p>
-<img width="40%" alt="Screen Shot 2022-09-11 at 11 15 35 AM" src="https://user-images.githubusercontent.com/62577565/189510463-4f4f7452-7f2b-4be6-85d0-ddcd92331a24.png">
+<img width="40%" alt="Screen Shot 2022-09-11 at 12 02 04 PM" src="https://user-images.githubusercontent.com/62577565/189510524-8f2926d7-295d-4b1f-a9f7-6596b4896b79.png">
 <img width="40%" alt="Screen Shot 2022-09-11 at 11 59 22 AM" src="https://user-images.githubusercontent.com/62577565/189510465-5ed9abe9-74ae-4c4a-9862-cfce585962e0.png">
 
 </p>
