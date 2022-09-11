@@ -37,17 +37,17 @@ const pages: {
   {
     name: '공지',
     link: '/noticeElder',
-    src: '/../../../public/img/Notice.png',
+    src: '../../public/img/Notice.png',
   },
   {
     name: '민원',
     link: '/complaintElder',
-    src: '../../../public/img/Complaint.png',
+    src: '../../public/img/Complaint.png',
   },
   {
     name: '커뮤니티',
     link: '/communityElder',
-    src: '../../../public/img/Community.png',
+    src: '../../public/img/Community.png',
   },
 ];
 

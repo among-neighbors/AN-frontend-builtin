@@ -30,7 +30,7 @@ const FaceDetectionForm = () => {
     <StyledBody>
       <div>
         <ChakraProvider>
-          <StyledBackground src='../../../public/img/faceDetectionBg.png' />
+          <StyledBackground src='../../public/img/faceDetectionBg.png' />
           <MoteCamComponent />
         </ChakraProvider>
       </div>
