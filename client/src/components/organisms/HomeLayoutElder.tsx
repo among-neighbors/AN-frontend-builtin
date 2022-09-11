@@ -186,7 +186,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
             to={page.link}
           >
             <div>
-              <StyledBtn src={page.src} />
+              <StyledBtn src='../../public/img/notice.png' />
             </div>
 
             {page.name}
