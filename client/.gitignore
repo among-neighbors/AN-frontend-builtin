@@ -30,3 +30,4 @@ Dockerfile
 
 # vite.config.ts for localhost https
 vite.config.ts
+./vite.config.ts
