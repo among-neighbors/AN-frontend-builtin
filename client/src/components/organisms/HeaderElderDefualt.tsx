@@ -7,9 +7,16 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import {
+  accessTokenState,
+  handleHelpSideBar,
+  handleRefreshAccountAccessToken,
+  ProfileState,
+} from '~/others/store';
+import myAxios from '~/others/myAxios';
+import { MenuItem } from '@mui/material';
 const StyledImg = styled.img`
     margin: 0px 2px;
     height: 67px;
@@ -34,6 +41,24 @@ const StyledUp = styled.img`
     }
 `;
 
+//이미지와 텍스트를 감싸고 있는 요소
+const StyledContainer = styled.div`
+  position: relative;
+  }
+`;
+// 텍스트를 감싸고 있는 요소
+const StyledContainerText = styled.h3`
+  width: 200px;
+  position: relative;
+  position: absolute;
+	top: 50%;
+	left: 50%;
+  transform: translate( -50%, -50% );
+  color:white;
+  font-family: BlinkMacSystemFont;
+  }
+`;
+
 // const pages: {
 //   name: string;
 //   link: string;
@@ -53,24 +78,27 @@ const StyledUp = styled.img`
 // ];
 // const settings = ['로그아웃'];
 
-const HeaderElderDefualt = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+interface HeadereProps {
+  accessToken: accessTokenState;
+  profileData: ProfileState;
+}
+
+const HeaderElderDefualt = ({ accessToken, profileData }: HeadereProps) => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const navigate = useNavigate();
+  const handleLogOutAndRedirect = async () => {
+    handleCloseUserMenu();
+    handleRefreshAccountAccessToken('');
+    await myAxios('get', `api/v1/auth/accounts/logout`, null, true, accessToken.accountAccessToken);
+
+    navigate('/sign');
   };
 
   return (
@@ -149,9 +177,18 @@ const HeaderElderDefualt = () => {
                 {page.name}
               </Button>
             ))} */}
-        
+
+            <StyledContainer>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <StyledImg2 src='/img/house.png' />
+                <StyledContainerText>
+                  {profileData.lineName}동 {profileData.houseName}호
+                </StyledContainerText>
+              </IconButton>
+            </StyledContainer>
+
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '60px' }}
               id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -166,11 +203,9 @@ const HeaderElderDefualt = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
-              ))} */}
+              <MenuItem onClick={handleLogOutAndRedirect}>
+                <Typography textAlign='center'>로그아웃</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

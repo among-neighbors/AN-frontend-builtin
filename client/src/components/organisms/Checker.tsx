@@ -5,8 +5,9 @@ import {
   accessTokenState,
   getReadyForRequestAPI,
   handleRefreshAccountAccessToken,
-  handleRefreshProfileAccessToken,
+  handlePutProfile,
   RootState,
+  ProfileState,
 } from '~/others/store';
 
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -14,9 +15,10 @@ import myAxios from '~/others/myAxios';
 
 interface CheckerProps {
   accessTokenState: accessTokenState;
+  profileData: ProfileState;
 }
 
-const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
+const Checker: React.FC<CheckerProps> = ({ accessTokenState, profileData }) => {
   const { accountAccessToken, profileAccessToken } = accessTokenState;
   const [accountKey, setAccountKey] = useState(false);
   const [profileKey, setProfileKey] = useState(false);
@@ -34,6 +36,22 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     }
   };
 
+  const getProfileList = async () => {
+    try {
+      const res = await myAxios('get', 'api/v1/accounts/profiles', null, true, accountAccessToken);
+
+      const { id, name, lineName, houseName } = res.data.response.list[0];
+      handlePutProfile({
+        id,
+        name,
+        lineName,
+        houseName,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     checkAccountLogin();
   }, []);
@@ -41,12 +59,15 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
   useEffect(() => {
     if (!accountKey) return;
     getReadyForRequestAPI();
-    // if (accountAccessToken !== '') {
-    //   navigate('/');
-    // }
+
     if (accountAccessToken === '') {
-      const isAllowPath = allowPath.some((path) => location.pathname === path);
-      if (!isAllowPath) navigate('/sign');
+      navigate('/sign');
+    } else {
+      getProfileList();
+    }
+
+    if (accountAccessToken !== '') {
+      if (location.pathname === '/sign') navigate('/');
     }
   }, [accountKey, profileKey, location.pathname]);
 
@@ -62,6 +83,7 @@ const TIME_FOR_REFRESH_TOKEN = 10000;
 const mapStateToProps = (state: RootState) => {
   return {
     accessTokenState: state.accessTokenReducer,
+    profileData: state.profileReducer,
   };
 };
 

@@ -42,7 +42,13 @@ const StyledImg = styled.img`
   }
   `;
 
-const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: ListPageProps) => {
+const ListPage = ({
+  type,
+  accessToken,
+  isReadyForRequestAPI,
+  mode,
+  profileData,
+}: ListPageProps) => {
   const location = useLocation();
   const [tableData, setTableData] = useState<TableDataProps>({
     list: [],
@@ -55,17 +61,23 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
   const getListData = async () => {
     const URLQueryData = parse(location.search);
     const { page, scope, category } = URLQueryData;
+    var num;
+    {
+      mode === 'elder' ? (num = 4) : (num = 5);
+    }
     const querys: Obj<string> = {
-      notice: `?page=${page ?? 1}&count=5&scope=${scope ?? 'ALL'}`,
-      complaint: `?page=${page ?? 1}&count=5`,
-      community: `?page=${page ?? 1}&count=5&scope=${scope ?? 'ALL'}&category=${category ?? 'ALL'}`,
+      notice: `?page=${page ?? 1}&count=${num}&scope=${scope ?? 'ALL'}`,
+      complaint: `?page=${page ?? 1}&count=${num}`,
+      community: `?page=${page ?? 1}&count=${num}&scope=${scope ?? 'ALL'}&category=${
+        category ?? 'ALL'
+      }`,
     };
     const res = await myAxios(
       'get',
       `${APIbyType[type]}${querys[type]}`,
       null,
       true,
-      accountAccessToken,
+      accessToken.accountAccessToken,
     );
     console.log(`${APIbyType[type]}${querys[type]}`);
     setTableData(res.data.response);
@@ -78,7 +90,11 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-      {mode === 'elder' ? <HeaderElderDefualt /> : <HeaderDefault />}
+      {mode === 'elder' ? (
+        <HeaderElderDefualt accessToken={accessToken} profileData={profileData} />
+      ) : (
+        <HeaderDefault accessToken={accessToken} profileData={profileData} />
+      )}
       {mode === 'elder' ? (
         <Typography
           variant='h6'
@@ -122,11 +138,22 @@ const ListPage = ({ type, accountAccessToken, isReadyForRequestAPI, mode }: List
           )}
         </Typography>
       ) : (
-        <><StyledMargin></StyledMargin></>
+        <>
+          <StyledMargin></StyledMargin>
+        </>
       )}
-      {type === 'community' || type === 'notice' ? <TableNav type={type} /> : <StyledMargin2></StyledMargin2>}
-      <BoardTable type={type} rows={rows} isFirstPage={isFirstPage} isLastPage={isLastPage} mode={mode}/>
-     
+      {type === 'community' || type === 'notice' ? (
+        <TableNav type={type} />
+      ) : (
+        <StyledMargin2></StyledMargin2>
+      )}
+      <BoardTable
+        type={type}
+        rows={rows}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+        mode={mode}
+      />
     </Box>
   );
 };
@@ -170,15 +197,11 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
   });
 };
 
-const buttonTextByType: Obj<string> = {
-  complaint: '민원 작성',
-  community: '글쓰기',
-};
-
 const mapStateToProps = (state: RootState) => {
   return {
-    accountAccessToken: state.accessTokenReducer.accountAccessToken,
+    accessToken: state.accessTokenReducer,
     isReadyForRequestAPI: state.readyForRequestAPIReducer,
+    profileData: state.profileReducer,
   };
 };
 
