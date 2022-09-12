@@ -128,7 +128,7 @@
 
 런타임 환경은 도커 컨테이너를 통해 구축하였습니다.
 
-![sysA_05 002](https://user-images.githubusercontent.com/62577565/189509235-8609d84b-185f-455d-9426-c687c02ffc9b.jpeg)
+![sysA_06 002](https://user-images.githubusercontent.com/62577565/189640068-973d61af-76b7-4fd3-adc4-e59c0dc2acc5.jpeg)
 
 <br>
 
