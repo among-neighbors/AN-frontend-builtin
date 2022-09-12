@@ -16,6 +16,10 @@ export default defineConfig(({ command }) => {
         },
       },
       plugins: [react(), tsconfigPaths(), liveReload('./**/*.php')],
+       build: {
+    chunkSizeWarningLimit: 2000,
+  },
     };
   }
+
 });

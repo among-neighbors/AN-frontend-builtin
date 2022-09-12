@@ -54,6 +54,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<일반 사용자 모드>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<어르신 모드>
 <br>
 <br>
+
 > 이웃 사이 중요한 정보는 놓치면 안돼요.
 
 이웃사이는 집 안팎에서 언제든지 확인 가능한 통합 공지 시스템을 제공합니다.
@@ -91,7 +92,7 @@
 <br>
 
 
-## 4. 이웃사이 서버 환경
+## 4. 이웃사이 클라이언트 환경
 
 > 이웃사이 서버는 이렇게 개발하고 배포해요
 
@@ -101,9 +102,8 @@
 
 ### **기술 스택**
 
-버전 정보는 **build.gradle** 에서 확인할 수 있습니다.
 
-//향후 추가
+![framework 001](https://user-images.githubusercontent.com/62577565/189623206-5b17131c-6446-4171-97ac-67f9c5fbf808.jpeg)
 
 자세한 적용 방식은 [이웃사이 기술포스팅](https://gratis-shape-ac1.notion.site/fa9b8f0cddc047c99bef0dbc126b00d3?v=aa3acf9a163146a7ba342d5a5010fdac)
 에서 확인할 수 있습니다.
@@ -128,9 +128,14 @@
 
 런타임 환경은 도커 컨테이너를 통해 구축하였습니다.
 
-![sysA_05 002](https://user-images.githubusercontent.com/62577565/189509235-8609d84b-185f-455d-9426-c687c02ffc9b.jpeg)
+![sysA_06 002](https://user-images.githubusercontent.com/62577565/189640068-973d61af-76b7-4fd3-adc4-e59c0dc2acc5.jpeg)
 
 <br>
+
+## 5. UI Theme
+
+![이웃사이 Theme 001](https://user-images.githubusercontent.com/62577565/189638745-b5617483-f8b9-4881-b0fa-ffd6b5f3ec2c.jpeg)
+
 
 ## **5. Contributor**
 
