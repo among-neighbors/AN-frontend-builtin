@@ -54,6 +54,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<일반 사용자 모드>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<어르신 모드>
 <br>
 <br>
+
 > 이웃 사이 중요한 정보는 놓치면 안돼요.
 
 이웃사이는 집 안팎에서 언제든지 확인 가능한 통합 공지 시스템을 제공합니다.
@@ -101,9 +102,8 @@
 
 ### **기술 스택**
 
-버전 정보는 **build.gradle** 에서 확인할 수 있습니다.
 
-//향후 추가
+![framework 001](https://user-images.githubusercontent.com/62577565/189623206-5b17131c-6446-4171-97ac-67f9c5fbf808.jpeg)
 
 자세한 적용 방식은 [이웃사이 기술포스팅](https://gratis-shape-ac1.notion.site/fa9b8f0cddc047c99bef0dbc126b00d3?v=aa3acf9a163146a7ba342d5a5010fdac)
 에서 확인할 수 있습니다.
