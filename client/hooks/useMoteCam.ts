@@ -96,7 +96,7 @@ const useMOTECam = (): MoteCamType => {
   const setupTensorFlow = async () => {
     // TODO: Types
     // @ts-ignore
-    await faceapi.tf.setBackend('webgl');
+    await faceapi.tf.setBackend('cpu');
     // @ts-ignore
     await faceapi.tf.enableProdMode();
     // @ts-ignore
