@@ -100,7 +100,7 @@ const useMOTECam = (): MoteCamType => {
     // @ts-ignore
     await faceapi.tf.enableProdMode();
     // @ts-ignore
-    await faceapi.tf.ENV.set('DEBUG', false);
+    await faceapi.tf.ENV.set('DEBUG', true);
     // @ts-ignore
     await faceapi.tf.ready();
   };
