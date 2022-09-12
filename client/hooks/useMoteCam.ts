@@ -9,7 +9,7 @@ import { speakMessage } from '../hooks/useSpeech';
 import { MoteCamAgeType, MoteCamAgeMessage } from '~/components/organisms/MoteCamAge';
 //import { useLocale } from "../hooks/useLocale";
 
-const MODEL_PATH = '/model';
+const MODEL_PATH = '../model';
 const detectorOptions = new faceapi.TinyFaceDetectorOptions();
 
 type MoteCamType = {
