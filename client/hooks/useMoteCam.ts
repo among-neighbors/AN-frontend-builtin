@@ -9,7 +9,7 @@ import { speakMessage } from '../hooks/useSpeech';
 import { MoteCamAgeType, MoteCamAgeMessage } from '~/components/organisms/MoteCamAge';
 //import { useLocale } from "../hooks/useLocale";
 
-const MODEL_PATH = '../model';
+const MODEL_PATH = '../public/model';
 const detectorOptions = new faceapi.TinyFaceDetectorOptions();
 
 type MoteCamType = {
@@ -100,7 +100,7 @@ const useMOTECam = (): MoteCamType => {
     // @ts-ignore
     await faceapi.tf.enableProdMode();
     // @ts-ignore
-    await faceapi.tf.ENV.set('DEBUG', true);
+    await faceapi.tf.ENV.set('DEBUG', false);
     // @ts-ignore
     await faceapi.tf.ready();
   };

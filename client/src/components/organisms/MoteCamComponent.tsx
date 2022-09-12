@@ -32,9 +32,9 @@ const MoteCamComponent: React.FC = () => {
     var detextedAgeNum: number = Number(detectedAge.props.age.message);
     console.log(detextedAgeNum);
     if (detextedAgeNum > 65) {
-      window.location.href = '/elder';
+      window.location.href = '/builtin/elder';
     } else {
-      window.location.href = '/';
+      window.location.href = '/builtin/';
     }
     // window.location.href = '/elder';
     // window.location.href = '/';
