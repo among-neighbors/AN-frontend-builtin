@@ -80,7 +80,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
     //라인 추가해야함
     client.publish({
       destination: '/pub/accept',
-      body: JSON.stringify({ target: profileData.houseName }),
+      body: JSON.stringify({ target: requestHouseName }),
     });
     setIsRequest(false);
     //요청 한 집 초기화
