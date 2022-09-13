@@ -12,7 +12,39 @@
 <br>
 
 ## 2. 사용 방법
-//향후 추가 작성
+
+
+### **git clone**
+```shell
+$ git clone https://github.com/among-neighbors/AN-frontend-builtin.git
+```
+
+**application.yml**
+
+```yaml
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf 
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot 
+      - ../AN-frontend/client/dist:/usr/share/nginx/user 
+      - ../AN-frontend-manager/client/dist:/usr/share/nginx/manager 
+      - ../AN-frontend-builtin/client/dist:/usr/share/nginx/builtin
+    ports:
+      - 80:81
+      - 443:443
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot      
+```
+<br>
 
 ## 3. 기능
 
