@@ -6,7 +6,12 @@ import fs from 'fs';
 
 export default defineConfig(({ command }) => {
   if (command === 'build') {
-    return { plugins: [react(), tsconfigPaths(), liveReload('./**/*.php')] };
+    return {
+      plugins: [react(), tsconfigPaths(), liveReload('./**/*.php')],
+      build: {
+        chunkSizeWarningLimit: 2000,
+      },
+    };
   } else {
     return {
       server: {
@@ -16,10 +21,9 @@ export default defineConfig(({ command }) => {
         },
       },
       plugins: [react(), tsconfigPaths(), liveReload('./**/*.php')],
-       build: {
-    chunkSizeWarningLimit: 2000,
-  },
+      build: {
+        chunkSizeWarningLimit: 2000,
+      },
     };
   }
-
 });

@@ -12,7 +12,39 @@
 <br>
 
 ## 2. 사용 방법
-//향후 추가 작성
+
+
+### **git clone**
+```shell
+$ git clone https://github.com/among-neighbors/AN-frontend-builtin.git
+```
+
+**application.yml**
+
+```yaml
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf 
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot 
+      - ../AN-frontend/client/dist:/usr/share/nginx/user 
+      - ../AN-frontend-manager/client/dist:/usr/share/nginx/manager 
+      - ../AN-frontend-builtin/client/dist:/usr/share/nginx/builtin
+    ports:
+      - 80:81
+      - 443:443
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot      
+```
+<br>
 
 ## 3. 기능
 
@@ -137,7 +169,7 @@
 ![이웃사이 Theme 001](https://user-images.githubusercontent.com/62577565/189638745-b5617483-f8b9-4881-b0fa-ffd6b5f3ec2c.jpeg)
 
 
-## **5. Contributor**
+## **6. Contributor**
 
 ### 클라이언트
 | Name |GitHub|Email|
@@ -150,6 +182,13 @@
 |------|---|---|
 | 박상현  |[PPakSang](https://github.com/PPakSang)|sanghyun-dev@naver.com|
 | 황아영  |[dkdud9261](https://github.com/dkdud9261)|ayxxng73@gmail.com|
+
+
+## **6. Open Source**
+
+[MIT License](LICENSE)
+
+[Contribution Guideline](CONTRIBUTING.md)
 
 
 
