@@ -38,7 +38,7 @@
 
 현재 프로젝트 소스코드 외에 프로젝트에 포함시킬 수 있는 파일은 아래와 같습니다.  
 
-- Dockerfile
+- application.yml
 
 
 ### Commit convention
