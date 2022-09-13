@@ -85,6 +85,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
     setIsRequest(false);
     //요청 한 집 초기화
     setrequestHouseName('');
+    request = '';
   };
   const handleOpenHelpCallModal = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElHelpCall(event.currentTarget);
@@ -102,9 +103,10 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
     setIsAccept(false);
   };
   let isDone = true;
+  let request;
   useEffect(() => {
     if (
-      accessToken.accountAccessToken != ' ' &&
+      accessToken.accountAccessToken != '' &&
       profileData.houseName != '' &&
       profileData.lineName != '' &&
       isDone
@@ -129,11 +131,10 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
             console.log(e.headers['type']);
             if (e.headers['type'] == 'alert') {
               console.log(JSON.parse(e.body)['house']);
+              request = JSON.parse(e.body)['house'];
               setrequestHouseName(JSON.parse(e.body)['house']);
-
-              if (requestHouseName != '') {
-                setrequestHouseName(requestHouseName);
-
+              console.log('requestHouseName', requestHouseName);
+              if (request != '' && request != profileData.houseName) {
                 setIsRequest(true);
               }
             } else if (e.headers['type'] == 'accept') {

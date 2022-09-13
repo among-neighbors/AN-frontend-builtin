@@ -78,16 +78,19 @@ interface HomePageProps {
 const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
 
 const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
+  console.log(accessToken, profileData);
   //도움 요청한 집 호수
-  const [requestHouseName, setrequestHouseName] = useState<string>(' ');
+  const [requestHouseName, setrequestHouseName] = useState('');
+  //도움을 수락한 호수
+  const [accepttHouseName, setacceptHouseName] = useState('');
+  //도움을 받을 호수
+  const [targetHouseName, settargetHouseName] = useState('');
 
   //객체 생성
   var client = Stomp.client(WSS_FEED_URL);
-  const [isRequest, setIsRequest] = useState<boolean>(false);
-  const dismissRequest = () => {
-    setIsRequest(false);
-  };
-  let isDone = true;
+
+  const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
+
   const sendHelpRequest = () => {
     setAnchorElHelpCall(null);
     client.publish({ destination: '/pub/alert', body: JSON.stringify({ text: '도와주세요' }) });
@@ -97,24 +100,34 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
     //라인 추가해야함
     client.publish({
       destination: '/pub/accept',
-      body: JSON.stringify({ target: profileData.houseName }),
+      body: JSON.stringify({ target: requestHouseName }),
     });
     setIsRequest(false);
     //요청 한 집 초기화
-    setrequestHouseName(' ');
+    setrequestHouseName('');
+    request = '';
   };
-  const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
   const handleOpenHelpCallModal = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElHelpCall(event.currentTarget);
   };
-
   const handleCloseHelpCallModal = () => {
     setAnchorElHelpCall(null);
   };
 
+  const [isRequest, setIsRequest] = useState<boolean>(false);
+  const [isAccept, setIsAccept] = useState<boolean>(false);
+  const dismissRequest = () => {
+    setIsRequest(false);
+  };
+  const checkAccept = () => {
+    setIsAccept(false);
+  };
+  let isDone = true;
+  let request;
+
   useEffect(() => {
     if (
-      accessToken.accountAccessToken != ' ' &&
+      accessToken.accountAccessToken != '' &&
       profileData.houseName != '' &&
       profileData.lineName != '' &&
       isDone
@@ -135,11 +148,24 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
           const destination = '/sub/line/' + profileData.lineName;
           client.subscribe(destination, function (e) {
             //e.body에 전송된 data가 들어있다
-            setrequestHouseName(JSON.parse(e.body)['house']);
-            console.log('requestHouseName', requestHouseName);
+            console.log(e.headers);
+            console.log(e.headers['type']);
+            if (e.headers['type'] == 'alert') {
+              console.log(JSON.parse(e.body)['house']);
+              request = JSON.parse(e.body)['house'];
+              setrequestHouseName(JSON.parse(e.body)['house']);
+              console.log('requestHouseName', requestHouseName);
+              if (request != '' && request != profileData.houseName) {
+                setIsRequest(true);
+              }
+            } else if (e.headers['type'] == 'accept') {
+              setacceptHouseName(JSON.parse(e.body)['accept_house']);
+              settargetHouseName(JSON.parse(e.body)['target_house']);
+              console.log('수락한 집의 정보들..', JSON.parse(e.body));
 
-            if (requestHouseName != ' ') {
-              setIsRequest(true);
+              setIsAccept(true);
+              //accept_house -> accepttHouseName
+              //target_house -> targetHouseName
             }
           });
         },
@@ -149,7 +175,6 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
         },
       );
   });
-
   return (
     <StyledBody>
       <Box
@@ -276,7 +301,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            103동 1201호에서 긴급 도움 요청!
+            {profileData.lineName}동 {requestHouseName}호에서 긴급 도움 요청!
           </Typography>
           <Typography>
             <br />
@@ -301,6 +326,48 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
           </Box>
         </Box>
       </Menu>
+
+      <Menu open={isAccept} onClose={checkAccept} sx={{ mt: '10px', '& ul': { padding: 0 } }}>
+        <Box
+          sx={{
+            opacity: 1,
+            position: 'fixed',
+            right: '25%',
+            bottom: '25%',
+            width: '740px',
+            height: '360px',
+            backgroundColor: 'white',
+            ...shadowCssForMUI,
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: '30px',
+              lineHeight: '80px',
+              height: '190px',
+              alignItems: 'center',
+              paddingTop: '110px',
+              textAlign: 'center',
+            }}
+          >
+            {accepttHouseName}호에서 {targetHouseName}호의 긴급 도움을 수락했습니다.
+          </Typography>
+          <Typography>
+            <br />
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+            <Button
+              onClick={checkAccept}
+              variant='contained'
+              color='success'
+              sx={{ height: '70px', width: '300px', fontSize: '30px', alignItems: 'center' }}
+            >
+              확인
+            </Button>
+          </Box>
+        </Box>
+      </Menu>
+
       <StyledDown src='../../img/down_elder.png' />
     </StyledBody>
   );
