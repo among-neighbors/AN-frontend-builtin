@@ -100,6 +100,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
     setIsRequest(false);
   };
   const checkAccept = () => {
+    setIsRequest(false);
     setIsAccept(false);
   };
   let isDone = true;
