@@ -24,36 +24,6 @@ const BoardNav: React.FC<BoardNavProps> = ({ type }) => {
       >
         목록
       </Link>
-      <Link
-        to='/'
-        style={{
-          height: '40px',
-          color: '#000',
-          textDecoration: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '5px',
-        }}
-      >
-        <ArrowBackIcon fontSize='small' />
-        이전 글
-      </Link>
-      <Link
-        to='/'
-        style={{
-          height: '40px',
-          color: '#000',
-          textDecoration: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '5px',
-        }}
-      >
-        다음 글
-        <ArrowForwardIcon fontSize='small' />
-      </Link>
     </BoardNavContainer>
   );
 };
