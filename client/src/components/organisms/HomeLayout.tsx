@@ -53,9 +53,9 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
   //도움 요청한 집 호수
   const [requestHouseName, setrequestHouseName] = useState('');
   //도움을 수락한 호수
-  const [accepttHouseName, setacceptHouseName] = useState('');
+  const [accepttHouseName, setAcceptHouseName] = useState('');
   //도움을 받을 호수
-  const [targetHouseName, settargetHouseName] = useState('');
+  const [targetHouseName, settArgetHouseName] = useState('');
 
   //객체 생성
   var client = Stomp.client(WSS_FEED_URL);
@@ -130,8 +130,8 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
                 setIsRequest(true);
               }
             } else if (e.headers['type'] == 'accept') {
-              setacceptHouseName(JSON.parse(e.body)['accept_house']);
-              settargetHouseName(JSON.parse(e.body)['target_house']);
+              setAcceptHouseName(JSON.parse(e.body)['accept_house']);
+              settArgetHouseName(JSON.parse(e.body)['target_house']);
               console.log('수락한 집의 정보들..', JSON.parse(e.body));
 
               setIsAccept(true);
