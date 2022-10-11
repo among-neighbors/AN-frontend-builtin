@@ -13,40 +13,31 @@ import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
 
 const StyledBody = styled.div`
-    height: 100vh;
-    background-color: #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-
-    }
+  height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledImg = styled.img`
-width: 104px;
-height: 101px;
-position: fixed;
-right: 50px;
-bottom: 50px;
-    }
+  width: 104px;
+  height: 101px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
 `;
 
 const StyledIllust = styled.img`
-  
-    width: 450px;
-  
-    }
+  width: 450px;
 `;
 
 const StyledDown = styled.img`
-  
-    width: 420px;
-    background-position: 10% 100px;
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    }
+  width: 420px;
+  background-position: 10% 100px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
 `;
 
 interface HomePageProps {
@@ -62,12 +53,12 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
   //도움 요청한 집 호수
   const [requestHouseName, setrequestHouseName] = useState('');
   //도움을 수락한 호수
-  const [accepttHouseName, setacceptHouseName] = useState('');
+  const [accepttHouseName, setAcceptHouseName] = useState('');
   //도움을 받을 호수
-  const [targetHouseName, settargetHouseName] = useState('');
+  const [targetHouseName, settArgetHouseName] = useState('');
 
   //객체 생성
-  var client = Stomp.client(WSS_FEED_URL);
+  const client = Stomp.client(WSS_FEED_URL);
 
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
 
@@ -126,7 +117,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
           });
           //라인 정보 등록
           const destination = '/sub/line/' + profileData.lineName;
-          client.subscribe(destination, function (e) {
+          client.subscribe(destination, (e) => {
             //e.body에 전송된 data가 들어있다
             console.log(e.headers);
             console.log(e.headers['type']);
@@ -139,8 +130,8 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
                 setIsRequest(true);
               }
             } else if (e.headers['type'] == 'accept') {
-              setacceptHouseName(JSON.parse(e.body)['accept_house']);
-              settargetHouseName(JSON.parse(e.body)['target_house']);
+              setAcceptHouseName(JSON.parse(e.body)['accept_house']);
+              settArgetHouseName(JSON.parse(e.body)['target_house']);
               console.log('수락한 집의 정보들..', JSON.parse(e.body));
 
               setIsAccept(true);

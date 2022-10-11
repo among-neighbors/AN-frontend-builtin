@@ -29,36 +29,30 @@ const StyledApplyInput = styled.input`
 `;
 
 const StyledApplyButton = styled.button`
-    background-color: rgb(0,0,0);
-    width: 419px;
-    height: 56px;
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
-    border:solid;
-    margin: 16px;
-    border-color:rgb(0,0,0);
-    border-width: 1px;
-    border-radius: 8px;
-
-    }
+  background-color: rgb(0, 0, 0);
+  width: 419px;
+  height: 56px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  border: solid;
+  margin: 16px;
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+  border-radius: 8px;
 `;
 
 const StyledBody = styled.div`
-    height: 100vh;
-    background-color: #EC8034;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    }
+  height: 100vh;
+  background-color: #ec8034;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledImg = styled.img`
-    margin: 0px 90px;
-    height: 83px;
-  
-    }
+  margin: 0px 90px;
+  height: 83px;
 `;
 
 //const Login = ({ history }: Props) => {

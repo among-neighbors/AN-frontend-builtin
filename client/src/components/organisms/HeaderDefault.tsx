@@ -13,35 +13,29 @@ import styled from 'styled-components';
 import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 const StyledImg = styled.img`
-    margin: 0px 2px;
-    height: 67px;
-  
-    }
+  margin: 0px 2px;
+  height: 67px;
 `;
 
 const StyledImg2 = styled.img`
-    margin: 0px 2px;
-    height: 75px;
-  
-    }
+  margin: 0px 2px;
+  height: 75px;
 `;
 
 //이미지와 텍스트를 감싸고 있는 요소
 const StyledContainer = styled.div`
   position: relative;
-  }
 `;
 // 텍스트를 감싸고 있는 요소
 const StyledContainerText = styled.h4`
   width: 200px;
   position: relative;
   position: absolute;
-	top: 50%;
-	left: 50%;
-  transform: translate( -50%, -50% );
-  color:white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
   font-family: BlinkMacSystemFont;
-  }
 `;
 
 const pages: {
