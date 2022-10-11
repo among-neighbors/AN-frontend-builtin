@@ -14,7 +14,7 @@ import styles from '../../../styles/MoteCam.module.css';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { MoteCamAge } from './MoteCamAge';
-
+import { useNavigate } from 'react-router-dom';
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
@@ -23,6 +23,7 @@ const StyledContainer = styled.div`
 
 const MoteCamComponent: React.FC = () => {
   const moteCam = useMOTECam();
+  const navigate = useNavigate();
 
   const handleUI = () => {
     const detectedAge = <MoteCamAge {...moteCam.moteCamAge} />;
@@ -30,12 +31,10 @@ const MoteCamComponent: React.FC = () => {
     var detextedAgeNum: number = Number(detectedAge.props.age.message);
     console.log(detextedAgeNum);
     if (detextedAgeNum > 50) {
-      window.location.href = '/builtin/elder';
+      navigate('/builtin/elder');
     } else {
-      window.location.href = '/builtin/';
+      navigate('/builtin/');
     }
-    // window.location.href = '/elder';
-    // window.location.href = '/';
   };
   return (
     <>
