@@ -10,18 +10,16 @@ import { useNavigate } from 'react-router';
 import myAxios from '~/others/myAxios';
 
 const StyledImg = styled.img`
-    margin: 0px 90px;
-    height: 83px;
-    }
+  margin: 0px 90px;
+  height: 83px;
 `;
 
 const StyledBody = styled.div`
-    height: 100vh;
-    background-color: #EC8034;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
+  height: 100vh;
+  background-color: #ec8034;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SignIn: React.FC = () => {

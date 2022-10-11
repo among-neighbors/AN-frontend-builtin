@@ -24,22 +24,17 @@ import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import Typography from '@mui/material/Typography';
 
 const StyledMargin = styled.div`
-margin: 110px 0 55px 0;
-
-}
+  margin: 110px 0 55px 0;
 `;
 
 const StyledMargin2 = styled.div`
-margin: 50px 0 0 0;
-
-}
+  margin: 50px 0 0 0;
 `;
 
 const StyledImg = styled.img`
-    margin: 70px 0 0 0;
-    height: 120px;
-  }
-  `;
+  margin: 70px 0 0 0;
+  height: 120px;
+`;
 
 const ListPage = ({
   type,

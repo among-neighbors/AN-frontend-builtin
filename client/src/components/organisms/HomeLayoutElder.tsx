@@ -13,21 +13,19 @@ import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
 import { accessTokenState, ProfileState } from '~/others/store';
 const StyledBody = styled.div`
-    height: 100vh;
-    background-color: #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
+  height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledImg = styled.img`
-width: 154px;
-height: 151px;
-position: fixed;
-right: 50px;
-bottom: 50px;
-    }
+  width: 154px;
+  height: 151px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
 `;
 const pages: {
   name: string;

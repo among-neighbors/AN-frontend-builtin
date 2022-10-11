@@ -13,40 +13,31 @@ import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
 
 const StyledBody = styled.div`
-    height: 100vh;
-    background-color: #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-
-    }
+  height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledImg = styled.img`
-width: 104px;
-height: 101px;
-position: fixed;
-right: 50px;
-bottom: 50px;
-    }
+  width: 104px;
+  height: 101px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
 `;
 
 const StyledIllust = styled.img`
-  
-    width: 450px;
-  
-    }
+  width: 450px;
 `;
 
 const StyledDown = styled.img`
-  
-    width: 420px;
-    background-position: 10% 100px;
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    }
+  width: 420px;
+  background-position: 10% 100px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
 `;
 
 interface HomePageProps {

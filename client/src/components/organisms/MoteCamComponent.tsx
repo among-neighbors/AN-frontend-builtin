@@ -16,11 +16,9 @@ import Button from '@mui/material/Button';
 import { MoteCamAge } from './MoteCamAge';
 
 const StyledContainer = styled.div`
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const MoteCamComponent: React.FC = () => {
