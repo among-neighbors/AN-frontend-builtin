@@ -58,7 +58,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
   const [targetHouseName, settArgetHouseName] = useState('');
 
   //객체 생성
-  var client = Stomp.client(WSS_FEED_URL);
+  const client = Stomp.client(WSS_FEED_URL);
 
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
 
@@ -117,7 +117,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
           });
           //라인 정보 등록
           const destination = '/sub/line/' + profileData.lineName;
-          client.subscribe(destination, function (e) {
+          client.subscribe(destination, (e) => {
             //e.body에 전송된 data가 들어있다
             console.log(e.headers);
             console.log(e.headers['type']);
