@@ -74,10 +74,8 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
     navigate('/sign');
   };
   const [isClicked, SetIsClicked] = React.useState<boolean>(false);
-  const handleCloseMode = () => {
-    SetIsClicked(false);
-  };
-  const handleOpenMode = (event: React.MouseEvent<HTMLElement>) => {
+
+  const handleOpenMode = () => {
     isClicked ? SetIsClicked(false) : SetIsClicked(true);
   };
 

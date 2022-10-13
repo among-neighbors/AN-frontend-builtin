@@ -14,20 +14,15 @@ import styles from '../../../styles/MoteCam.module.css';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { MoteCamAge } from './MoteCamAge';
-import { Router, useNavigate } from 'react-router-dom';
-import { RootState } from '~/others/store';
-import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-interface MoteCamProps {
-  isDefaultMode: boolean;
-}
-
-const MoteCamComponent: React.FC<MoteCamProps> = ({ isDefaultMode }) => {
+const MoteCamComponent: React.FC = () => {
   const moteCam = useMOTECam();
   const navigate = useNavigate();
   const handleUI = () => {
@@ -104,10 +99,4 @@ const MoteCamComponent: React.FC<MoteCamProps> = ({ isDefaultMode }) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    isDefaultMode: state.modeReducer,
-  };
-};
-
-export default connect(mapStateToProps)(MoteCamComponent);
+export default MoteCamComponent;

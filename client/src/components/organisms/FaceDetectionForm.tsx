@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import { MoteCamAge } from './MoteCamAge';
 import { useNavigate } from 'react-router-dom';
 import { onElderMode } from '~/others/store';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const StyledContainer = styled.div`
   display: flex;
