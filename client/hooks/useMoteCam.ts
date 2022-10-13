@@ -489,3 +489,6 @@ const useMOTECam = (): MoteCamType => {
 };
 
 export { useMOTECam };
+function sleep(arg0: number) {
+  throw new Error('Function not implemented.');
+}

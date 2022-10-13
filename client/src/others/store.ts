@@ -14,8 +14,7 @@ const ACTION_TO_GET_READY_FOR_REQUEST_API = 'actionToGetReadyForRequestAPI';
 
 const ACTION_TO_PUT_PROFILE = 'actionToPutProfile';
 
-const ACTION_TO_HANDLE_ELDER_MODE = 'actionToHandleElderMode',
-  ACTION_TO_ELDER_MODE_ON = 'actionToElderModeOn',
+const ACTION_TO_ELDER_MODE_ON = 'actionToElderModeOn',
   ACTION_TO_ELDER_MODE_OFF = 'actionToElderModeOff';
 
 interface TableNavState extends Obj<number> {
