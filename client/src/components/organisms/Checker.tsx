@@ -67,7 +67,7 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     }
 
     if (accountAccessToken !== '') {
-      if (location.pathname === '/sign') navigate('/');
+      if (location.pathname === '/sign') navigate('/faceDetecion');
     }
   }, [accountKey, location.pathname]);
 
