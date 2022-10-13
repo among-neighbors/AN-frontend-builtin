@@ -9,7 +9,7 @@ import {
   RootState,
   ProfileState,
 } from '~/others/store';
-
+import { useMOTECam } from '../../../hooks/useMoteCam';
 import { useNavigate, useLocation } from 'react-router-dom';
 import myAxios from '~/others/myAxios';
 
@@ -21,7 +21,7 @@ interface CheckerProps {
 const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
   const { accountAccessToken } = accessTokenState;
   const [accountKey, setAccountKey] = useState(false);
-
+  const moteCam = useMOTECam();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -67,7 +67,7 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     }
 
     if (accountAccessToken !== '') {
-      if (location.pathname === '/sign') navigate('/');
+      if (location.pathname === '/sign') navigate('/faceDetecion');
     }
   }, [accountKey, location.pathname]);
 

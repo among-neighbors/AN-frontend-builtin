@@ -48,7 +48,7 @@ const useMOTECam = (): MoteCamType => {
     START_SHOOTING: 'Start photo shooting.',
     END_SHOOTING: 'End photo shooting.',
     PICTURE_DID_TAKE: 'Pretty Good photo was taken!',
-    GUIDE_MSG_POSITION_GOOD: 'It is just good face position',
+
     GUIDE_MSG_POSITION_TOO_UPPER: 'Be a little lower',
     GUIDE_MSG_POSITION_TOO_LOWER: 'Be a little upper',
     GUIDE_MSG_POSITION_TOO_RIGHT: 'Be a little to the right',
@@ -228,13 +228,6 @@ const useMOTECam = (): MoteCamType => {
       // Is Size Just
       const faceSize = checkFaceSize({ w: canvas.width, h: canvas.height }, face.detection.box);
 
-      // Expression
-      // console.log('face.expressions');
-      // console.log(`${typeof(face.expressions)}`);
-      // console.log(face.expressions);
-      // console.log(JSON.stringify(face.expressions, null, 4));
-      // const faceExp = checkGoodExpression( face.expressions)
-
       // Age
       const faceAgeMsg = expectedAge(face.age);
 
@@ -297,16 +290,12 @@ const useMOTECam = (): MoteCamType => {
       vertical = true;
     }
 
-    const isJust = horizontal && vertical;
     const isTooUpper = faceCenter.y < toleranceRange.top;
     const isTooDown = faceCenter.y > toleranceRange.bottom;
     const isTooRight = faceCenter.x > toleranceRange.right;
     const isTooLeft = faceCenter.x < toleranceRange.left;
 
     let msg = '';
-    if (isJust) {
-      msg = localizedStrings.GUIDE_MSG_POSITION_GOOD;
-    }
 
     if (isTooUpper) {
       msg = localizedStrings.GUIDE_MSG_POSITION_TOO_UPPER;
