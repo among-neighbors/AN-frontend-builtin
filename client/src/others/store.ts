@@ -14,6 +14,9 @@ const ACTION_TO_GET_READY_FOR_REQUEST_API = 'actionToGetReadyForRequestAPI';
 
 const ACTION_TO_PUT_PROFILE = 'actionToPutProfile';
 
+const ACTION_TO_ELDER_MODE_ON = 'actionToElderModeOn',
+  ACTION_TO_ELDER_MODE_OFF = 'actionToElderModeOff';
+
 interface TableNavState extends Obj<number> {
   notice: number;
   community: number;
@@ -25,6 +28,7 @@ interface accessTokenState {
 }
 
 interface RootState {
+  modeReducer: boolean;
   helpSideBarReducer: boolean;
   tableNavReducer: TableNavState;
   accessTokenReducer: accessTokenState;
@@ -85,6 +89,17 @@ const tableNavReducer = (
   }
 };
 
+const modeReducer = (state = false, action: { type: string }) => {
+  switch (action.type) {
+    case ACTION_TO_ELDER_MODE_ON:
+      return !state;
+    case ACTION_TO_ELDER_MODE_OFF:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const helpSideBarReducer = (state = false, action: { type: string }) => {
   switch (action.type) {
     case ACTION_TO_HANDLE_HELP_SIDE_BAR:
@@ -129,6 +144,7 @@ const readyForRequestAPIReducer = (state = false, action: { type: string }) => {
 };
 
 const rootReducer = combineReducers({
+  modeReducer,
   tableNavReducer,
   helpSideBarReducer,
   accessTokenReducer,
@@ -137,6 +153,12 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer);
+
+const onElderMode = () => {
+  store.dispatch({
+    type: ACTION_TO_ELDER_MODE_ON,
+  });
+};
 
 const handleTableNav = (isNotice: boolean, idx: number) => {
   store.dispatch({
@@ -187,6 +209,7 @@ const handlePutProfile = (profileData: ProfileState) => {
 export {
   store,
   TableNavState,
+  onElderMode,
   handleTableNav,
   handleHelpSideBar,
   closeHelpSideBar,

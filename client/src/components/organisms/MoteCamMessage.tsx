@@ -33,10 +33,10 @@ const MoteCamMessage = ({
           <Text>{age.message}</Text>
         </HStack> */}
         <HStack>
-          <Text>{faceSize.message}</Text>
+          <Text color='white'>{faceSize.message}</Text>
         </HStack>
         <HStack>
-          <Text>{facePosition.message}</Text>
+          <Text color='white'>{facePosition.message}</Text>
         </HStack>
       </VStack>
     </Box>

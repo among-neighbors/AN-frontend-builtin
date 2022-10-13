@@ -11,6 +11,8 @@ import styled from 'styled-components';
 import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 import MenuItem from '@mui/material/MenuItem';
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import Button from '@mui/material/Button';
 const StyledImg = styled.img`
   margin: 0px 2px;
   height: 67px;
@@ -43,6 +45,12 @@ const StyledContainerText = styled.h3`
   font-family: BlinkMacSystemFont;
 `;
 
+const StyledContainerButton = styled.div`
+  display: 'flex';
+  alignitems: 'center';
+  width: 200px;
+`;
+
 interface HeadereProps {
   accessToken: accessTokenState;
   profileData: ProfileState;
@@ -64,6 +72,11 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
     await myAxios('get', `api/v1/auth/accounts/logout`, null, true, accessToken.accountAccessToken);
 
     navigate('/sign');
+  };
+  const [isClicked, SetIsClicked] = React.useState<boolean>(false);
+
+  const handleOpenMode = () => {
+    isClicked ? SetIsClicked(false) : SetIsClicked(true);
   };
 
   return (
@@ -124,6 +137,47 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
             padding={2}
             margin={3}
           >
+            <StyledContainerButton>
+              <Button
+                disableRipple
+                sx={{
+                  my: 2,
+                  color: 'black',
+                  width: '170px',
+                  height: '40px',
+                  textAlign: 'center',
+                  fontSize: '28px',
+                  fontWeight: 800,
+                  margin: '20px 0px 5px 30px',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
+                onClick={handleOpenMode}
+              >
+                EASY
+                {isClicked ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </Button>
+              <Button
+                disableRipple
+                sx={{
+                  color: 'black',
+                  width: '168px',
+                  height: '40px',
+                  textAlign: 'center',
+                  fontSize: '28px',
+                  fontWeight: 800,
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
+                component={Link}
+                to={'/'}
+              >
+                {isClicked && 'BASIC'}
+              </Button>
+            </StyledContainerButton>
+
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='../../public/img/house.png' />

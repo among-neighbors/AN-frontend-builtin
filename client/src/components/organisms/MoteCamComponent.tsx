@@ -99,4 +99,4 @@ const MoteCamComponent: React.FC = () => {
   );
 };
 
-export { MoteCamComponent };
+export default MoteCamComponent;
