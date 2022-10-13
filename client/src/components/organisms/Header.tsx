@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 
 import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
@@ -46,6 +47,11 @@ const StyledContainerText = styled.h4`
   color: white;
   font-family: BlinkMacSystemFont;
 `;
+const StyledContainerButton = styled.div`
+  display: 'flex';
+  alignitems: 'center';
+  width: 150px;
+`;
 const pages: {
   name: string;
   link: string;
@@ -78,6 +84,14 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+  const [isClicked, SetIsClicked] = React.useState<boolean>(false);
+  const handleCloseMode = () => {
+    SetIsClicked(false);
+  };
+  const handleOpenMode = (event: React.MouseEvent<HTMLElement>) => {
+    isClicked ? SetIsClicked(false) : SetIsClicked(true);
+  };
+
   const navigate = useNavigate();
   const handleLogOutAndRedirect = async () => {
     handleCloseUserMenu();
@@ -126,7 +140,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               display: { xs: 'flex', md: 'none' },
               flexGrow: 4,
               fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: '.1rem',
               color: 'black',
               textDecoration: 'none',
@@ -140,16 +154,17 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
             sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'space-between',
+              alignItems: 'center',
               flexDirection: 'row',
             }}
             padding={2}
-            margin={3}
+            margin={2}
           >
             {pages.map((page) => (
               <Button
                 key={page.name}
                 sx={{
-                  my: 2,
+                  my: 1,
                   color: 'black',
                   display: 'block',
                   width: '140px',
@@ -163,6 +178,46 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
                 {page.name}
               </Button>
             ))}
+            <StyledContainerButton>
+              <Button
+                disableRipple
+                sx={{
+                  my: 2,
+                  color: 'black',
+                  width: '120px',
+                  height: '40px',
+                  textAlign: 'center',
+                  fontSize: '20px',
+                  fontWeight: 800,
+                  margin: '40px 0px 0px 30px',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
+                onClick={handleOpenMode}
+              >
+                BASIC
+                {isClicked ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </Button>
+              <Button
+                disableRipple
+                sx={{
+                  color: 'black',
+                  width: '135px',
+                  height: '40px',
+                  textAlign: 'center',
+                  fontSize: '20px',
+                  fontWeight: 800,
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  },
+                }}
+                component={Link}
+                to={'/elder'}
+              >
+                {isClicked && 'EASY'}
+              </Button>
+            </StyledContainerButton>
 
             <StyledContainer>
               <IconButton onClick={handleOpenUserMenu}>
