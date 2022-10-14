@@ -22,7 +22,7 @@ const StyledBody = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffd9d5;
+  background-color: #f5f5f5;
 `;
 
 const StyledBackground = styled.img`

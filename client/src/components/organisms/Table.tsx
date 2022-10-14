@@ -210,7 +210,7 @@ const dataOfTypes: Obj<TypeInfoData> = {
     ],
   },
   complaint: {
-    labels: ['민원 ID', '제목', '작성자', '등록일'],
+    labels: ['민원 ID', '제목', '', '등록일'],
     ids: ['id', 'title', 'scope', 'date'],
     minWidths: [80, 300, 110, 150],
     formats: [],

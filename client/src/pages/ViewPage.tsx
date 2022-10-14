@@ -17,6 +17,7 @@ import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import HeaderDefault from '~/components/organisms/HeaderDefault';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
+import Footer from '~/components/molecules/Footer';
 
 const StyledImg = styled.img`
   margin: 70px 0 0 0;
@@ -159,6 +160,7 @@ const ViewPage = ({
 
       <StyledDiv></StyledDiv>
       {boardData && <Board type={type} boardData={boardData} />}
+      <Footer />
     </Box>
   );
 };
