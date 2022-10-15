@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 const StyledBody = styled.div`
   height: 100vh;
-  background-color: #f5f5f5;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,11 +52,11 @@ const pages: {
 ];
 
 const StyledImg = styled.img`
-  width: 104px;
-  height: 101px;
+  width: 124px;
+  height: 111px;
   position: fixed;
-  right: 50px;
-  bottom: 50px;
+  right: 40px;
+  bottom: 40px;
 `;
 
 // const StyledIllust = styled.img`
@@ -207,9 +207,10 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               borderRadius: '40px',
               border: '4px solid black',
               '&:hover': {
-                border: '4px solid #EC8034',
+                border: '4px solid #0093BA',
                 borderRadius: '40px',
                 color: '#EC8034',
+                backgroundColor: '#f5f5f5',
               },
             }}
             component={Link}
@@ -223,8 +224,8 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
           </Button>
         ))}
       </Box>
-      <IconButton onClick={handleOpenHelpCallModal} sx={{ p: 0 }}>
-        <StyledImg src='../../public/img/warning.png' />
+      <IconButton onClick={handleOpenHelpCallModal} sx={{}}>
+        <StyledImg src='../../public/img/warning.svg' />
       </IconButton>
       <Menu
         open={Boolean(anchorElHelpCall)}

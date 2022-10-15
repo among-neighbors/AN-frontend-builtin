@@ -13,7 +13,7 @@ import myAxios from '~/others/myAxios';
 import { MenuItem } from '@mui/material';
 const StyledImg = styled.img`
   margin: 0px 2px;
-  height: 67px;
+  height: 60px;
 `;
 
 const StyledImg2 = styled.img`
@@ -104,7 +104,7 @@ const HeaderElderDefualt = ({ accessToken, profileData }: HeadereProps) => {
               textDecoration: 'none',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Typography
@@ -124,7 +124,7 @@ const HeaderElderDefualt = ({ accessToken, profileData }: HeadereProps) => {
               alignItems: 'center',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Box

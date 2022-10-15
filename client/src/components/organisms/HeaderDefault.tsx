@@ -13,8 +13,8 @@ import styled from 'styled-components';
 import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from '~/others/store';
 import myAxios from '~/others/myAxios';
 const StyledImg = styled.img`
-  margin: 0px 2px;
-  height: 67px;
+  margin: 0 0 0 2px;
+  height: 60px;
 `;
 
 const StyledImg2 = styled.img`
@@ -103,7 +103,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               textDecoration: 'none',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Typography
@@ -123,7 +123,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               alignItems: 'center',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Box

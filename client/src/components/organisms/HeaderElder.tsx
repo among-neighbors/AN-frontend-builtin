@@ -15,7 +15,7 @@ import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import Button from '@mui/material/Button';
 const StyledImg = styled.img`
   margin: 0px 2px;
-  height: 67px;
+  height: 60px;
 `;
 
 const StyledImg2 = styled.img`
@@ -24,7 +24,7 @@ const StyledImg2 = styled.img`
 `;
 
 const StyledUp = styled.img`
-  width: 300px;
+  width: 230px;
   position: fixed;
   right: 0px;
   up: 0px;
@@ -82,7 +82,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
   };
 
   return (
-    <AppBar sx={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
+    <AppBar sx={{ background: 'white' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
         <StyledUp src='../../public/img/up_elder.png' />
         <Toolbar
@@ -107,7 +107,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
               textDecoration: 'none',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Typography
@@ -127,7 +127,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
               alignItems: 'center',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Box
