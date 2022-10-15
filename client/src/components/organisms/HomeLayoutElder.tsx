@@ -364,7 +364,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
         </Box>
       </Menu>
 
-      <StyledDown src='../../img/down_elder.png' />
+      <StyledDown src='../../public/img/down_elder.png' />
     </StyledBody>
   );
 };
