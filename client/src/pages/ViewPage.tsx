@@ -25,7 +25,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledMargin = styled.div`
-  margin: 110px 0 55px 0;
+  margin: 160px 0 55px 0;
 `;
 
 const StyledDiv = styled.div``;
@@ -135,28 +135,9 @@ const ViewPage = ({
               margin: '50px 0 0px 0',
             }}
           >
-            {type === 'community' ? (
-              <>
-                <StyledImg src='../../public/img/communityHeader.png' />
-              </>
-            ) : (
-              <></>
-            )}
-            {type === 'complaint' ? (
-              <>
-                {' '}
-                <StyledImg src='../../public/img/complaintHeader.png' />
-              </>
-            ) : (
-              <></>
-            )}
-            {type === 'notice' ? (
-              <>
-                <StyledImg src='../../public/img/noticeHeader.png' />
-              </>
-            ) : (
-              <></>
-            )}
+            {type === 'community' && <StyledImg src='../../public/img/communityHeader.png' />}
+            {type === 'complaint' && <StyledImg src='../../public/img/complaintHeader.png' />}
+            {type === 'notice' && <StyledImg src='../../public/img/noticeHeader.png' />}
           </Typography>
         ) : (
           <StyledMargin></StyledMargin>
