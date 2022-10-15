@@ -28,7 +28,9 @@ const StyledMargin = styled.div`
   margin: 160px 0 55px 0;
 `;
 
-const StyledDiv = styled.div``;
+const StyledDiv = styled.div`
+  margin: 10px 0 55px 0;
+`;
 
 const StyledBody = styled.div`
   height: 100%;
@@ -142,8 +144,9 @@ const ViewPage = ({
         ) : (
           <StyledMargin></StyledMargin>
         )}
-        <StyledDiv></StyledDiv>
+
         {boardData && <Board type={type} boardData={boardData} />}
+        <StyledDiv></StyledDiv>
         <Footer />
       </Box>
     </StyledBody>
