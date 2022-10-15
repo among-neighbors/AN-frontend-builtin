@@ -55,7 +55,7 @@ const useMOTECam = (): MoteCamType => {
     GUIDE_MSG_POSITION_TOO_LEFT: '얼굴을 조금만 오른쪽으로 이동해주세요.',
     GUIDE_MSG_SIZE_GOOD: '화면 내의 얼굴 크기가 적절합니다.🙆',
     GUIDE_MSG_SIZE_TOO_SMALL: '화면 내의 얼굴이 너무 작습니다. 조금만 더 가까이 와주세요.',
-    GUIDE_MSG_SIZE_TOO_BIG: '화면 내의 얼굴이 너무 멉니다. 조금 떨어져 주세요.',
+    GUIDE_MSG_SIZE_TOO_BIG: '화면 내의 얼굴이 너무 큽니다. 조금 떨어져 주세요.',
     GUIDE_MSG_AGE_LOOKALIKE: '%age',
     PHOTO_COMPLETION_TITLE: '완료',
   };
