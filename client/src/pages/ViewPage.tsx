@@ -96,7 +96,7 @@ const ViewPage = ({
       const { writer, scope, category } = viewData;
       setBoardData({
         ...commonViewData,
-        writer: `${writer.lineName}동 ${writer.houseName}호 ${writer.name}`,
+        writer: `${writer.lineName} ${writer.houseName}호 ${writer.name}`,
         scope,
         category,
       });
@@ -106,7 +106,7 @@ const ViewPage = ({
     const { writer } = viewData;
     setBoardData({
       ...commonViewData,
-      writer: `${writer.lineName}동 ${writer.houseName}호`,
+      writer: `${writer.lineName} ${writer.houseName}호`,
     });
   }, [viewData]);
 

@@ -11,6 +11,7 @@ import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
+import { Link } from 'react-router-dom';
 
 const StyledBody = styled.div`
   height: 100vh;
@@ -20,6 +21,36 @@ const StyledBody = styled.div`
   align-items: center;
 `;
 
+const StyledBtn = styled.img`
+  
+    width: 140px;
+    height: 140px;
+    margin: 20px;
+    }
+`;
+
+const pages: {
+  name: string;
+  link: string;
+  src: string;
+}[] = [
+  {
+    name: '공지',
+    link: '/notice',
+    src: '../../public/img/notice.png',
+  },
+  {
+    name: '민원',
+    link: '/complaint',
+    src: '../../public/img/complaint.png',
+  },
+  {
+    name: '커뮤니티',
+    link: '/community',
+    src: '../../public/img/community.png',
+  },
+];
+
 const StyledImg = styled.img`
   width: 104px;
   height: 101px;
@@ -28,9 +59,9 @@ const StyledImg = styled.img`
   bottom: 50px;
 `;
 
-const StyledIllust = styled.img`
-  width: 450px;
-`;
+// const StyledIllust = styled.img`
+//   width: 450px;
+// `;
 
 const StyledDown = styled.img`
   width: 420px;
@@ -149,7 +180,49 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
 
   return (
     <StyledBody>
-      <StyledIllust src='../../public/img/homeIllust.png' />
+      {/* <StyledIllust src='../../public/img/homeIllust.png' /> */}
+      <Box
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+        }}
+        padding={2}
+        margin={3}
+      >
+        {pages.map((page) => (
+          <Button
+            variant='outlined'
+            key={page.name}
+            sx={{
+              my: 2,
+              color: 'black',
+              display: 'block',
+              width: '272px',
+              height: '261px',
+              textAlign: 'center',
+              fontSize: '24px',
+              fontWeight: 900,
+              margin: '80px',
+              borderRadius: '40px',
+              border: '4px solid black',
+              '&:hover': {
+                border: '4px solid #EC8034',
+                borderRadius: '40px',
+                color: '#EC8034',
+              },
+            }}
+            component={Link}
+            to={page.link}
+          >
+            <div>
+              <StyledBtn src={page.src} />
+            </div>
+
+            {page.name}
+          </Button>
+        ))}
+      </Box>
       <IconButton onClick={handleOpenHelpCallModal} sx={{ p: 0 }}>
         <StyledImg src='../../public/img/warning.png' />
       </IconButton>
@@ -230,7 +303,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            {profileData.lineName}동 {requestHouseName}호에서 긴급 도움 요청!
+            {profileData.lineName} {requestHouseName}호에서 긴급 도움 요청!
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <Button

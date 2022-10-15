@@ -21,11 +21,11 @@ const StyledBody = styled.div`
 `;
 
 const StyledImg = styled.img`
-  width: 154px;
-  height: 151px;
+  width: 150px;
+  height: 145px;
   position: fixed;
   right: 50px;
-  bottom: 50px;
+  bottom: 30px;
 `;
 const pages: {
   name: string;
@@ -33,38 +33,33 @@ const pages: {
   src: string;
 }[] = [
   {
-    name: '공지',
+    name: '확인하세요',
     link: '/noticeElder',
     src: '../../public/img/notice.png',
   },
   {
-    name: '민원',
+    name: '해결해주세요',
     link: '/complaintElder',
     src: '../../public/img/complaint.png',
   },
   {
-    name: '커뮤니티',
+    name: '친해져요',
     link: '/communityElder',
     src: '../../public/img/community.png',
   },
 ];
 
 const StyledBtn = styled.img`
-  
-    width: 140px;
-    height: 140px;
-    margin: 20px;
-    }
+  width: 160px;
+  height: 160px;
 `;
 
 const StyledDown = styled.img`
-  
-    width: 350px;
-    background-position: 10% 100px;
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    }
+  width: 300px;
+  background-position: 10% 100px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
 `;
 
 interface HomePageProps {
@@ -193,17 +188,19 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               my: 2,
               color: 'black',
               display: 'block',
-              width: '272px',
-              height: '261px',
+              width: '380px',
+              height: '330px',
               textAlign: 'center',
-              fontSize: '24px',
+              fontSize: '60px',
               fontWeight: 900,
-              margin: '80px',
+              margin: '50px',
+              padding: '20px',
               borderRadius: '40px',
               border: '4px solid black',
               '&:hover': {
                 border: '4px solid #EC8034',
                 borderRadius: '40px',
+                color: '#EC8034',
               },
             }}
             component={Link}
@@ -300,7 +297,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            {profileData.lineName}동 {requestHouseName}호에서 긴급 도움 요청!
+            {profileData.lineName} {requestHouseName}호에서 긴급 도움 요청!
           </Typography>
           <Typography>
             <br />
