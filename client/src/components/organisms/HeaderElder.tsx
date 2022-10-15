@@ -76,7 +76,8 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
   const [isClicked, SetIsClicked] = React.useState<boolean>(false);
 
   const handleOpenMode = () => {
-    isClicked ? SetIsClicked(false) : SetIsClicked(true);
+    const newIsClicked = !isClicked;
+    SetIsClicked(newIsClicked);
   };
 
   return (
