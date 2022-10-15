@@ -11,30 +11,31 @@ import { useNavigate } from 'react-router-dom';
 import { onElderMode } from '~/others/store';
 import { useEffect } from 'react';
 
-const StyledContainer = styled.div`
-  position: absolute;
-  right: 23%;
-  bottom: 20%;
+const StyledBody2 = styled.div`
+  display: flex;
+  background-color: #f2ece5;
+  height: 100vh;
+  width: 100%;
 `;
 const StyledBody = styled.div`
+  background-color: #f2ece5;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffd9d5;
 `;
 
-const StyledBackground = styled.img`
-  position: absolute;
-  height: 90%;
-  left: 10%;
-  right: 0%;
-  bottom: 0%;
+const StyledBackground = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const StyledImg = styled.img`
+  width: 80%;
 `;
 const StyledImg2 = styled.img`
-  margin: 0px 2px;
-  height: 80px;
+  width: 200px;
 `;
 
 const FaceDetectionForm: React.FC = () => {
@@ -54,62 +55,76 @@ const FaceDetectionForm: React.FC = () => {
     detextedAgeNum > 50 ? navigate('/elder') : navigate('/');
   };
   return (
-    <StyledBody>
-      <div>
-        <ChakraProvider>
-          {!moteCam.isReady && <StyledBackground src='../../../public/img/family.png' />}
+    <div>
+      {!moteCam.isStarted ? (
+        <>
+          <StyledBody2>
+            <StyledBackground>
+              <StyledImg src='../../../public/img/family.png'></StyledImg>
+            </StyledBackground>
+          </StyledBody2>
+          <Button
+            fullWidth
+            sx={{
+              position: 'absolute',
+              bottom: '20%',
+              right: '40%',
+              height: '70px',
+              width: '200px',
+            }}
+            onClick={moteCam.startAndStop}
+          >
+            <StyledImg2 src='../../public/img/start.png' />
+          </Button>
+        </>
+      ) : (
+        <>
+          {' '}
+          <StyledBody>
+            <div>
+              <ChakraProvider>
+                <>
+                  <Heading h={'40px'} my={4} w='100%' textAlign='center'>
+                    {moteCam.isStarted && <MoteCamMessage {...moteCam.moteCamAdvice} />}
+                  </Heading>
 
-          {/* {moteCam.isStarted && moteCam.isReady && (
-            <StyledBackground src='../../../public/img/black.png' />
-          )} */}
-          <>
-            <Heading h={'40px'} my={4} w='100%' textAlign='center'>
-              {moteCam.isStarted && <MoteCamMessage {...moteCam.moteCamAdvice} />}
-            </Heading>
-
-            <VStack my={4}>
-              {moteCam.isStarted && !moteCam.isReady && (
-                <Spinner
-                  thickness='6px'
-                  speed='0.65s'
-                  emptyColor='gray.200'
-                  color='black'
-                  size='xl'
-                  my={8}
-                />
-              )}
-              <Box
-                my={4}
-                id='video-frame'
-                className={styles.videoFrame}
-                display={moteCam.isReady === true ? 'block' : 'none'}
-              >
-                <video ref={moteCam.videoRef} playsInline className={styles.videoWebcam}></video>
-                <canvas
-                  width='100%'
-                  ref={moteCam.canvasRef}
-                  id='canvas'
-                  className={styles.drawCanvas}
-                />
-              </Box>
-              {!moteCam.isReady && (
-                <StyledContainer>
-                  <Button
-                    fullWidth
-                    sx={{
-                      color: '#ffd9d5',
-                    }}
-                    onClick={moteCam.startAndStop}
-                  >
-                    <StyledImg2 src='../../public/img/start.png' />
-                  </Button>
-                </StyledContainer>
-              )}
-            </VStack>
-          </>
-        </ChakraProvider>
-      </div>
-    </StyledBody>
+                  <VStack my={4}>
+                    {moteCam.isStarted && !moteCam.isReady && (
+                      <Spinner
+                        thickness='6px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='black'
+                        size='xl'
+                        my={8}
+                      />
+                    )}
+                    <Box
+                      my={4}
+                      id='video-frame'
+                      className={styles.videoFrame}
+                      display={moteCam.isReady === true ? 'block' : 'none'}
+                    >
+                      <video
+                        ref={moteCam.videoRef}
+                        playsInline
+                        className={styles.videoWebcam}
+                      ></video>
+                      <canvas
+                        width='100%'
+                        ref={moteCam.canvasRef}
+                        id='canvas'
+                        className={styles.drawCanvas}
+                      />
+                    </Box>
+                  </VStack>
+                </>
+              </ChakraProvider>
+            </div>
+          </StyledBody>
+        </>
+      )}
+    </div>
   );
 };
 

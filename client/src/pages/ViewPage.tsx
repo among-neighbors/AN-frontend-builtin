@@ -17,6 +17,7 @@ import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import HeaderDefault from '~/components/organisms/HeaderDefault';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
+import Footer from '~/components/molecules/Footer';
 
 const StyledImg = styled.img`
   margin: 70px 0 0 0;
@@ -27,9 +28,12 @@ const StyledMargin = styled.div`
   margin: 110px 0 55px 0;
 `;
 
-const StyledDiv = styled.div`
-  margin: 60px 0 0 0;
+const StyledDiv = styled.div``;
+
+const StyledBody = styled.div`
+  height: 100%;
 `;
+
 interface ViewPageProps {
   type: string;
   accessToken: accessTokenState;
@@ -105,61 +109,63 @@ const ViewPage = ({
   }, [viewData]);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {mode === 'elder' ? (
-        <HeaderElderDefualt accessToken={accessToken} profileData={profileData} />
-      ) : (
-        <HeaderDefault accessToken={accessToken} profileData={profileData} />
-      )}
-      {mode === 'elder' ? (
-        <Typography
-          variant='h6'
-          noWrap
-          component={Link}
-          to='/noticeElder'
-          sx={{
-            mr: 4,
-            display: { xs: 'none', md: 'flex' },
-            fontFamily: 'monospace',
-            fontWeight: 700,
-            fontSize: '24px',
-            color: 'black',
-            letterSpacing: '.1rem',
-            textDecoration: 'none',
-            textAlign: 'center',
-            margin: '50px 0 0px 0',
-          }}
-        >
-          {type === 'community' ? (
-            <>
-              <StyledImg src='../../public/img/communityHeader.png' />
-            </>
-          ) : (
-            <></>
-          )}
-          {type === 'complaint' ? (
-            <>
-              {' '}
-              <StyledImg src='../../public/img/complaintHeader.png' />
-            </>
-          ) : (
-            <></>
-          )}
-          {type === 'notice' ? (
-            <>
-              <StyledImg src='../../public/img/noticeHeader.png' />
-            </>
-          ) : (
-            <></>
-          )}
-        </Typography>
-      ) : (
-        <StyledMargin></StyledMargin>
-      )}
-
-      <StyledDiv></StyledDiv>
-      {boardData && <Board type={type} boardData={boardData} />}
-    </Box>
+    <StyledBody>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {mode === 'elder' ? (
+          <HeaderElderDefualt accessToken={accessToken} profileData={profileData} />
+        ) : (
+          <HeaderDefault accessToken={accessToken} profileData={profileData} />
+        )}
+        {mode === 'elder' ? (
+          <Typography
+            variant='h6'
+            noWrap
+            component={Link}
+            to='/noticeElder'
+            sx={{
+              mr: 4,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              fontSize: '24px',
+              color: 'black',
+              letterSpacing: '.1rem',
+              textDecoration: 'none',
+              textAlign: 'center',
+              margin: '50px 0 0px 0',
+            }}
+          >
+            {type === 'community' ? (
+              <>
+                <StyledImg src='../../public/img/communityHeader.png' />
+              </>
+            ) : (
+              <></>
+            )}
+            {type === 'complaint' ? (
+              <>
+                {' '}
+                <StyledImg src='../../public/img/complaintHeader.png' />
+              </>
+            ) : (
+              <></>
+            )}
+            {type === 'notice' ? (
+              <>
+                <StyledImg src='../../public/img/noticeHeader.png' />
+              </>
+            ) : (
+              <></>
+            )}
+          </Typography>
+        ) : (
+          <StyledMargin></StyledMargin>
+        )}
+        <StyledDiv></StyledDiv>
+        {boardData && <Board type={type} boardData={boardData} />}
+        <Footer />
+      </Box>
+    </StyledBody>
   );
 };
 
