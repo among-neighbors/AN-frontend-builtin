@@ -52,23 +52,6 @@ const StyledContainerButton = styled.div`
   alignitems: 'center';
   width: 150px;
 `;
-const pages: {
-  name: string;
-  link: string;
-}[] = [
-  {
-    name: '공지',
-    link: '/notice',
-  },
-  {
-    name: '민원',
-    link: '/complaint',
-  },
-  {
-    name: '커뮤니티',
-    link: '/community',
-  },
-];
 
 interface HeadereProps {
   accessToken: accessTokenState;
@@ -87,7 +70,8 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
   const [isClicked, SetIsClicked] = React.useState<boolean>(false);
 
   const handleOpenMode = () => {
-    isClicked ? SetIsClicked(false) : SetIsClicked(true);
+    const newIsClicked = !isClicked;
+    SetIsClicked(newIsClicked);
   };
 
   const navigate = useNavigate();
@@ -158,7 +142,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
             padding={2}
             margin={2}
           >
-            {pages.map((page) => (
+            {/* {pages.map((page) => (
               <Button
                 key={page.name}
                 sx={{
@@ -175,7 +159,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               >
                 {page.name}
               </Button>
-            ))}
+            ))} */}
             <StyledContainerButton>
               <Button
                 disableRipple
@@ -221,7 +205,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName}동 {profileData.houseName}호
+                  {profileData.lineName} {profileData.houseName}호
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>

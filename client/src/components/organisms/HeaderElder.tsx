@@ -20,11 +20,11 @@ const StyledImg = styled.img`
 
 const StyledImg2 = styled.img`
   margin: 0px 2px;
-  height: 80px;
+  height: 90px;
 `;
 
 const StyledUp = styled.img`
-  width: 400px;
+  width: 300px;
   position: fixed;
   right: 0px;
   up: 0px;
@@ -40,6 +40,7 @@ const StyledContainerText = styled.h3`
   position: absolute;
   top: 50%;
   left: 50%;
+  font-size: 40px;
   transform: translate(-50%, -50%);
   color: white;
   font-family: BlinkMacSystemFont;
@@ -76,7 +77,8 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
   const [isClicked, SetIsClicked] = React.useState<boolean>(false);
 
   const handleOpenMode = () => {
-    isClicked ? SetIsClicked(false) : SetIsClicked(true);
+    const newIsClicked = !isClicked;
+    SetIsClicked(newIsClicked);
   };
 
   return (
@@ -182,7 +184,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName}동 {profileData.houseName}호
+                  {profileData.lineName} {profileData.houseName}호
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>

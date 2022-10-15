@@ -186,7 +186,7 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
       title,
       content,
       date: handledDate(createdDate),
-      writer: `${writer.lineName}동 ${writer.houseName}호`,
+      writer: `${writer.lineName} ${writer.houseName}호`,
     };
   });
 };
