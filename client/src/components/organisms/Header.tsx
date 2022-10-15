@@ -16,8 +16,8 @@ import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from 
 import myAxios from '~/others/myAxios';
 
 const StyledImg = styled.img`
-  margin: 0px 2px;
-  height: 67px;
+  margin: 0 0 0 2px;
+  height: 60px;
 `;
 
 const StyledImg2 = styled.img`
@@ -84,7 +84,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
   };
 
   return (
-    <AppBar sx={{ background: '#F5F5F5' }} elevation={0} position='fixed'>
+    <AppBar sx={{ background: 'white' }} elevation={0} position='fixed'>
       <Container maxWidth='xl'>
         <StyledUp src='../../public/img/up.png' />
         <Toolbar
@@ -109,7 +109,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               textDecoration: 'none',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Typography
@@ -129,7 +129,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               alignItems: 'center',
             }}
           >
-            <StyledImg src='../../public/img/Logo2.png' />
+            <StyledImg src='../../public/img/logo.svg' />
           </Typography>
 
           <Box

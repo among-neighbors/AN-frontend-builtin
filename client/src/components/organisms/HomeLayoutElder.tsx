@@ -14,18 +14,18 @@ import { Stomp } from '@stomp/stompjs';
 import { accessTokenState, ProfileState } from '~/others/store';
 const StyledBody = styled.div`
   height: 100vh;
-  background-color: #f5f5f5;
+
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const StyledImg = styled.img`
-  width: 150px;
+  width: 145px;
   height: 145px;
   position: fixed;
-  right: 50px;
-  bottom: 30px;
+  right: 30px;
+  bottom: 20px;
 `;
 const pages: {
   name: string;
@@ -33,7 +33,7 @@ const pages: {
   src: string;
 }[] = [
   {
-    name: '확인하세요',
+    name: '확인해요',
     link: '/noticeElder',
     src: '../../public/img/notice.png',
   },
@@ -55,7 +55,7 @@ const StyledBtn = styled.img`
 `;
 
 const StyledDown = styled.img`
-  width: 300px;
+  width: 230px;
   background-position: 10% 100px;
   position: fixed;
   left: 0px;
@@ -188,19 +188,20 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               my: 2,
               color: 'black',
               display: 'block',
-              width: '380px',
+              width: '360px',
               height: '330px',
               textAlign: 'center',
-              fontSize: '60px',
+              fontSize: '55px',
               fontWeight: 900,
               margin: '50px',
               padding: '20px',
               borderRadius: '40px',
               border: '4px solid black',
               '&:hover': {
-                border: '4px solid #EC8034',
+                border: '4px solid #0093BA',
                 borderRadius: '40px',
                 color: '#EC8034',
+                backgroundColor: '#f5f5f5',
               },
             }}
             component={Link}
@@ -215,7 +216,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
         ))}
       </Box>
       <IconButton onClick={handleOpenHelpCallModal} sx={{ p: 0 }}>
-        <StyledImg src='../../public/img/warning.png' />
+        <StyledImg src='../../public/img/warning.svg' />
       </IconButton>
 
       <Menu
@@ -364,7 +365,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
         </Box>
       </Menu>
 
-      <StyledDown src='../../img/down_elder.png' />
+      <StyledDown src='../../public/img/down_elder.png' />
     </StyledBody>
   );
 };
