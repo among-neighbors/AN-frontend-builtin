@@ -6,6 +6,12 @@ const StyledBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 110px;
+  position: absolute;
 `;
 const Footer: React.FC = () => {
   return (

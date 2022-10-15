@@ -41,26 +41,23 @@ const useMOTECam = (): MoteCamType => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const photoRef = useRef<HTMLImageElement>(null);
 
-  const languageCode = 'en-US';
+  const languageCode = 'ko-KR';
 
   const localizedStrings = {
-    APP_TITLE: 'Start face recognition for custom service :)',
-    START_SHOOTING: 'Start photo shooting.',
-    END_SHOOTING: 'End photo shooting.',
-    PICTURE_DID_TAKE: 'Pretty Good photo was taken!',
-
-    GUIDE_MSG_POSITION_TOO_UPPER: 'Be a little lower',
-    GUIDE_MSG_POSITION_TOO_LOWER: 'Be a little upper',
-    GUIDE_MSG_POSITION_TOO_RIGHT: 'Be a little to the right',
-    GUIDE_MSG_POSITION_TOO_LEFT: 'Be a little to the left',
-    GUIDE_MSG_SIZE_GOOD: 'Just the right face size',
-    GUIDE_MSG_SIZE_TOO_SMALL: 'The face is too small. Bring the face closer to the camera.',
-    GUIDE_MSG_SIZE_TOO_BIG: 'The face is too big. Move away from the camera a little more.',
-    GUIDE_MSG_EXP_GOOD: 'Good facial expression!',
-    GUIDE_MSG_EXP_NEUTRAL: 'Face expression is a little serious.',
-    GUIDE_MSG_EXP_OTHERS: 'Relax a little',
+    APP_TITLE: '맞춤형 서비스를 위해 얼굴 인식을 시작합니다',
+    START_SHOOTING: '얼굴 인식을 시작합니다.',
+    END_SHOOTING: '얼굴 인식을 종료합니다.',
+    PICTURE_DID_TAKE: '얼굴 인식이 완료 되었습니다. 맞춤형 서비스가 진행됩니다.',
+    GUIDE_MSG_POSITION_GOOD: '얼굴 위치가 적당합니다.😀',
+    GUIDE_MSG_POSITION_TOO_UPPER: '얼굴을 조금만 낮추어주세요.',
+    GUIDE_MSG_POSITION_TOO_LOWER: '얼굴을 조금만 높여주세요.',
+    GUIDE_MSG_POSITION_TOO_RIGHT: '얼굴을 조금만 왼쪽으로 이동해주세요.',
+    GUIDE_MSG_POSITION_TOO_LEFT: '얼굴을 조금만 오른쪽으로 이동해주세요.',
+    GUIDE_MSG_SIZE_GOOD: '화면 내의 얼굴 크기가 적절합니다.🙆',
+    GUIDE_MSG_SIZE_TOO_SMALL: '화면 내의 얼굴이 너무 작습니다. 조금만 더 가까이 와주세요.',
+    GUIDE_MSG_SIZE_TOO_BIG: '화면 내의 얼굴이 너무 멉니다. 조금 떨어져 주세요.',
     GUIDE_MSG_AGE_LOOKALIKE: '%age',
-    PHOTO_COMPLETION_TITLE: 'Completed',
+    PHOTO_COMPLETION_TITLE: '완료',
   };
 
   const startMoteCam = async () => {
