@@ -17,11 +17,11 @@ import myAxios from '~/others/myAxios';
 
 const StyledImg = styled.img`
   margin: 0 0 0 2px;
-  height: 50px;
+  height: 55px;
 `;
 
 const StyledImg2 = styled.img`
-  height: 70px;
+  height: 75px;
 `;
 
 const StyledUp = styled.img`

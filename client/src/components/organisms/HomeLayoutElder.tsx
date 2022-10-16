@@ -12,6 +12,7 @@ import Menu from '@mui/material/Menu';
 import { useEffect, useState } from 'react';
 import { Stomp } from '@stomp/stompjs';
 import { accessTokenState, ProfileState } from '~/others/store';
+import CircularProgress from '@mui/material/CircularProgress';
 const StyledBody = styled.div`
   height: 100vh;
 
@@ -78,14 +79,14 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
   const [accepttHouseName, setacceptHouseName] = useState('');
   //도움을 받을 호수
   const [targetHouseName, settargetHouseName] = useState('');
-
+  const [isSend, setIsSend] = useState<boolean>(false);
   //객체 생성
   var client = Stomp.client(WSS_FEED_URL);
 
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
 
   const sendHelpRequest = () => {
-    setAnchorElHelpCall(null);
+    setIsSend(true);
     client.publish({ destination: '/pub/alert', body: JSON.stringify({ text: '도와주세요' }) });
   };
   const sendHelpResponse = () => {
@@ -156,7 +157,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               setacceptHouseName(JSON.parse(e.body)['accept_house']);
               settargetHouseName(JSON.parse(e.body)['target_house']);
               console.log('수락한 집의 정보들..', JSON.parse(e.body));
-
+              setIsSend(false);
               setIsAccept(true);
               //accept_house -> accepttHouseName
               //target_house -> targetHouseName
@@ -229,49 +230,68 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
             opacity: 1,
             position: 'fixed',
             right: '25%',
-            bottom: '25%',
+            bottom: '22%',
             width: '740px',
             height: '360px',
             backgroundColor: 'white',
             ...shadowCssForMUI,
           }}
         >
-          <Typography
-            sx={{
-              fontSize: '30px',
-              lineHeight: '80px',
-              height: '130px',
-              alignItems: 'center',
-              paddingTop: '70px',
-              textAlign: 'center',
-            }}
-          >
-            도움 요청 시 라인 내 입주민에게
-          </Typography>
-          <Typography sx={{ fontSize: '30px', textAlign: 'center', height: '70px' }}>
-            도움 요청을 알립니다.
-          </Typography>
+          {isSend ? (
+            <>
+              <CircularProgress sx={{ margin: '110px 0px 40px 330px', color: '#0093BA' }} />
+              <Typography
+                sx={{
+                  fontSize: '30px',
+                  lineHeight: '28px',
+                  height: '45px',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                도움 요청 중입니다...
+              </Typography>
+            </>
+          ) : (
+            <>
+              <Typography
+                sx={{
+                  fontSize: '30px',
+                  lineHeight: '80px',
+                  height: '130px',
+                  alignItems: 'center',
+                  paddingTop: '70px',
+                  textAlign: 'center',
+                }}
+              >
+                도움 요청 시 라인 내 입주민에게
+              </Typography>
+              <Typography sx={{ fontSize: '30px', textAlign: 'center', height: '70px' }}>
+                도움 요청을 알립니다.
+              </Typography>
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-            <Button
-              onClick={handleCloseHelpCallModal}
-              variant='outlined'
-              color='inherit'
-              sx={{ height: '70px', fontSize: '30px' }}
-              startIcon={<ArrowBack />}
-            >
-              돌아가기
-            </Button>
-            <Button
-              onClick={sendHelpRequest}
-              variant='contained'
-              color='error'
-              sx={{ height: '70px', fontSize: '30px' }}
-              endIcon={<ArrowForward />}
-            >
-              동의 후 도움 요청
-            </Button>
-          </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                <Button
+                  onClick={handleCloseHelpCallModal}
+                  variant='outlined'
+                  color='inherit'
+                  sx={{ height: '70px', fontSize: '30px' }}
+                  startIcon={<ArrowBack />}
+                >
+                  돌아가기
+                </Button>
+                <Button
+                  onClick={sendHelpRequest}
+                  variant='contained'
+                  color='error'
+                  sx={{ height: '70px', fontSize: '30px' }}
+                  endIcon={<ArrowForward />}
+                >
+                  동의 후 도움 요청
+                </Button>
+              </Box>
+            </>
+          )}
         </Box>
       </Menu>
 

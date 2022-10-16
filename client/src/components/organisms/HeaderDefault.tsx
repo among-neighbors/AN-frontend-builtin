@@ -14,11 +14,11 @@ import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from 
 import myAxios from '~/others/myAxios';
 const StyledImg = styled.img`
   margin: 0 0 0 2px;
-  height: 50px;
+  height: 55px;
 `;
 
 const StyledImg2 = styled.img`
-  height: 60px;
+  height: 75px;
 `;
 
 //이미지와 텍스트를 감싸고 있는 요소
