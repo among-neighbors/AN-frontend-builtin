@@ -39,8 +39,9 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
   const getProfile = async () => {
     try {
       const res = await myAxios('get', 'api/v1/accounts', null, true, accountAccessToken);
-
+      console.log('hkhkhkhk', res.data.response);
       const { id, name, lineName, houseName } = res.data.response;
+
       handlePutProfile({
         id,
         name,
