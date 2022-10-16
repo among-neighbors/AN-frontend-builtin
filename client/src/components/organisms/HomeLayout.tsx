@@ -304,7 +304,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            {profileData.lineName} {requestHouseName}호에서 긴급 도움 요청!
+            {profileData.lineName} {requestHouseName}에서 긴급 도움 요청!
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
             <Button
@@ -349,7 +349,7 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            {accepttHouseName}호에서 {targetHouseName}호의
+            {accepttHouseName}에서 {targetHouseName}의
           </Typography>
           <Typography sx={{ fontSize: '18px', textAlign: 'center', height: '40px' }}>
             긴급 도움을 수락했습니다.

@@ -7,26 +7,20 @@ const StyledBody = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
   height: 110px;
-  position: absolute;
 `;
 const Footer: React.FC = () => {
   return (
     <FooterWrapper>
-      <Box>
-        <StyledBody>
-          <Box sx={{ margin: '10px 50px 10px 0px' }}>
-            <img height='50px' src='../../../public/img/icon_grey.png' />
-          </Box>
+      <StyledBody>
+        <Box sx={{ margin: '10px 50px 10px 0px' }}>
+          <img height='50px' src='../../../public/img/icon_grey.png' />
+        </Box>
 
-          <Box className='contact'>
-            <p>{`Copyright © KNUD4 All Rights Reserved.`}</p>
-          </Box>
-        </StyledBody>
-      </Box>
+        <Box className='contact'>
+          <p>{`Copyright © KNUD4 All Rights Reserved.`}</p>
+        </Box>
+      </StyledBody>
     </FooterWrapper>
   );
 };

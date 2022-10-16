@@ -22,6 +22,7 @@ import HeaderDefault from '~/components/organisms/HeaderDefault';
 import styled from 'styled-components';
 import HeaderElderDefualt from '~/components/organisms/HeaderElderDefualt';
 import Typography from '@mui/material/Typography';
+import Footer from '~/components/molecules/Footer';
 
 const StyledMargin = styled.div`
   margin: 110px 0 55px 0;
@@ -33,7 +34,7 @@ const StyledMargin2 = styled.div`
 
 const StyledImg = styled.img`
   margin: 70px 0 0 0;
-  height: 120px;
+  height: 160px;
 `;
 
 const ListPage = ({
@@ -105,31 +106,12 @@ const ListPage = ({
             letterSpacing: '.1rem',
             textDecoration: 'none',
             textAlign: 'center',
-            margin: '50px 0 0px 0',
+            margin: '70px 0 0px 0',
           }}
         >
-          {type === 'community' ? (
-            <>
-              <StyledImg src='../../public/img/communityHeader.png' />
-            </>
-          ) : (
-            <></>
-          )}
-          {type === 'complaint' ? (
-            <>
-              {' '}
-              <StyledImg src='../../public/img/complaintHeader.png' />
-            </>
-          ) : (
-            <></>
-          )}
-          {type === 'notice' ? (
-            <>
-              <StyledImg src='../../public/img/noticeHeader.png' />
-            </>
-          ) : (
-            <></>
-          )}
+          {type === 'community' && <StyledImg src='../../public/img/communityHeader.png' />}
+          {type === 'complaint' && <StyledImg src='../../public/img/complaintHeader.png' />}
+          {type === 'notice' && <StyledImg src='../../public/img/noticeHeader.png' />}
         </Typography>
       ) : (
         <>
@@ -148,6 +130,7 @@ const ListPage = ({
         isLastPage={isLastPage}
         mode={mode}
       />
+      <Footer />
     </Box>
   );
 };
@@ -186,7 +169,7 @@ const handleList = (list: DeliverdTypePostDataArray): ProcessedTypePostDataArray
       title,
       content,
       date: handledDate(createdDate),
-      writer: `${writer.lineName} ${writer.houseName}호`,
+      writer: `${writer.lineName} ${writer.houseName}`,
     };
   });
 };

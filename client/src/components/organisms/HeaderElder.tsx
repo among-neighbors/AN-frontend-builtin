@@ -19,8 +19,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledImg2 = styled.img`
-  margin: 0px 2px;
-  height: 90px;
+  height: 105px;
 `;
 
 const StyledUp = styled.img`
@@ -35,12 +34,12 @@ const StyledContainer = styled.div`
 `;
 // 텍스트를 감싸고 있는 요소
 const StyledContainerText = styled.h3`
-  width: 200px;
+  width: 300px;
   position: relative;
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 40px;
+  font-size: 35px;
   transform: translate(-50%, -50%);
   color: white;
   font-family: BlinkMacSystemFont;
@@ -150,7 +149,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
                   textAlign: 'center',
                   fontSize: '28px',
                   fontWeight: 800,
-                  margin: '20px 0px 5px 30px',
+                  margin: '30px 0px 5px 30px',
                   '&:hover': {
                     backgroundColor: 'transparent',
                   },
@@ -184,7 +183,7 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName} {profileData.houseName}호
+                  {profileData.lineName} {profileData.houseName}
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
