@@ -1,7 +1,6 @@
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import TableNav from '~/components/molecules/TableNav';
 import BoardTable from '~/components/organisms/Table';
 import myAxios from '~/others/myAxios';
@@ -94,8 +93,6 @@ const ListPage = ({
         <Typography
           variant='h6'
           noWrap
-          component={Link}
-          to='/noticeElder'
           sx={{
             mr: 4,
             display: { xs: 'none', md: 'flex' },

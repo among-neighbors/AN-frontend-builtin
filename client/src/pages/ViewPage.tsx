@@ -1,8 +1,8 @@
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import Board from '~/components/organisms/Board';
-
-import { Link, useLocation } from 'react-router-dom';
+import Comment from '~/components/organisms/Comment';
+import { useLocation } from 'react-router-dom';
 import myAxios from '~/others/myAxios';
 import {
   isDeliveredCommunityPostData,
@@ -26,6 +26,9 @@ const StyledImg = styled.img`
 
 const StyledMargin = styled.div`
   margin: 160px 0 55px 0;
+`;
+const StyledMargin2 = styled.div`
+  margin: 30px 0;
 `;
 
 const StyledBody = styled.div`
@@ -118,8 +121,6 @@ const ViewPage = ({
           <Typography
             variant='h6'
             noWrap
-            component={Link}
-            to='/noticeElder'
             sx={{
               mr: 4,
               display: { xs: 'none', md: 'flex' },
@@ -142,7 +143,12 @@ const ViewPage = ({
         )}
 
         {boardData && <Board type={type} boardData={boardData} />}
-
+        {boardData && (type === 'community' || type === 'complaint') ? (
+          <Comment type={type} boardId={boardData.id} accessToken={accessToken} />
+        ) : (
+          <></>
+        )}
+        <StyledMargin2 />
         <Footer />
       </Box>
     </StyledBody>

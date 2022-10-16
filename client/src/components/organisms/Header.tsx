@@ -17,11 +17,11 @@ import myAxios from '~/others/myAxios';
 
 const StyledImg = styled.img`
   margin: 0 0 0 2px;
-  height: 60px;
+  height: 55px;
 `;
 
 const StyledImg2 = styled.img`
-  height: 80px;
+  height: 75px;
 `;
 
 const StyledUp = styled.img`
@@ -186,7 +186,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName} {profileData.houseName}
+                  {profileData.lineName} {profileData.houseName}호
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
