@@ -121,8 +121,6 @@ const ViewPage = ({
           <Typography
             variant='h6'
             noWrap
-            component={Link}
-            to='/noticeElder'
             sx={{
               mr: 4,
               display: { xs: 'none', md: 'flex' },
