@@ -21,15 +21,11 @@ import Footer from '~/components/molecules/Footer';
 
 const StyledImg = styled.img`
   margin: 70px 0 0 0;
-  height: 120px;
+  height: 160px;
 `;
 
 const StyledMargin = styled.div`
   margin: 160px 0 55px 0;
-`;
-
-const StyledDiv = styled.div`
-  margin: 10px 0 55px 0;
 `;
 
 const StyledBody = styled.div`
@@ -96,7 +92,7 @@ const ViewPage = ({
       const { writer, scope, category } = viewData;
       setBoardData({
         ...commonViewData,
-        writer: `${writer.lineName} ${writer.houseName}호 ${writer.name}`,
+        writer: `${writer.lineName} ${writer.houseName} ${writer.name}`,
         scope,
         category,
       });
@@ -106,7 +102,7 @@ const ViewPage = ({
     const { writer } = viewData;
     setBoardData({
       ...commonViewData,
-      writer: `${writer.lineName} ${writer.houseName}호`,
+      writer: `${writer.lineName} ${writer.houseName}`,
     });
   }, [viewData]);
 
@@ -134,7 +130,7 @@ const ViewPage = ({
               letterSpacing: '.1rem',
               textDecoration: 'none',
               textAlign: 'center',
-              margin: '50px 0 0px 0',
+              margin: '80px 0 0px 0',
             }}
           >
             {type === 'community' && <StyledImg src='../../public/img/communityHeader.png' />}
@@ -146,7 +142,7 @@ const ViewPage = ({
         )}
 
         {boardData && <Board type={type} boardData={boardData} />}
-        <StyledDiv></StyledDiv>
+
         <Footer />
       </Box>
     </StyledBody>

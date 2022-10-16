@@ -22,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
       #root,
       #root > div {
         width: 100%;
-        height:100%;
       }
       #root {
         display: flex;

@@ -193,7 +193,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
               fontSize: '55px',
               fontWeight: 900,
-              margin: '50px',
+              margin: '80px 50px 50px 50px',
               padding: '20px',
               borderRadius: '40px',
               border: '4px solid black',
@@ -298,7 +298,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            {profileData.lineName} {requestHouseName}호에서 긴급 도움 요청!
+            {profileData.lineName} {requestHouseName}에서 긴급 도움 요청!
           </Typography>
           <Typography>
             <br />
@@ -347,7 +347,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               textAlign: 'center',
             }}
           >
-            {accepttHouseName}호에서 {targetHouseName}호의 긴급 도움을 수락했습니다.
+            {accepttHouseName}에서 {targetHouseName}의 긴급 도움을 수락했습니다.
           </Typography>
           <Typography>
             <br />

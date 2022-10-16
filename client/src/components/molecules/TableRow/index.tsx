@@ -45,7 +45,7 @@ const TableRowForComment: React.FC<TableRowForCommentProps> = ({ commentData }) 
   return (
     <StyledTableRowForComment>
       <div>{text}</div>
-      <p>{`${lineName} ${houseName}호  ${name} | ${handledDate(createdDate)}`}</p>
+      <p>{`${lineName} ${houseName}  ${name} | ${handledDate(createdDate)}`}</p>
     </StyledTableRowForComment>
   );
 };

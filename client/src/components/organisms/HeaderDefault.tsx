@@ -18,8 +18,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledImg2 = styled.img`
-  margin: 0px 2px;
-  height: 75px;
+  height: 80px;
 `;
 
 //이미지와 텍스트를 감싸고 있는 요소
@@ -158,7 +157,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName} {profileData.houseName}호
+                  {profileData.lineName} {profileData.houseName}
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>

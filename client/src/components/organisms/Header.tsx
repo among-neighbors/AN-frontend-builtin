@@ -21,8 +21,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledImg2 = styled.img`
-  margin: 0px 2px;
-  height: 75px;
+  height: 80px;
 `;
 
 const StyledUp = styled.img`
@@ -142,24 +141,6 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
             padding={2}
             margin={2}
           >
-            {/* {pages.map((page) => (
-              <Button
-                key={page.name}
-                sx={{
-                  my: 1,
-                  color: 'black',
-                  display: 'block',
-                  width: '140px',
-                  textAlign: 'center',
-                  fontSize: '24px',
-                  fontWeight: 900,
-                }}
-                component={Link}
-                to={page.link}
-              >
-                {page.name}
-              </Button>
-            ))} */}
             <StyledContainerButton>
               <Button
                 disableRipple
@@ -205,7 +186,7 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName} {profileData.houseName}호
+                  {profileData.lineName} {profileData.houseName}
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
