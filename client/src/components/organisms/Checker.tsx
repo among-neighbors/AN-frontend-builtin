@@ -36,11 +36,11 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     }
   };
 
-  const getProfileList = async () => {
+  const getProfile = async () => {
     try {
-      const res = await myAxios('get', 'api/v1/accounts/profiles', null, true, accountAccessToken);
+      const res = await myAxios('get', 'api/v1/accounts', null, true, accountAccessToken);
 
-      const { id, name, lineName, houseName } = res.data.response.list[0];
+      const { id, name, lineName, houseName } = res.data.response;
       handlePutProfile({
         id,
         name,
@@ -63,7 +63,7 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     if (accountAccessToken === '') {
       navigate('/sign');
     } else {
-      getProfileList();
+      getProfile();
     }
 
     if (accountAccessToken !== '') {
