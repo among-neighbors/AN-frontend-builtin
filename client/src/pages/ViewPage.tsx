@@ -28,10 +28,6 @@ const StyledMargin = styled.div`
   margin: 160px 0 55px 0;
 `;
 
-const StyledDiv = styled.div`
-  margin: 10px 0 55px 0;
-`;
-
 const StyledBody = styled.div`
   height: 100%;
 `;
