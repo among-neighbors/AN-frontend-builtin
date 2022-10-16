@@ -1,7 +1,6 @@
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import TableNav from '~/components/molecules/TableNav';
 import BoardTable from '~/components/organisms/Table';
 import myAxios from '~/others/myAxios';

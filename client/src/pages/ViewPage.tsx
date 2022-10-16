@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import Board from '~/components/organisms/Board';
 import Comment from '~/components/organisms/Comment';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import myAxios from '~/others/myAxios';
 import {
   isDeliveredCommunityPostData,
