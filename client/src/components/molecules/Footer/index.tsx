@@ -13,11 +13,9 @@ const Footer: React.FC = () => {
   return (
     <FooterWrapper>
       <StyledBody>
-        <Box sx={{ margin: '10px 50px 10px 0px' }}>
-          <img height='50px' src='../../../public/img/icon_grey.png' />
-        </Box>
+        <img height='30px' src='../../../public/img/only_logo.svg' />
 
-        <Box className='contact'>
+        <Box sx={{ margin: '5px 0 0 20px' }}>
           <p>{`Copyright © KNUD4 All Rights Reserved.`}</p>
         </Box>
       </StyledBody>
