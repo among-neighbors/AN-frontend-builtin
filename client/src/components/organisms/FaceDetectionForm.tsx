@@ -10,13 +10,8 @@ import { MoteCamAge } from './MoteCamAge';
 import { useNavigate } from 'react-router-dom';
 import { onElderMode } from '~/others/store';
 import { useEffect } from 'react';
+import { Typography } from '@mui/material';
 
-const StyledBody2 = styled.div`
-  display: flex;
-  background-color: #f2ece5;
-  height: 100vh;
-  width: 100%;
-`;
 const StyledBody = styled.div`
   background-color: #f2ece5;
   height: 100vh;
@@ -27,12 +22,21 @@ const StyledBody = styled.div`
 `;
 
 const StyledBackground = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+`;
+// 텍스트를 감싸고 있는 요소
+const StyledContainerText = styled.div`
+  text-align: center;
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 30%;
+  color: black;
+  font-weight: bold;
+  font-family: BlinkMacSystemFont;
 `;
 const StyledImg = styled.img`
-  width: 80%;
+  width: 100%;
 `;
 const StyledImg2 = styled.img`
   width: 200px;
@@ -58,17 +62,33 @@ const FaceDetectionForm: React.FC = () => {
     <div>
       {!moteCam.isStarted ? (
         <>
-          <StyledBody2>
-            <StyledBackground>
-              <StyledImg src='../../../public/img/family.png'></StyledImg>
-            </StyledBackground>
-          </StyledBody2>
+          <StyledBackground>
+            <StyledImg src='../../../public/img/family.svg' />
+            <StyledContainerText>
+              <Typography
+                sx={{
+                  display: { xs: 'none', md: 'block' },
+                  fontSize: '35px',
+                  fontWeight: 700,
+                  margin: '10px',
+                }}
+              >
+                맞춤 서비스 진행을 위해 연령대 추정을 시작합니다.
+              </Typography>
+              <Typography
+                sx={{ display: { xs: 'none', md: 'block' }, fontSize: '25px', fontWeight: 500 }}
+              >
+                연령대 추정에 사용된 이미지는 측정 후 바로 폐기됩니다.
+              </Typography>
+            </StyledContainerText>
+          </StyledBackground>
           <Button
             fullWidth
             sx={{
               position: 'absolute',
-              bottom: '20%',
-              right: '40%',
+              top: '60%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
               height: '70px',
               width: '200px',
             }}
