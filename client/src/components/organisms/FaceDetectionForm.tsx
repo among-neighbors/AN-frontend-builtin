@@ -99,7 +99,6 @@ const FaceDetectionForm: React.FC = () => {
         </>
       ) : (
         <>
-          {' '}
           <StyledBody>
             <div>
               <ChakraProvider>
