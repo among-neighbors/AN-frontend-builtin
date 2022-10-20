@@ -14,8 +14,7 @@ const ACTION_TO_GET_READY_FOR_REQUEST_API = 'actionToGetReadyForRequestAPI';
 
 const ACTION_TO_PUT_PROFILE = 'actionToPutProfile';
 
-const ACTION_TO_ELDER_MODE_ON = 'actionToElderModeOn',
-  ACTION_TO_ELDER_MODE_OFF = 'actionToElderModeOff';
+const ACTION_TO_REFRESH_ASPECT_OLD = 'actionToRefreshAspectOld';
 
 interface TableNavState extends Obj<number> {
   notice: number;
@@ -27,8 +26,12 @@ interface accessTokenState {
   profileAccessToken: string;
 }
 
+interface AspectOldState {
+  aspectedOld: string;
+}
+
 interface RootState {
-  modeReducer: boolean;
+  modeReducer: AspectOldState;
   helpSideBarReducer: boolean;
   tableNavReducer: TableNavState;
   accessTokenReducer: accessTokenState;
@@ -89,23 +92,26 @@ const tableNavReducer = (
   }
 };
 
-const modeReducer = (state = false, action: { type: string }) => {
-  switch (action.type) {
-    case ACTION_TO_ELDER_MODE_ON:
-      return !state;
-    case ACTION_TO_ELDER_MODE_OFF:
-      return false;
-    default:
-      return state;
-  }
-};
-
 const helpSideBarReducer = (state = false, action: { type: string }) => {
   switch (action.type) {
     case ACTION_TO_HANDLE_HELP_SIDE_BAR:
       return !state;
     case ACTION_TO_CLOSE_HELP_SIDE_BAR:
       return false;
+    default:
+      return state;
+  }
+};
+
+const modeReducer = (
+  state = { aspectedOld: '' },
+  action: { type: string; aspectedOld: string },
+) => {
+  switch (action.type) {
+    case ACTION_TO_REFRESH_ASPECT_OLD:
+      return {
+        aspectOld: action.aspectedOld,
+      };
     default:
       return state;
   }
@@ -154,12 +160,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer);
 
-const onElderMode = () => {
-  store.dispatch({
-    type: ACTION_TO_ELDER_MODE_ON,
-  });
-};
-
 const handleTableNav = (isNotice: boolean, idx: number) => {
   store.dispatch({
     type: isNotice ? ACTION_FROM_NOTICE : ACTION_FROM_COMMUNITY,
@@ -179,6 +179,14 @@ const closeHelpSideBar = () => {
   });
 };
 
+const handleRefreshAspectOld = (aspectedOld: string) => {
+  store.dispatch({
+    type: ACTION_TO_REFRESH_ASPECT_OLD,
+    aspectedOld,
+  });
+};
+
+//이거랑 로직이 비슷하겠다
 const handleRefreshAccountAccessToken = (accessToken: string) => {
   store.dispatch({
     type: ACTION_TO_REFRESH_ACCOUNT_ACCESS_TOKEN,
@@ -209,7 +217,7 @@ const handlePutProfile = (profileData: ProfileState) => {
 export {
   store,
   TableNavState,
-  onElderMode,
+  handleRefreshAspectOld,
   handleTableNav,
   handleHelpSideBar,
   closeHelpSideBar,
@@ -220,4 +228,5 @@ export {
   RootState,
   accessTokenState,
   ProfileState,
+  AspectOldState,
 };

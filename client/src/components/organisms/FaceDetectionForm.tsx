@@ -8,9 +8,9 @@ import styles from '../../../styles/MoteCam.module.css';
 import Button from '@mui/material/Button';
 import { MoteCamAge } from './MoteCamAge';
 import { useNavigate } from 'react-router-dom';
-import { onElderMode } from '~/others/store';
 import { useEffect } from 'react';
 import { Typography } from '@mui/material';
+import { handleRefreshAspectOld } from '~/others/store';
 
 const StyledBody = styled.div`
   background-color: #f2ece5;
@@ -23,6 +23,7 @@ const StyledBody = styled.div`
 
 const StyledBackground = styled.div`
   position: relative;
+  he
 `;
 // 텍스트를 감싸고 있는 요소
 const StyledContainerText = styled.div`
@@ -55,7 +56,8 @@ const FaceDetectionForm: React.FC = () => {
     console.log(detectedAge.props.age.message);
     var detextedAgeNum: number = Number(detectedAge.props.age.message);
     console.log(detextedAgeNum);
-    detextedAgeNum > 50 && onElderMode();
+
+    detextedAgeNum > 50 ? handleRefreshAspectOld('elder') : handleRefreshAspectOld('default');
     detextedAgeNum > 50 ? navigate('/elder') : navigate('/');
   };
   return (

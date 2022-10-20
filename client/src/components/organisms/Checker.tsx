@@ -8,6 +8,7 @@ import {
   handlePutProfile,
   RootState,
   ProfileState,
+  AspectOldState,
 } from '~/others/store';
 
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -16,10 +17,12 @@ import myAxios from '~/others/myAxios';
 interface CheckerProps {
   accessTokenState: accessTokenState;
   profileData: ProfileState;
+  AspectOldState: AspectOldState;
 }
 
-const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
+const Checker: React.FC<CheckerProps> = ({ accessTokenState, AspectOldState }) => {
   const { accountAccessToken } = accessTokenState;
+  const { aspectedOld } = AspectOldState;
   const [accountKey, setAccountKey] = useState(false);
 
   const navigate = useNavigate();
@@ -68,7 +71,8 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState }) => {
     }
 
     if (accountAccessToken !== '') {
-      if (location.pathname === '/sign') navigate('/faceDetecion');
+      if (location.pathname === '/sign') navigate('/faceDetection');
+      if (aspectedOld === '') navigate('/faceDetection');
     }
   }, [accountKey, location.pathname]);
 
@@ -83,6 +87,7 @@ const mapStateToProps = (state: RootState) => {
   return {
     accessTokenState: state.accessTokenReducer,
     profileData: state.profileReducer,
+    AspectOldState: state.modeReducer,
   };
 };
 
