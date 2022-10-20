@@ -177,6 +177,7 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
           display: { xs: 'none', md: 'flex' },
           justifyContent: 'space-between',
           flexDirection: 'row',
+          width: '100%',
         }}
         padding={2}
         margin={3}
@@ -189,12 +190,12 @@ const HomeElder = ({ accessToken, profileData }: HomePageProps) => {
               my: 2,
               color: 'black',
               display: 'block',
-              width: '360px',
-              height: '330px',
+              width: '33%',
+              height: '33%',
               textAlign: 'center',
-              fontSize: '55px',
+              fontSize: '45px',
               fontWeight: 900,
-              margin: '80px 50px 50px 50px',
+              margin: '1%',
               padding: '20px',
               borderRadius: '40px',
               border: '4px solid black',
