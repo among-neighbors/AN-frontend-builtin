@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import TableNav from '~/components/molecules/TableNav';
+import TableNav, { Category } from '~/components/molecules/TableNav';
 import BoardTable from '~/components/organisms/Table';
 import myAxios from '~/others/myAxios';
 import { RootState } from '~/others/store';
@@ -104,6 +104,7 @@ const ListPage = ({
             textDecoration: 'none',
             textAlign: 'center',
             margin: '70px 0 0px 0',
+            alignItems: 'center',
           }}
         >
           {type === 'community' && <StyledImg src='../../public/img/communityHeader.png' />}
@@ -115,10 +116,43 @@ const ListPage = ({
           <StyledMargin></StyledMargin>
         </>
       )}
+
       {type === 'community' || type === 'notice' ? (
         <TableNav type={type} />
       ) : (
         <StyledMargin2></StyledMargin2>
+      )}
+      {mode === 'elder' ? (
+        <>
+          <Box
+            sx={{
+              width: '100%',
+              height: '70px',
+
+              display: 'flex',
+              justifyContent: 'end',
+              padding: '0 20px',
+              gap: '25px',
+            }}
+          >
+            {type === 'community' && <Category type={type} mode={mode} />}
+          </Box>
+        </>
+      ) : (
+        <>
+          <Box
+            sx={{
+              width: '100%',
+              height: '50px',
+              display: 'flex',
+              justifyContent: 'end',
+              padding: '0 20px',
+              gap: '25px',
+            }}
+          >
+            {type === 'community' && <Category type={type} mode={mode} />}
+          </Box>
+        </>
       )}
       <BoardTable
         type={type}

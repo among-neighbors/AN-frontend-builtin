@@ -23,7 +23,7 @@ const StyledBody = styled.div`
 
 const StyledBackground = styled.div`
   position: relative;
-  he
+  height: 100%;
 `;
 // 텍스트를 감싸고 있는 요소
 const StyledContainerText = styled.div`
@@ -35,9 +35,14 @@ const StyledContainerText = styled.div`
   color: black;
   font-weight: bold;
   font-family: BlinkMacSystemFont;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-contents: center;
 `;
 const StyledImg = styled.img`
   width: 100%;
+  height: 100%;
 `;
 const StyledImg2 = styled.img`
   width: 200px;

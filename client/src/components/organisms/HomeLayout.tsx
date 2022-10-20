@@ -177,12 +177,12 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
 
   return (
     <StyledBody>
-      {/* <StyledIllust src='../../public/img/homeIllust.png' /> */}
       <Box
         sx={{
           display: { xs: 'none', md: 'flex' },
           justifyContent: 'space-between',
           flexDirection: 'row',
+          width: '100%',
         }}
         padding={2}
         margin={3}
@@ -195,12 +195,12 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               my: 2,
               color: 'black',
               display: 'block',
-              width: '272px',
-              height: '261px',
+              width: '25%',
+              height: '25%',
               textAlign: 'center',
               fontSize: '24px',
               fontWeight: 900,
-              margin: '80px',
+              margin: '5%',
               borderRadius: '40px',
               border: '4px solid black',
               '&:hover': {

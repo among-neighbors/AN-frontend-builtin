@@ -17,7 +17,7 @@ import myAxios from '~/others/myAxios';
 
 const StyledImg = styled.img`
   margin: 0 0 0 2px;
-  height: 55px;
+  height: 50px;
 `;
 
 const StyledImg2 = styled.img`
@@ -44,12 +44,14 @@ const StyledContainerText = styled.h4`
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-family: BlinkMacSystemFont;
 `;
 const StyledContainerButton = styled.div`
-  display: 'flex';
-  alignitems: 'center';
-  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 100px;
 `;
 
 interface HeadereProps {
@@ -147,8 +149,8 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
                 sx={{
                   my: 2,
                   color: 'black',
-                  width: '120px',
-                  height: '40px',
+                  width: '100%',
+                  height: '30%',
                   textAlign: 'center',
                   fontSize: '20px',
                   fontWeight: 800,
@@ -160,14 +162,14 @@ const Header = ({ accessToken, profileData }: HeadereProps) => {
                 onClick={handleOpenMode}
               >
                 BASIC
-                {isClicked ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                {isClicked ? <ChevronUpIcon width='10px' /> : <ChevronDownIcon />}
               </Button>
               <Button
                 disableRipple
                 sx={{
                   color: 'black',
-                  width: '135px',
-                  height: '40px',
+                  width: '100%',
+                  height: '30%',
                   textAlign: 'center',
                   fontSize: '20px',
                   fontWeight: 800,

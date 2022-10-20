@@ -14,7 +14,7 @@ import { accessTokenState, handleRefreshAccountAccessToken, ProfileState } from 
 import myAxios from '~/others/myAxios';
 const StyledImg = styled.img`
   margin: 0 0 0 2px;
-  height: 55px;
+  height: 50px;
 `;
 
 const StyledImg2 = styled.img`
@@ -141,7 +141,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
                   my: 2,
                   color: 'black',
                   display: 'block',
-                  width: '140px',
+                  width: '120px',
                   textAlign: 'center',
                   fontSize: '24px',
                   fontWeight: 900,
