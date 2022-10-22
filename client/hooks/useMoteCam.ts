@@ -240,7 +240,9 @@ const useMOTECam = (): MoteCamType => {
       if (facePosition.fulfilled && faceSize.fulfilled) {
         // Enough to shooting
         takePhoto();
+
         setIsTakenPhoto(true);
+
         speakMessage(`${localizedStrings.PICTURE_DID_TAKE}`, languageCode);
       }
     }
