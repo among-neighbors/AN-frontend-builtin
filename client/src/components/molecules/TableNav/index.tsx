@@ -50,7 +50,7 @@ const TableNav: React.FC<TableNavProps> = ({ type, tableNavReducer, isPageMove =
                 : `/${type}?${handledQuery(index)}`
             }
             sx={
-              tableNavReducer[type] === index
+              (Object(parse(location.search)).scope ?? 'ALL') === queryByType[type][index]
                 ? clickedStyleOfTableNavButton
                 : nonClickedStyleOfTableNavButton
             }
