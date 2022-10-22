@@ -1,5 +1,14 @@
+import { AxiosResponse } from 'axios';
+
 interface Obj<T> {
   [key: string]: T;
+}
+
+interface CustomAxiosResponse extends AxiosResponse {
+  data: {
+    message: string;
+    status: number;
+  };
 }
 
 interface ProcessedCommonPostData extends Obj<string> {
@@ -130,6 +139,7 @@ interface CommentData {
 }
 
 export {
+  CustomAxiosResponse,
   Obj,
   ColumnId,
   Category,

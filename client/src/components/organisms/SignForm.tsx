@@ -5,9 +5,11 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import styled from 'styled-components';
-import { handleRefreshAccountAccessToken } from '~/others/store';
+import { handleRefreshAccountAccessToken, makeNotification } from '~/others/store';
 import { useNavigate } from 'react-router';
 import myAxios from '~/others/myAxios';
+import { AxiosError } from 'axios';
+import { CustomAxiosResponse } from '~/others/integrateInterface';
 
 const StyledImg = styled.img`
   margin: 10px 90px;
@@ -56,8 +58,9 @@ const SignIn: React.FC = () => {
 
       handleRefreshAccountAccessToken(res.data.response.accessToken);
       navigate('/faceDetection');
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      const err = error as AxiosError;
+      makeNotification((err.response as CustomAxiosResponse).data.message);
     }
   };
 
