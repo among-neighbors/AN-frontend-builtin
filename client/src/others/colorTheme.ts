@@ -33,12 +33,12 @@ const theme = (isHelpSideBar: boolean) => {
     palette: {
       primary: {
         // light: '#ff9d3f',
-        main: '#000',
+        main: '#EC8034',
         // dark: '#b53d00',
-        contrastText: '#EC8034',
+        contrastText: '#fff',
       },
       secondary: {
-        main: '#000',
+        main: '#0093BA',
         contrastText: '#fff',
       },
     },

@@ -13,6 +13,7 @@ import {
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import myAxios from '~/others/myAxios';
+import HelpCallConnectSocket from './HelpCallConnectSocket';
 
 interface CheckerProps {
   accessTokenState: accessTokenState;
@@ -24,7 +25,6 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState, AspectOldState }) =
   const { accountAccessToken } = accessTokenState;
   const { aspectedOld } = AspectOldState;
   const [accountKey, setAccountKey] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -72,12 +72,15 @@ const Checker: React.FC<CheckerProps> = ({ accessTokenState, AspectOldState }) =
 
     if (accountAccessToken !== '') {
       if (location.pathname === '/sign') navigate('/faceDetection');
-      if (aspectedOld === '') navigate('/faceDetection');
+      // if (aspectedOld === '') navigate('/faceDetection');
     }
   }, [accountKey, location.pathname]);
 
   useInterval(checkAccountLogin, accountAccessToken === '' ? null : TIME_FOR_REFRESH_TOKEN);
 
+  if (accountKey && accountAccessToken !== '') {
+    return <HelpCallConnectSocket />;
+  }
   return <></>;
 };
 

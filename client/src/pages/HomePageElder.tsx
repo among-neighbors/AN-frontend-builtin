@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { accessTokenState, ProfileState } from '~/others/store';
 import HeaderElder from '~/components/organisms/HeaderElder';
 import HomeElder from '~/components/organisms/HomeLayoutElder';
+import MyMap from '~/components/organisms/MyMap';
 
 interface HomeProps {
   accessToken: accessTokenState;
@@ -12,7 +13,8 @@ const HomePageElder = ({ accessToken, profileData }: HomeProps) => {
   return (
     <>
       <HeaderElder accessToken={accessToken} profileData={profileData} />
-      <HomeElder accessToken={accessToken} profileData={profileData} />
+      <HomeElder />
+      <MyMap />
     </>
   );
 };
