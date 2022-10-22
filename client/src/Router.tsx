@@ -10,7 +10,7 @@ import FaceDetection from './pages/FaceDetectionPage';
 import HomePageElder from './pages/HomePageElder';
 import ViewPage from './pages/ViewPage';
 import ListPage from './pages/ListPage';
-
+import Notification from './components/organisms/Notification';
 interface RouterProps {
   state: RootState;
 }
@@ -19,6 +19,7 @@ const Router = ({ state }: RouterProps) => {
   return (
     <>
       <BrowserRouter basename='/builtin'>
+        <Notification />
         <ThemeProvider theme={theme(false)}>
           <Checker />
         </ThemeProvider>

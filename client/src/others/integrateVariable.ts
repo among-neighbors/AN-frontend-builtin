@@ -8,7 +8,7 @@ const APIbyType: Obj<string> = {
 
 const stringByScope: Obj<string> = {
   ALL: '전체',
-  LINE: '라인',
+  LINE: '단지',
 };
 
 const stringByCategory: Obj<string> = {

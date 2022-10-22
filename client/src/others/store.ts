@@ -23,6 +23,8 @@ const ACTION_TO_CLOSE_MAP = 'actionToCloseMap';
 
 const ACTION_TO_REFRESH_ASPECT_OLD = 'actionToRefreshAspectOld';
 
+const MAKE_NOTIFICATION = 'makeNotification';
+
 interface TableNavState extends Obj<number> {
   notice: number;
   community: number;
@@ -36,7 +38,10 @@ interface accessTokenState {
 interface AspectOldState {
   aspectedOld: string;
 }
-
+interface NotificationState {
+  message: string;
+  index: number;
+}
 interface RootState {
   modeReducer: AspectOldState;
   helpSideBarReducer: boolean;
@@ -46,6 +51,7 @@ interface RootState {
   profileReducer: ProfileState;
   helpCallReducer: HelpCallState;
   mapReducer: MapState;
+  notificationReducer: NotificationState;
 }
 
 interface ProfileState {
@@ -97,6 +103,21 @@ const mapReducer = (
     default:
       return state;
   }
+};
+
+const notificationReducer = (
+  state = {
+    message: '',
+    index: 0,
+  },
+  action: {
+    type: string;
+    message: string;
+  },
+) => {
+  const { type, message } = action;
+  if (type === MAKE_NOTIFICATION) return { message, index: state.index + 1 };
+  return state;
 };
 
 const helpCallReducer = (
@@ -258,6 +279,7 @@ const rootReducer = combineReducers({
   profileReducer,
   helpCallReducer,
   mapReducer,
+  notificationReducer,
 });
 
 const store = createStore(rootReducer);
@@ -350,11 +372,19 @@ const updateHelpCallData = (targetHouse: string, pos: Pos, acceptHouse?: string)
   });
 };
 
+const makeNotification = (message: string) => {
+  store.dispatch({
+    type: MAKE_NOTIFICATION,
+    message,
+  });
+};
+
 export {
   store,
   TableNavState,
   handleRefreshAspectOld,
   handleTableNav,
+  makeNotification,
   handleHelpSideBar,
   closeHelpSideBar,
   openHelpSideBar,
@@ -374,4 +404,5 @@ export {
   MapState,
   Pos,
   AspectOldState,
+  NotificationState,
 };

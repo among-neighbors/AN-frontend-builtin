@@ -50,7 +50,7 @@ const TableNav: React.FC<TableNavProps> = ({ type, tableNavReducer, isPageMove =
                 : `/${type}?${handledQuery(index)}`
             }
             sx={
-              tableNavReducer[type] === index
+              (Object(parse(location.search)).scope ?? 'ALL') === queryByType[type][index]
                 ? clickedStyleOfTableNavButton
                 : nonClickedStyleOfTableNavButton
             }
@@ -157,8 +157,8 @@ export const Category: React.FC<CategoryProps> = ({ type, mode }) => {
 };
 
 const tableListByType: Obj<string[]> = {
-  notice: ['통합 공지', '라인 공지'],
-  community: ['통합 게시글', '라인 게시글'],
+  notice: ['통합 공지', '단지 공지'],
+  community: ['통합 게시글', '단지 게시글'],
 };
 
 const queryByType: Obj<string[]> = {
