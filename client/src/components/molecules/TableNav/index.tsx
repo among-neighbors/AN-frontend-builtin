@@ -15,7 +15,7 @@ interface TableNavProps {
   isPageMove?: boolean;
 }
 
-const TableNav: React.FC<TableNavProps> = ({ type, tableNavReducer, isPageMove = true }) => {
+const TableNav: React.FC<TableNavProps> = ({ type, isPageMove = true }) => {
   if (!tableListByType[type]) return <></>;
 
   const location = useLocation();
