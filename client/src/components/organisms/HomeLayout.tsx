@@ -2,17 +2,18 @@ import * as React from 'react';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import { accessTokenState, ProfileState } from '~/others/store';
+import { accessTokenState, HelpCallState, MapState, ProfileState, RootState } from '~/others/store';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { shadowCssForMUI } from '~/others/cssLibrary';
 import Button from '@mui/material/Button';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
-import { useEffect, useState } from 'react';
-import { Stomp } from '@stomp/stompjs';
+import { client } from './HelpCallConnectSocket';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
+import { HelpCallBox } from '../molecules/HelpBoxes.tsx';
+import { connect } from 'react-redux';
 
 const StyledBody = styled.div`
   height: 100vh;
@@ -72,40 +73,34 @@ const StyledDown = styled.img`
 interface HomePageProps {
   accessToken: accessTokenState;
   profileData: ProfileState;
+  helpCallData: HelpCallState;
+  isHelpCallSideBarOpen: boolean;
+  mapState: MapState;
 }
 
-//웹소켓 주소
-const WSS_FEED_URL: string = 'wss://neighbor42.com:8181/an-ws';
-
-const Home = ({ accessToken, profileData }: HomePageProps) => {
-  console.log(accessToken, profileData);
-  //도움 요청한 집 호수
-  const [requestHouseName, setrequestHouseName] = useState('');
-  //도움을 수락한 호수
-  const [accepttHouseName, setAcceptHouseName] = useState('');
-  //도움을 받을 호수
-  const [targetHouseName, settArgetHouseName] = useState('');
-  const [isSend, setIsSend] = useState<boolean>(false);
-  //객체 생성
-  const client = Stomp.client(WSS_FEED_URL);
-
+const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: HomePageProps) => {
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
-
-  const sendHelpRequest = () => {
-    setIsSend(true);
-    client.publish({ destination: '/pub/alert', body: JSON.stringify({ text: '도와주세요' }) });
+  const { isOpen } = mapState;
+  const getPosition = async () => {
+    return new Promise<GeolocationPosition>((resolve, reject) =>
+      navigator.geolocation.getCurrentPosition(resolve, reject),
+    );
   };
-  const sendHelpResponse = () => {
-    console.log('내집 이름이다 아이가', profileData.houseName);
-    //라인 추가해야함
+  const requestHelpCall = async () => {
+    if (!navigator.geolocation) {
+      alert('위치 동의가 필요합니다!');
+      return;
+    }
+
+    const pos = await getPosition();
+    const { latitude, longitude } = pos.coords;
+    console.log(pos);
     client.publish({
-      destination: '/pub/accept',
-      body: JSON.stringify({ target: requestHouseName }),
+      destination: '/pub/alert',
+      body: JSON.stringify({ text: 'help', lat: latitude, lng: longitude }),
     });
-    setIsRequest(false);
-    //요청 한 집 초기화
-    setrequestHouseName('');
-    request = '';
+    handleCloseHelpCallModal();
+    // openHelpSideBar();
   };
   const handleOpenHelpCallModal = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElHelpCall(event.currentTarget);
@@ -114,120 +109,154 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
     setAnchorElHelpCall(null);
   };
 
-  const [isRequest, setIsRequest] = useState<boolean>(false);
-  const [isAccept, setIsAccept] = useState<boolean>(false);
-  const dismissRequest = () => {
-    setIsRequest(false);
-  };
-  const checkAccept = () => {
-    setIsRequest(false);
-    setIsAccept(false);
-  };
-  let isDone = true;
-  let request;
-  useEffect(() => {
-    if (
-      accessToken.accountAccessToken != '' &&
-      profileData.houseName != '' &&
-      profileData.lineName != '' &&
-      isDone
-    )
-      // connect(header,연결 성공시 콜백,에러발생시 콜백)
-      client.connect(
-        { Authorization: accessToken.accountAccessToken },
-        function () {
-          console.log('Connected');
-          isDone = false;
-
-          //subscribe(subscribe url,해당 url로 메시지를 받을때마다 실행할 함수)
-          client.subscribe('/user/queue/error', function (e) {
-            //e.body에 전송된 data가 들어있다
-            console.log(JSON.parse(e.body)['message']);
-          });
-          //라인 정보 등록
-          const destination = '/sub/line/' + profileData.lineName;
-          client.subscribe(destination, (e) => {
-            //e.body에 전송된 data가 들어있다
-            console.log(e.headers);
-            console.log(e.headers['type']);
-            if (e.headers['type'] == 'alert') {
-              console.log('도움을 요청한 집 정보', JSON.parse(e.body));
-              request = JSON.parse(e.body)['house'];
-              setrequestHouseName(JSON.parse(e.body)['house']);
-              console.log('requestHouseName', requestHouseName);
-              if (request != '' && request != profileData.houseName) {
-                setIsRequest(true);
-              }
-            } else if (e.headers['type'] == 'accept') {
-              console.log('도움을 수락한 집 정보', JSON.parse(e.body));
-              setAcceptHouseName(JSON.parse(e.body)['accept_house']);
-              settArgetHouseName(JSON.parse(e.body)['target_house']);
-              setAnchorElHelpCall(null);
-              setIsSend(false);
-              setIsAccept(true);
-            }
-          });
-        },
-        function (e: { body: string }) {
-          //에러 콜백
-          console.log(JSON.parse(e.body));
-        },
-      );
-  });
-
   return (
     <StyledBody>
-      <Box
-        sx={{
-          display: { xs: 'none', md: 'flex' },
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          width: '100%',
-        }}
-        padding={2}
-        margin={3}
-      >
-        {pages.map((page) => (
-          <Button
-            variant='outlined'
-            key={page.name}
-            sx={{
-              my: 2,
-              color: 'black',
-              display: 'block',
-              width: '25%',
-              height: '25%',
-              textAlign: 'center',
-              fontSize: '24px',
-              fontWeight: 900,
-              margin: '5%',
-              borderRadius: '40px',
-              border: '4px solid black',
-              '&:hover': {
-                border: '4px solid #0093BA',
+      {!isOpen && (
+        <Box
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            width: '100%',
+          }}
+          padding={2}
+          margin={3}
+        >
+          {pages.map((page) => (
+            <Button
+              variant='outlined'
+              key={page.name}
+              sx={{
+                my: 2,
+                color: 'black',
+                display: 'block',
+                width: '25%',
+                height: '25%',
+                textAlign: 'center',
+                fontSize: '24px',
+                fontWeight: 900,
+                margin: '5%',
                 borderRadius: '40px',
-                color: '#EC8034',
-                backgroundColor: '#f5f5f5',
-              },
-            }}
-            component={Link}
-            to={page.link}
-          >
-            <div>
-              <StyledBtn src={page.src} />
-            </div>
+                border: '4px solid black',
+                '&:hover': {
+                  border: '4px solid #0093BA',
+                  borderRadius: '40px',
+                  color: '#EC8034',
+                  backgroundColor: '#f5f5f5',
+                },
+              }}
+              component={Link}
+              to={page.link}
+            >
+              <div>
+                <StyledBtn src={page.src} />
+              </div>
 
-            {page.name}
-          </Button>
-        ))}
-      </Box>
+              {page.name}
+            </Button>
+          ))}
+        </Box>
+      )}
+
       <StyledDiv>
-        <IconButton onClick={handleOpenHelpCallModal}>
+        <IconButton
+          onClick={handleOpenHelpCallModal}
+          className='helpCallBtn'
+          sx={{
+            zIndex: 1,
+            background: '#fff',
+            marginRight: '20px',
+          }}
+        >
           <StyledImg src='../../public/img/warning.svg'></StyledImg>
         </IconButton>
       </StyledDiv>
+      <Box
+        sx={{
+          display: {
+            xs: 'none',
+            sm: 'flex',
+          },
+          position: 'relative',
+          '& .helpCallBtn:hover': {
+            background: '#fff',
+          },
+          '& .helpListBtn:hover': {
+            background: '#ff1000',
+            zIndex: 2,
+          },
+        }}
+      >
+        <IconButton
+          onClick={handleOpenHelpCallModal}
+          className='helpCallBtn'
+          sx={{
+            zIndex: 1,
+            background: '#fff',
+            marginRight: '20px',
+          }}
+        ></IconButton>
 
+        {!isHelpCallSideBarOpen && (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column-reverse',
+              position: 'absolute',
+              top: '40px',
+              right: '-20px',
+              width: '300px',
+              gap: '5px',
+              zIndex: 3,
+            }}
+          >
+            {helpCallData.requests.map(({ targetHouse, pos }, index) => {
+              if (profileData.houseName === targetHouse) {
+                return (
+                  <Box key={index} sx={{ width: '100%', height: '100%', padding: '3px 13px' }}>
+                    <Box
+                      sx={{
+                        position: 'fixed',
+                        right: '40px',
+                        bottom: '170px',
+                        width: '350px',
+                        height: '150px',
+                        backgroundColor: '#F2ECE5',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                        ...shadowCssForMUI,
+                      }}
+                    >
+                      <CircularProgress sx={{ margin: '35px 0 5px 0', color: '#0093BA' }} />
+                      <Typography
+                        sx={{
+                          fontSize: '18px',
+                          lineHeight: '28px',
+                          height: '45px',
+                          alignItems: 'center',
+                          textAlign: 'center',
+                        }}
+                      >
+                        도움 요청 중입니다…
+                      </Typography>
+                    </Box>
+                  </Box>
+                );
+              }
+              return (
+                <HelpCallBox
+                  key={index}
+                  targetHouse={targetHouse}
+                  myHouseLine={profileData.lineName}
+                  pos={pos}
+                />
+              );
+            })}
+          </Box>
+        )}
+      </Box>
       <Menu
+        anchorEl={anchorElHelpCall}
         open={Boolean(anchorElHelpCall)}
         onClose={handleCloseHelpCallModal}
         sx={{ mt: '10px', '& ul': { padding: 0 } }}
@@ -239,125 +268,9 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
             bottom: '170px',
             width: '350px',
             height: '150px',
-            backgroundColor: 'white',
+            backgroundColor: '#F2ECE5',
             alignItems: 'center',
             textAlign: 'center',
-            ...shadowCssForMUI,
-          }}
-        >
-          {isSend ? (
-            <>
-              <CircularProgress sx={{ margin: '35px 0 5px 0', color: '#0093BA' }} />
-              <Typography
-                sx={{
-                  fontSize: '18px',
-                  lineHeight: '28px',
-                  height: '45px',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                }}
-              >
-                도움 요청 중입니다...
-              </Typography>
-            </>
-          ) : (
-            <>
-              <Typography
-                sx={{
-                  fontSize: '18px',
-                  lineHeight: '28px',
-                  height: '55px',
-                  alignItems: 'center',
-                  paddingTop: '20px',
-                  textAlign: 'center',
-                }}
-              >
-                도움 요청 시 라인 내 입주민에게
-              </Typography>
-              <Typography sx={{ fontSize: '18px', textAlign: 'center', height: '40px' }}>
-                도움 요청을 알립니다.
-              </Typography>
-              <Box
-                sx={{ backgroundColor: 'white', display: 'flex', justifyContent: 'space-around' }}
-              >
-                <Button
-                  onClick={handleCloseHelpCallModal}
-                  variant='outlined'
-                  color='inherit'
-                  sx={{ height: '32px' }}
-                  startIcon={<ArrowBack />}
-                >
-                  돌아가기
-                </Button>
-                <Button
-                  variant='contained'
-                  color='error'
-                  sx={{ height: '32px' }}
-                  endIcon={<ArrowForward />}
-                  onClick={sendHelpRequest}
-                >
-                  동의 후 도움 요청
-                </Button>
-              </Box>
-            </>
-          )}
-        </Box>
-      </Menu>
-
-      <Menu open={isRequest} onClose={dismissRequest} sx={{ mt: '10px', '& ul': { padding: 0 } }}>
-        <Box
-          sx={{
-            position: 'fixed',
-            right: '40px',
-            bottom: '170px',
-            width: '350px',
-            height: '150px',
-            backgroundColor: 'white',
-            ...shadowCssForMUI,
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: '18px',
-              lineHeight: '28px',
-              height: '95px',
-              alignItems: 'center',
-              paddingTop: '40px',
-              textAlign: 'center',
-            }}
-          >
-            {profileData.lineName} {requestHouseName}에서 긴급 도움 요청!
-          </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-            <Button
-              onClick={dismissRequest}
-              variant='outlined'
-              color='inherit'
-              sx={{ height: '32px' }}
-            >
-              거절
-            </Button>
-            <Button
-              onClick={sendHelpResponse}
-              variant='contained'
-              color='success'
-              sx={{ height: '32px', width: '198px' }}
-            >
-              수락
-            </Button>
-          </Box>
-        </Box>
-      </Menu>
-
-      <Menu open={isAccept} onClose={checkAccept} sx={{ mt: '10px', '& ul': { padding: 0 } }}>
-        <Box
-          sx={{
-            position: 'fixed',
-            right: '40px',
-            bottom: '170px',
-            width: '350px',
-            height: '150px',
-            background: 'white',
             ...shadowCssForMUI,
           }}
         >
@@ -367,30 +280,50 @@ const Home = ({ accessToken, profileData }: HomePageProps) => {
               lineHeight: '28px',
               height: '55px',
               alignItems: 'center',
-              paddingTop: '20px',
+              paddingTop: '45px',
+              paddingBottom: '45px',
               textAlign: 'center',
             }}
           >
-            {accepttHouseName}에서 {targetHouseName}호의
+            도움 요청 시 이웃에게 알립니다.
           </Typography>
-          <Typography sx={{ fontSize: '18px', textAlign: 'center', height: '40px' }}>
-            긴급 도움을 수락했습니다.
-          </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+
+          <Box sx={{ backgroundColor: '#F2ECE5', display: 'flex', justifyContent: 'space-around' }}>
             <Button
-              onClick={checkAccept}
-              variant='contained'
-              color='success'
-              sx={{ alignItems: 'center', height: '32px', width: '198px' }}
+              onClick={handleCloseHelpCallModal}
+              variant='outlined'
+              color='inherit'
+              sx={{ width: '110px', height: '32px' }}
+              startIcon={<ArrowBack />}
             >
-              확인
+              돌아가기
+            </Button>
+            <Button
+              variant='contained'
+              color='error'
+              sx={{ height: '32px' }}
+              endIcon={<ArrowForward />}
+              onClick={requestHelpCall}
+            >
+              동의 후 도움 요청
             </Button>
           </Box>
         </Box>
       </Menu>
+
       <StyledDown src='../../public/img/down.png' />
     </StyledBody>
   );
 };
 
-export default Home;
+const mapStateToProps = (state: RootState) => {
+  return {
+    isHelpCallSideBarOpen: state.helpSideBarReducer,
+    accessToken: state.accessTokenReducer,
+    helpCallData: state.helpCallReducer,
+    profileData: state.profileReducer,
+    mapState: state.mapReducer,
+  };
+};
+
+export default connect(mapStateToProps)(Home);

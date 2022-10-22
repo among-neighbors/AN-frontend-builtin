@@ -27,7 +27,6 @@ const StyledContainer = styled.div`
 // 텍스트를 감싸고 있는 요소
 const StyledContainerText = styled.h3`
   width: 300px;
-  position: relative;
   position: absolute;
   top: 50%;
   left: 50%;
