@@ -39,38 +39,34 @@ const MyMap: React.FC<Props> = (props) => {
   return (
     <>
       {isOpen && (
-        <div>
-          <Box sx={{ mt: '10px' }}>
-            <StyledMap>
-              {pos && (
-                <Map
-                  center={pos}
-                  ref={mapRef}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                  }}
-                >
-                  <MapMarker position={pos} />
-                </Map>
-              )}
+        <StyledMap>
+          {pos && (
+            <Map
+              center={pos}
+              ref={mapRef}
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <MapMarker position={pos} />
+            </Map>
+          )}
 
-              <div className={'back'}>
-                <button onClick={closeMap}>
-                  <SquareImg src={'../../../../public/img/back.png'} />
-                </button>
-              </div>
-              <div className={'services'}>
-                <button onClick={levelUp}>
-                  <StyledImg2 src={'../../../../public/img/plus.svg'} />
-                </button>
-                <button onClick={levelDown}>
-                  <StyledImg2 src={'../../../../public/img/minus.svg'} />
-                </button>
-              </div>
-            </StyledMap>
-          </Box>
-        </div>
+          <div className={'back'}>
+            <button onClick={closeMap}>
+              <SquareImg src={'../../../../public/img/back.png'} />
+            </button>
+          </div>
+          <div className={'services'}>
+            <button onClick={levelUp}>
+              <StyledImg2 src={'../../../../public/img/plus.svg'} />
+            </button>
+            <button onClick={levelDown}>
+              <StyledImg2 src={'../../../../public/img/minus.svg'} />
+            </button>
+          </div>
+        </StyledMap>
       )}
     </>
   );
