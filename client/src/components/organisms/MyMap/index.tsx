@@ -2,7 +2,6 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { connect } from 'react-redux';
 import { closeMap, MapState, RootState } from '~/others/store';
 import { useRef } from 'react';
-import { Box } from '@mui/material';
 import React from 'react';
 import { StyledMap } from './styled';
 import SquareImg from '~/components/atoms/Img';
