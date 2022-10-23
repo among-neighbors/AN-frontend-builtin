@@ -27,7 +27,6 @@
     "@tensorflow/tfjs-core": "^3.19.0",
     "@types/cors": "^2.8.12",
     "@types/next": "^9.0.0",
-    "@types/next-seo": "^2.1.2",
     "@types/nprogress": "^0.2.0",
     "@types/react-bootstrap": "^0.32.30",
     "@types/react-webcam": "^3.0.0",
