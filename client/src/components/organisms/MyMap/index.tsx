@@ -1,7 +1,7 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { connect } from 'react-redux';
 import { closeMap, MapState, RootState } from '~/others/store';
-import { useRef, PropsWithChildren } from 'react';
+import { useRef } from 'react';
 import { Box } from '@mui/material';
 import React from 'react';
 import { StyledMap } from './styled';
@@ -17,7 +17,7 @@ interface Props {
   mapState: MapState;
 }
 
-const MyMap: React.FC<PropsWithChildren<Props>> = (props) => {
+const MyMap: React.FC<Props> = (props) => {
   const { mapState } = props;
   const { isOpen, pos } = mapState;
   const mapRef = useRef<kakao.maps.Map>(null);
@@ -39,36 +39,38 @@ const MyMap: React.FC<PropsWithChildren<Props>> = (props) => {
   return (
     <>
       {isOpen && (
-        <Box sx={{ mt: '10px' }}>
-          <StyledMap>
-            {pos && (
-              <Map
-                center={pos}
-                ref={mapRef}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-              >
-                <MapMarker position={pos} />
-              </Map>
-            )}
+        <div>
+          <Box sx={{ mt: '10px' }}>
+            <StyledMap>
+              {pos && (
+                <Map
+                  center={pos}
+                  ref={mapRef}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <MapMarker position={pos} />
+                </Map>
+              )}
 
-            <div className={'back'}>
-              <button onClick={closeMap}>
-                <SquareImg src={'../../../../public/img/back.png'} />
-              </button>
-            </div>
-            <div className={'services'}>
-              <button onClick={levelUp}>
-                <StyledImg2 src={'../../../../public/img/plus.svg'} />
-              </button>
-              <button onClick={levelDown}>
-                <StyledImg2 src={'../../../../public/img/minus.svg'} />
-              </button>
-            </div>
-          </StyledMap>
-        </Box>
+              <div className={'back'}>
+                <button onClick={closeMap}>
+                  <SquareImg src={'../../../../public/img/back.png'} />
+                </button>
+              </div>
+              <div className={'services'}>
+                <button onClick={levelUp}>
+                  <StyledImg2 src={'../../../../public/img/plus.svg'} />
+                </button>
+                <button onClick={levelDown}>
+                  <StyledImg2 src={'../../../../public/img/minus.svg'} />
+                </button>
+              </div>
+            </StyledMap>
+          </Box>
+        </div>
       )}
     </>
   );
