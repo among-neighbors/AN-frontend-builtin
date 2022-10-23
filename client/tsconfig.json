@@ -31,8 +31,7 @@
       "@utils/*": ["utils/*"],
       "@typings/*": ["typings/*"],
       "@styles/*": ["styles/*"]
-    },
-    "types": ["vite-plugin-svgr/client"]
+    }
   },
   "include": ["next-env.d.ts", "vite.config.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
