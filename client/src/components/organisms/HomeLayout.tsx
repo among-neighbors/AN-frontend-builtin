@@ -1,8 +1,17 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import { accessTokenState, HelpCallState, MapState, ProfileState, RootState } from '~/others/store';
+import SquareImg from '~/components/atoms/Img';
+import {
+  accessTokenState,
+  HelpCallState,
+  MapState,
+  ProfileState,
+  RootState,
+  closeMap,
+} from '~/others/store';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { shadowCssForMUI } from '~/others/cssLibrary';
@@ -14,13 +23,18 @@ import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import { HelpCallBox } from '../molecules/HelpBoxes.tsx';
 import { connect } from 'react-redux';
-
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 const StyledBody = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+const StyledImg2 = styled.img`
+  height: 20px;
+  width: 20px;
+`;
+import { StyledMap } from './MyMap/styled';
 
 const StyledBtn = styled.img`
   width: 140px;
@@ -80,7 +94,9 @@ interface HomePageProps {
 
 const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: HomePageProps) => {
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
-  const { isOpen } = mapState;
+  const { isOpen, pos } = mapState;
+  const mapRef = useRef<kakao.maps.Map>(null);
+
   const getPosition = async () => {
     return new Promise<GeolocationPosition>((resolve, reject) =>
       navigator.geolocation.getCurrentPosition(resolve, reject),
@@ -109,9 +125,55 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
     setAnchorElHelpCall(null);
   };
 
+  const levelUp = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    const nowLevel = map.getLevel();
+    map.setLevel(nowLevel - 1);
+  };
+
+  const levelDown = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    const nowLevel = map.getLevel();
+    map.setLevel(nowLevel + 1);
+  };
   return (
     <StyledBody>
-      {!isOpen && (
+      {isOpen ? (
+        <>
+          (
+          <StyledMap>
+            {pos && (
+              <Map
+                center={pos}
+                ref={mapRef}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <MapMarker position={pos} />
+              </Map>
+            )}
+
+            <div className={'back'}>
+              <button onClick={closeMap}>
+                <SquareImg src={'../../../../public/img/back.png'} />
+              </button>
+            </div>
+            <div className={'services'}>
+              <button onClick={levelUp}>
+                <StyledImg2 src={'../../../../public/img/plus.svg'} />
+              </button>
+              <button onClick={levelDown}>
+                <StyledImg2 src={'../../../../public/img/minus.svg'} />
+              </button>
+            </div>
+          </StyledMap>
+          )
+        </>
+      ) : (
         <Box
           sx={{
             display: { xs: 'none', md: 'flex' },
