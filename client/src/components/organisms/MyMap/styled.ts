@@ -12,40 +12,18 @@ export const StyledMap = styled.div`
   background: #000;
   animation: 0.3s ease-in-out loadEffect2;
   -webkit-animation: 1s ease-in-out loadEffect2;
+
   @keyframes loadEffect2 {
     0% {
       opacity: 0;
       transform: translateX(-30px);
     }
 
-    12% {
-      opacity: 0.2;
-      transform: translateX(3px);
-    }
-    15% {
-      opacity: 0.3;
-      transform: translateX(5px);
-    }
-    20% {
-      opacity: 0.4;
-      transform: translateX(10px);
-    }
     50% {
       opacity: 0.5;
       transform: translateX(30px);
     }
-    70% {
-      opacity: 0.6;
-      transform: translateX(10px);
-    }
-    75% {
-      opacity: 0.7;
-      transform: translateX(5px);
-    }
-    80% {
-      opacity: 0.8;
-      transform: translateX(3px);
-    }
+
     100% {
       opacity: 1;
       transform: translateX(0px);
