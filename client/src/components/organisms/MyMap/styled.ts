@@ -4,7 +4,7 @@ export const StyledMap = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: 98%;
+  width: 80%;
   height: 78vh;
   z-index: 15;
   top: 15%;
