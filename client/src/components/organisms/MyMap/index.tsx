@@ -16,7 +16,7 @@ interface Props {
   mapState: MapState;
 }
 
-const MyMap: React.FC<Props> = (props) => {
+const MyMap: React.FunctionComponent<Props> = (props) => {
   const { mapState } = props;
   const { isOpen, pos } = mapState;
   const mapRef = useRef<kakao.maps.Map>(null);
