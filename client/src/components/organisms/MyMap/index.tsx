@@ -1,7 +1,7 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { connect } from 'react-redux';
 import { closeMap, MapState, RootState } from '~/others/store';
-import { useRef } from 'react';
+import { useRef, PropsWithChildren } from 'react';
 import { Box } from '@mui/material';
 import React from 'react';
 import { StyledMap } from './styled';
@@ -17,7 +17,7 @@ interface Props {
   mapState: MapState;
 }
 
-const MyMap: React.FC<Props> = (props) => {
+const MyMap: React.FC<PropsWithChildren<Props>> = (props) => {
   const { mapState } = props;
   const { isOpen, pos } = mapState;
   const mapRef = useRef<kakao.maps.Map>(null);

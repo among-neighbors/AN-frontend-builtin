@@ -81,7 +81,7 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos
           {`${myHouseLine} ${targetHouse}에서 긴급 도움 요청!`}
         </Typography>
 
-        <Box sx={{ backgroundColor: 'white', display: 'flex', justifyContent: 'space-around' }}>
+        <Box sx={{ backgroundColor: '#F2ECE5', display: 'flex', justifyContent: 'space-around' }}>
           <Button
             color='secondary'
             sx={{ width: '110px', height: '32px' }}
@@ -126,8 +126,8 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '60%',
-          height: '60%',
+          width: '65%',
+          height: '65%',
           backgroundColor: '#F2ECE5',
           ...shadowCssForMUI,
           padding: '6%',
@@ -142,11 +142,11 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine
           sx={{
             fontSize: '45px',
             fontWeight: 900,
-            margin: '1%',
+            margin: '2%',
             height: '20%',
             alignItems: 'center',
             textAlign: 'center',
-            marginTop: '10%',
+            marginTop: '15%',
             marginBottom: '8%',
           }}
         >
