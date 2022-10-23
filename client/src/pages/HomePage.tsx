@@ -2,7 +2,6 @@ import Home from '../components/organisms/HomeLayout';
 import Header from '../components/organisms/Header';
 import { accessTokenState, RootState, ProfileState } from '~/others/store';
 import { connect } from 'react-redux';
-import MyMap from '~/components/organisms/MyMap';
 
 interface HomeProps {
   accessToken: accessTokenState;
@@ -12,7 +11,6 @@ const HomePage = ({ accessToken, profileData }: HomeProps) => {
   return (
     <>
       <Header accessToken={accessToken} profileData={profileData} />
-      <MyMap />
       <Home />
     </>
   );

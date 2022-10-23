@@ -9,11 +9,20 @@ import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { shadowCssForMUI } from '~/others/cssLibrary';
 import Menu from '@mui/material/Menu';
-import { accessTokenState, HelpCallState, MapState, ProfileState, RootState } from '~/others/store';
+import {
+  accessTokenState,
+  HelpCallState,
+  MapState,
+  ProfileState,
+  RootState,
+  closeMap,
+} from '~/others/store';
 import CircularProgress from '@mui/material/CircularProgress';
 import { connect } from 'react-redux';
 import { client } from './HelpCallConnectSocket';
 import { HelpCallBoxElder } from '../molecules/HelpBoxes.tsx';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import SquareImg from '~/components/atoms/Img';
 const StyledBody = styled.div`
   height: 100vh;
 
@@ -21,6 +30,12 @@ const StyledBody = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const StyledImg2 = styled.img`
+  height: 20px;
+  width: 20px;
+`;
+import { StyledMap } from './MyMap/styled';
+import { useRef } from 'react';
 
 const StyledImg = styled.img`
   width: 145px;
@@ -79,7 +94,23 @@ const HomeElder = ({
   mapState,
 }: HomePageProps) => {
   const [anchorElHelpCall, setAnchorElHelpCall] = React.useState<null | HTMLElement>(null);
-  const { isOpen } = mapState;
+  const { isOpen, pos } = mapState;
+  const mapRef = useRef<kakao.maps.Map>(null);
+
+  const levelUp = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    const nowLevel = map.getLevel();
+    map.setLevel(nowLevel - 1);
+  };
+
+  const levelDown = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    const nowLevel = map.getLevel();
+    map.setLevel(nowLevel + 1);
+  };
+
   const getPosition = async () => {
     return new Promise<GeolocationPosition>((resolve, reject) =>
       navigator.geolocation.getCurrentPosition(resolve, reject),
@@ -109,7 +140,38 @@ const HomeElder = ({
   };
   return (
     <StyledBody>
-      {!isOpen && (
+      {isOpen ? (
+        <>
+          <StyledMap>
+            {pos && (
+              <Map
+                center={pos}
+                ref={mapRef}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <MapMarker position={pos} />
+              </Map>
+            )}
+
+            <div className={'back'}>
+              <button onClick={closeMap}>
+                <SquareImg src={'../../../../public/img/back.png'} />
+              </button>
+            </div>
+            <div className={'services'}>
+              <button onClick={levelUp}>
+                <StyledImg2 src={'../../../../public/img/plus.svg'} />
+              </button>
+              <button onClick={levelDown}>
+                <StyledImg2 src={'../../../../public/img/minus.svg'} />
+              </button>
+            </div>
+          </StyledMap>
+        </>
+      ) : (
         <Box
           sx={{
             display: { xs: 'none', md: 'flex' },
