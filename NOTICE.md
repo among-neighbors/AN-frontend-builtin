@@ -1,18 +1,14 @@
 # OSS Notice | AN-frontend-builtin #
 
-Copyright (c) 2022 KNUD4. All rights reserved.
+This application is Copyright © KNUD4. All rights reserved.
 
 The following sets forth attribution notices for third party software that may be contained in this application.
 
- **@headlessui/react**
+ **@svgr/webpack**
 
-https://github.com/tailwindlabs/headlessui
+https://github.com/gregberge/svgr
 
-Copyright reinink
-
-Copyright malfaitrobin
-
-Copyright adamwathan
+Copyright 2017 Smooth Code
 
 MIT License
 
@@ -45,14 +41,6 @@ MIT License
 https://github.com/tailwindcss/typography
 
 Copyright property of respective owners
-
-MIT License
-
- **@types/next**
-
-https://github.com/zeit/next.js
-
-Copyright types
 
 MIT License
 
@@ -214,7 +202,7 @@ MIT License
 
 https://github.com/mysticatea/eslint-utils
 
-Copyright mysticatea
+Copyright 2018 Toru Nagashima
 
 MIT License
 
@@ -223,6 +211,14 @@ MIT License
 https://github.com/facebook/react
 
 Copyright 2013-present, Facebook, Inc.
+
+MIT License
+
+ **Headless UI**
+
+https://github.com/tailwindlabs/headlessui
+
+Copyright 2020 Tailwind Labs
 
 MIT License
 
@@ -314,11 +310,27 @@ Copyright React Training 2016-2018
 
 MIT License
 
+ **React useWebSocket**
+
+https://github.com/robtaussig/react-use-websocket
+
+Copyright 2021 Robert Taussig
+
+MIT License
+
  **React-Bootstrap**
 
 https://github.com/react-bootstrap/react-bootstrap
 
 Copyright 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
+
+MIT License
+
+ **react-kakao-maps-sdk**
+
+https://github.com/JaeSeoKim/react-kakao-maps-sdk
+
+Copyright jaeseokim
 
 MIT License
 
@@ -335,14 +347,6 @@ MIT License
 https://github.com/fkhadra/react-toastify
 
 Copyright 2020 Fadi Khadra
-
-MIT License
-
- **react-use-websocket**
-
-https://github.com/robtaussig/react-use-websocket
-
-Copyright robtaussig
 
 MIT License
 
@@ -470,7 +474,7 @@ MIT License
 
 https://github.com/Hermanya/use-interval
 
-Copyright hermanya
+Copyright Herman <hermanstarikov@gmail.com> (https://hermanya.github.io)
 
 MIT License
 
@@ -538,10 +542,18 @@ Copyright liuweigl
 
 MIT License
 
+ **vite-plugin-svgr**
+
+https://github.com/pd4d10/vite-plugin-svgr
+
+Copyright pd4d10
+
+MIT License
+
  **vite-tsconfig-paths**
 
 https://github.com/aleclarson/vite-tsconfig-paths
 
-Copyright aleclarson
+Copyright Alec Larson
 
 MIT License
