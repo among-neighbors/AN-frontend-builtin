@@ -330,7 +330,7 @@ MIT License
 
 https://github.com/JaeSeoKim/react-kakao-maps-sdk
 
-Copyright jaeseokim
+Copyright 2021 JaeSeoKim <devjaeseo@gmail.com>
 
 MIT License
 
@@ -539,14 +539,6 @@ MIT License
 https://github.com/liuweiGL/vite-plugin-mkcert
 
 Copyright liuweigl
-
-MIT License
-
- **vite-plugin-svgr**
-
-https://github.com/pd4d10/vite-plugin-svgr
-
-Copyright pd4d10
 
 MIT License
 
