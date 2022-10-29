@@ -62,11 +62,6 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos
           ...shadowCssForMUI,
         }}
       >
-        {/* <div className={'close'}>
-          <button onClick={() => closeHelpCallBox(targetHouse)}>
-            <SquareImg src={'../../../public/img/cancel.png'} length={'20px'} />{' '}
-          </button>
-        </div> */}
         <Typography
           sx={{
             fontSize: '18px',
