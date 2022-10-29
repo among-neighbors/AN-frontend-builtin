@@ -157,7 +157,7 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <StyledImg2 src='../../public/img/house.png' />
                 <StyledContainerText>
-                  {profileData.lineName} {profileData.houseName}호
+                  {profileData.lineName} {profileData.houseName}
                 </StyledContainerText>
               </IconButton>
             </StyledContainer>
