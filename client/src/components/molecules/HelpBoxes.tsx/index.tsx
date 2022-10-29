@@ -76,7 +76,7 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos
           {`${myHouseLine} ${targetHouse}에서 긴급 도움 요청!`}
         </Typography>
 
-        <Box sx={{ backgroundColor: 'white', display: 'flex', justifyContent: 'space-around' }}>
+        <Box sx={{ backgroundColor: '#F2ECE5', display: 'flex', justifyContent: 'space-around' }}>
           <Button
             color='secondary'
             sx={{ width: '110px', height: '32px' }}
