@@ -21,7 +21,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 import { client } from './HelpCallConnectSocket';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
-import { HelpCallBox } from '../molecules/HelpBoxes.tsx';
+import { HelpCallBox, HelpFinBox } from '../molecules/HelpBoxes.tsx';
 import { connect } from 'react-redux';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 const StyledBody = styled.div`
@@ -317,6 +317,20 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
             })}
           </Box>
         )}
+
+        {helpCallData.accepts.map(({ targetHouse, acceptHouse }, index) => {
+          if (profileData.houseName !== acceptHouse) {
+            return (
+              <HelpFinBox
+                key={index}
+                idx={index}
+                targetHouse={targetHouse}
+                acceptHouse={acceptHouse}
+                myHouseLine={profileData.lineName}
+              />
+            );
+          }
+        })}
       </Box>
       <Menu
         anchorEl={anchorElHelpCall}
