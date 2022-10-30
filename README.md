@@ -52,8 +52,7 @@ services:
 
 ## 3. Architecture
 
-![sysA_06 003](https://user-images.githubusercontent.com/62577565/198864467-9f958bac-877b-42f4-a1ef-be7eaf1434be.jpeg)
-
+![sysA_06 003](https://user-images.githubusercontent.com/62577565/198864482-4afdf2ae-6326-40bc-95df-fa40fe589575.jpeg)
 
 
 
