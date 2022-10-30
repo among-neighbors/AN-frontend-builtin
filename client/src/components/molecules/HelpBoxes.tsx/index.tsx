@@ -285,7 +285,9 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHous
           top: `${54 + idx}%`,
           left: `${52 + idx}%`,
           transform: 'translate(-50%, -50%)',
+
           width: '65%',
+
           height: '60%',
           backgroundColor: '#F2ECE5',
           padding: '6%',
@@ -313,8 +315,10 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHous
             height: '20%',
             alignItems: 'center',
             textAlign: 'center',
+
             marginTop: '8%',
             marginBottom: '10%',
+
           }}
         >
           {`${myHouseLine} ${targetHouse}에서 긴급 도움 요청!`}
