@@ -200,12 +200,13 @@ server {
 
 ## 4. 관련 저장소
 + [AN-frontend](https://github.com/among-neighbors/AN-frontend)
-+ [AN-frontend-ㅡmanager](https://github.com/among-neighbors/AN-frontend-manager)
++ [AN-frontend-manager](https://github.com/among-neighbors/AN-frontend-manager)
 + [AN-backend](https://github.com/among-neighbors/AN-backend)
 
 ## 5. 오픈소스
 
 [APACHE License](LICENSE)
+<br>
 [Contribution Guideline](CONTRIBUTING.md)
 
 
