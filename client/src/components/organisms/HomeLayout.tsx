@@ -308,6 +308,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
               return (
                 <HelpCallBox
                   key={index}
+                  idx={index}
                   targetHouse={targetHouse}
                   myHouseLine={profileData.lineName}
                   pos={pos}

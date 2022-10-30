@@ -253,7 +253,7 @@ const HomeElder = ({
               display: 'flex',
               flexDirection: 'column-reverse',
               position: 'absolute',
-              width: '60%',
+              width: '65%',
               height: '60%',
               gap: '5px',
               zIndex: 3,
@@ -272,7 +272,7 @@ const HomeElder = ({
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: '60%',
+                        width: '65%',
                         height: '60%',
                         backgroundColor: '#F2ECE5',
                         ...shadowCssForMUI,
@@ -299,6 +299,7 @@ const HomeElder = ({
               return (
                 <HelpCallBoxElder
                   key={index}
+                  idx={index}
                   targetHouse={targetHouse}
                   myHouseLine={profileData.lineName}
                   pos={pos}
@@ -323,7 +324,7 @@ const HomeElder = ({
             left: '50%',
             transform: 'translate(-50%, -50%)',
             bottom: '22%',
-            width: '60%',
+            width: '65%',
             height: '60%',
             backgroundColor: '#F2ECE5',
             ...shadowCssForMUI,
