@@ -34,7 +34,6 @@ const StyledContainerText = styled.div`
   top: 30%;
   color: black;
   font-weight: bold;
-  font-family: BlinkMacSystemFont;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
