@@ -21,7 +21,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledImg2 = styled.img`
-  height: 75px;
+  height: 80px;
 `;
 
 const StyledUp = styled.img`

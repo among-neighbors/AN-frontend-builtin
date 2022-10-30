@@ -128,7 +128,6 @@ const ListPage = ({
             sx={{
               width: '100%',
               height: '70px',
-
               display: 'flex',
               justifyContent: 'end',
               padding: '0 20px',
@@ -147,7 +146,7 @@ const ListPage = ({
               height: '50px',
               display: 'flex',
               justifyContent: 'end',
-              padding: '0 20px',
+              padding: '0 10px',
               gap: '25px',
               maxWidth: '1500px',
             }}

@@ -18,7 +18,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledImg2 = styled.img`
-  height: 75px;
+  height: 80px;
 `;
 
 //이미지와 텍스트를 감싸고 있는 요소
@@ -139,7 +139,8 @@ const HeaderDefault = ({ accessToken, profileData }: HeadereProps) => {
                 key={page.name}
                 sx={{
                   my: 2,
-                  color: 'black',
+                  color:
+                    page.link === `/${location.pathname.split('/')[2]}` ? '#EC8034' : '#000000',
                   display: 'block',
                   width: '120px',
                   textAlign: 'center',
