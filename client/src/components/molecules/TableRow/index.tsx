@@ -42,7 +42,13 @@ const TableRowForComment: React.FC<TableRowForCommentProps> = ({ commentData }) 
     text,
     createdDate,
   } = commentData;
-  return (
+
+  return name === '관리자' ? (
+    <StyledTableRowForComment>
+      <div>{text}</div>
+      <p>{`${lineName}  ${name} | ${handledDate(createdDate)}`}</p>
+    </StyledTableRowForComment>
+  ) : (
     <StyledTableRowForComment>
       <div>{text}</div>
       <p>{`${lineName} ${houseName}  ${name} | ${handledDate(createdDate)}`}</p>

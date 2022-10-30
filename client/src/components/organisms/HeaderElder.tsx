@@ -136,7 +136,6 @@ const HeaderElder = ({ accessToken, profileData }: HeadereProps) => {
               flexDirection: 'row',
             }}
             padding={2}
-            margin={3}
           >
             <StyledContainerButton>
               <Button

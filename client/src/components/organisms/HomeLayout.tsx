@@ -21,7 +21,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 import { client } from './HelpCallConnectSocket';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
-import { HelpCallBox } from '../molecules/HelpBoxes.tsx';
+import { HelpCallBox, HelpFinBox } from '../molecules/HelpBoxes.tsx';
 import { connect } from 'react-redux';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 const StyledBody = styled.div`
@@ -308,6 +308,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
               return (
                 <HelpCallBox
                   key={index}
+                  idx={index}
                   targetHouse={targetHouse}
                   myHouseLine={profileData.lineName}
                   pos={pos}
@@ -316,11 +317,26 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
             })}
           </Box>
         )}
+
+        {helpCallData.accepts.map(({ targetHouse, acceptHouse }, index) => {
+          if (profileData.houseName !== acceptHouse) {
+            return (
+              <HelpFinBox
+                key={index}
+                idx={index}
+                targetHouse={targetHouse}
+                acceptHouse={acceptHouse}
+                myHouseLine={profileData.lineName}
+              />
+            );
+          }
+        })}
       </Box>
       <Menu
         anchorEl={anchorElHelpCall}
         open={Boolean(anchorElHelpCall)}
         onClose={handleCloseHelpCallModal}
+        elevation={0}
         sx={{ mt: '10px', '& ul': { padding: 0 } }}
       >
         <Box
@@ -329,7 +345,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
             right: '40px',
             bottom: '170px',
             width: '350px',
-            height: '150px',
+            height: '160px',
             backgroundColor: '#F2ECE5',
             alignItems: 'center',
             textAlign: 'center',
@@ -343,7 +359,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
               height: '55px',
               alignItems: 'center',
               paddingTop: '45px',
-              paddingBottom: '45px',
+              paddingBottom: '55px',
               textAlign: 'center',
             }}
           >

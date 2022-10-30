@@ -133,6 +133,7 @@ const ListPage = ({
               justifyContent: 'end',
               padding: '0 20px',
               gap: '25px',
+              maxWidth: '1500px',
             }}
           >
             {type === 'community' && <Category type={type} mode={mode} />}
@@ -148,6 +149,7 @@ const ListPage = ({
               justifyContent: 'end',
               padding: '0 20px',
               gap: '25px',
+              maxWidth: '1500px',
             }}
           >
             {type === 'community' && <Category type={type} mode={mode} />}

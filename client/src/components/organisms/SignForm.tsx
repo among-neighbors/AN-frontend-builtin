@@ -109,7 +109,7 @@ const SignIn: React.FC = () => {
                 color='secondary'
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                로그인
               </Button>
             </Box>
           </Box>

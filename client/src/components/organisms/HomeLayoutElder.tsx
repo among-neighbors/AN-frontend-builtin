@@ -20,7 +20,7 @@ import {
 import CircularProgress from '@mui/material/CircularProgress';
 import { connect } from 'react-redux';
 import { client } from './HelpCallConnectSocket';
-import { HelpCallBoxElder } from '../molecules/HelpBoxes.tsx';
+import { HelpCallBoxElder, HelpFinBoxElder } from '../molecules/HelpBoxes.tsx';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import SquareImg from '~/components/atoms/Img';
 const StyledBody = styled.div`
@@ -41,7 +41,7 @@ const StyledImg = styled.img`
   width: 145px;
   height: 145px;
   position: fixed;
-  right: 30px;
+  right: 35px;
   bottom: 20px;
 `;
 const pages: {
@@ -180,7 +180,7 @@ const HomeElder = ({
             width: '100%',
           }}
           padding={2}
-          margin={3}
+          margin={2}
         >
           {pages.map((page) => (
             <Button
@@ -253,7 +253,7 @@ const HomeElder = ({
               display: 'flex',
               flexDirection: 'column-reverse',
               position: 'absolute',
-              width: '60%',
+              width: '65%',
               height: '60%',
               gap: '5px',
               zIndex: 3,
@@ -272,7 +272,7 @@ const HomeElder = ({
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: '60%',
+                        width: '65%',
                         height: '60%',
                         backgroundColor: '#F2ECE5',
                         ...shadowCssForMUI,
@@ -299,6 +299,7 @@ const HomeElder = ({
               return (
                 <HelpCallBoxElder
                   key={index}
+                  idx={index}
                   targetHouse={targetHouse}
                   myHouseLine={profileData.lineName}
                   pos={pos}
@@ -307,10 +308,25 @@ const HomeElder = ({
             })}
           </Box>
         )}
+
+        {helpCallData.accepts.map(({ targetHouse, acceptHouse }, index) => {
+          if (profileData.houseName !== acceptHouse) {
+            return (
+              <HelpFinBoxElder
+                key={index}
+                idx={index}
+                targetHouse={targetHouse}
+                acceptHouse={acceptHouse}
+                myHouseLine={profileData.lineName}
+              />
+            );
+          }
+        })}
       </Box>
       <Menu
         anchorEl={anchorElHelpCall}
         open={Boolean(anchorElHelpCall)}
+        elevation={0}
         onClose={handleCloseHelpCallModal}
         sx={{ mt: '10px', '& ul': { padding: 0 } }}
       >
@@ -322,7 +338,7 @@ const HomeElder = ({
             left: '50%',
             transform: 'translate(-50%, -50%)',
             bottom: '22%',
-            width: '60%',
+            width: '65%',
             height: '60%',
             backgroundColor: '#F2ECE5',
             ...shadowCssForMUI,
