@@ -152,10 +152,10 @@ const useMOTECam = (): MoteCamType => {
         video: {
           facingMode: 'user',
           width: {
-            ideal: 2778,
+            ideal: 1280,
           },
           height: {
-            ideal: 2778,
+            ideal: 720,
           },
         },
         // @ts-ignore
@@ -242,7 +242,8 @@ const useMOTECam = (): MoteCamType => {
         takePhoto();
 
         setIsTakenPhoto(true);
-
+        const video = videoRef.current as HTMLVideoElement;
+        video.pause();
         speakMessage(`${localizedStrings.PICTURE_DID_TAKE}`, languageCode);
       }
     }
@@ -349,44 +350,6 @@ const useMOTECam = (): MoteCamType => {
     };
   };
 
-  // Expression
-  // const checkGoodExpression = ( expression: FaceExpression ): MoteCamAdviceMessage => {
-
-  //     const faceExps: FaceExp[] = []
-  //     for (const [key, value] of Object.entries(expression)) {
-  //         const faceExp: FaceExp = {
-  //             expression: key,
-  //             predict: value
-  //         }
-  //         faceExps.push(faceExp)
-  //     }
-  //     // console.log(faceExps);
-  //     // const sorted = faceExps.sort( (prev, current) => {
-  //     // return (prev.predict > current.predict) ? -1 : 1
-  //     // })
-  //     // // console.log(sorted);
-  //     // let isGood = false
-  //     // let expMsg = ""
-  //     // switch (sorted[0].expression) {
-  //     // case "happy":
-  //     //     expMsg = localizedStrings.GUIDE_MSG_EXP_GOOD
-  //     //     isGood = true
-  //     //     break;
-  //     // case "neutral":
-  //     //     expMsg = localizedStrings.GUIDE_MSG_EXP_NEUTRAL
-  //     //     break;
-  //     // default:
-  //     //     expMsg = localizedStrings.GUIDE_MSG_EXP_OTHERS
-  //     //     break;
-  //     // }
-  //     // console.log(expMsg);
-
-  //     // return {
-  //     //     fulfilled: isGood,
-  //     //     message: expMsg
-  //     // }
-  // }
-
   // Age
   const expectedAge = (age: number): MoteCamAgeMessage => {
     const ageMsg = localizedStrings.GUIDE_MSG_AGE_LOOKALIKE.replace('%age', `${Math.round(age)}`);
@@ -398,34 +361,30 @@ const useMOTECam = (): MoteCamType => {
 
   // Execute taking photo
   const takePhoto = () => {
-    if (videoRef.current && photoRef.current) {
-      const video = videoRef.current as HTMLVideoElement;
-      const photo = photoRef.current as HTMLImageElement;
-      const canvasForDraw = document.createElement('canvas') as HTMLCanvasElement;
+    const video = videoRef.current as HTMLVideoElement;
 
-      //
-      const stream: MediaStream = video.srcObject as MediaStream;
-      if (stream === null) return;
+    const canvasForDraw = document.createElement('canvas') as HTMLCanvasElement;
 
-      const track = stream.getVideoTracks()[0];
-      const settings = track.getSettings();
-      const width = settings.width ? settings.width : 0;
-      const height = settings.height ? settings.height : 0;
+    const stream: MediaStream = video.srcObject as MediaStream;
+    if (stream === null) return;
 
-      canvasForDraw.width = width;
-      canvasForDraw.height = height;
+    const track = stream.getVideoTracks()[0];
+    const settings = track.getSettings();
+    const width = settings.width ? settings.width : 0;
+    const height = settings.height ? settings.height : 0;
 
-      const ctx: CanvasRenderingContext2D = canvasForDraw.getContext('2d')!;
+    canvasForDraw.width = width;
+    canvasForDraw.height = height;
 
-      // Inversion
-      ctx.scale(-1, 1);
-      ctx.translate(-width, 0);
+    const ctx: CanvasRenderingContext2D = canvasForDraw.getContext('2d')!;
 
-      ctx.drawImage(video, 0, 0, width, height);
-      photo.src = canvasForDraw.toDataURL('image/png');
+    // Inversion
+    ctx.scale(-1, 1);
+    ctx.translate(-width, 0);
 
-      video.pause();
-    }
+    ctx.drawImage(video, 0, 0, width, height);
+
+    video.pause();
   };
 
   // Download Photo

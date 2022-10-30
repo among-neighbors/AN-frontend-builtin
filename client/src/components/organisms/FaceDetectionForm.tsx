@@ -53,6 +53,7 @@ const FaceDetectionForm: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    moteCam.isTakenPhoto && moteCam.videoRef.current?.pause();
     moteCam.isTakenPhoto && handleUI();
   }, [moteCam.isTakenPhoto]);
 
