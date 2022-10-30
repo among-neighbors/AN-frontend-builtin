@@ -13,7 +13,7 @@
  
 <br>
 
-## 2. 환경구축방법
+## 2. 환경 구축 방법
 
 ### 사전 요구사항 (권장 버전)
 git (1.8.3.1)<br/>
@@ -198,9 +198,12 @@ server {
 
 <br>
 
+## 4. 관련 저장소
++ [AN-frontend](https://github.com/among-neighbors/AN-frontend)
++ [AN-frontend-ㅡmanager](https://github.com/among-neighbors/AN-frontend-manager)
++ [AN-backend](https://github.com/among-neighbors/AN-backend)
 
-
-## 4. 오픈소스
+## 5. 오픈소스
 
 [APACHE License](LICENSE)
 [Contribution Guideline](CONTRIBUTING.md)
