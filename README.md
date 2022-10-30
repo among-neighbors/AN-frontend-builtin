@@ -1,4 +1,4 @@
-# AN-frontend-builtin<a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/among-neighbors/AN-frontend/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache2.0-brightgreen" alt="license" data-canonical-src="https://img.shields.io/badge/License-Apache2.0-brightgreen" style="max-width: 100%;"></a> <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/among-neighbors/AN-frontend/releases/tag/1.0.0"><img src="https://img.shields.io/badge/Release-1.0.0-ec8034" alt="license" data-canonical-src="https://img.shields.io/badge/Release-1.0.0-ec8034" style="max-width: 100%;"></a>
+# AN-frontend-builtin <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/among-neighbors/AN-frontend-builtin/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache2.0-brightgreen" alt="license" data-canonical-src="https://img.shields.io/badge/License-Apache2.0-brightgreen" style="max-width: 100%;"></a> <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/among-neighbors/AN-frontend-builtin/releases/tag/1.0.0"><img src="https://img.shields.io/badge/Release-1.0.0-ec8034" alt="license" data-canonical-src="https://img.shields.io/badge/Release-1.0.0-ec8034" style="max-width: 100%;"></a>
 
 ## 1. 소개
 
@@ -13,7 +13,7 @@
  
 <br>
 
-## 2. 온프레미스 환경 구축 방법
+## 2. 환경구축방법
 
 ### 사전 요구사항 (권장 버전)
 git (1.8.3.1)<br/>
@@ -26,14 +26,14 @@ docker-compose (1.26.0)<br/>
 ### git clone을 통한 파일 다운로드
 
 ```shell
-$ git clone https://github.com/among-neighbors/AN-frontend.git
+$ git clone https://github.com/among-neighbors/AN-frontend-builtin.git
 ```
 
 ### 빌드 파일 생성
 
 ```
 $ cd /
-$ cd AN-frontend/client
+$ cd AN-frontend-builtin/client
 $ npm install
 $ npm run build
 ```
@@ -193,16 +193,16 @@ server {
 
 이웃사이는 Nginx 도커 컨테이너를 통해 웹서버 환경을 구축하였습니다.
 
-![이웃사이 웹서버 환경](https://github.com/among-neighbors/AN-frontend/blob/main/imgForReadme/client-runtime.jpeg?raw=true)
+![client-runtime](https://user-images.githubusercontent.com/62577565/198878659-43ce0a08-a7e2-44de-8dab-237ad6f1ecb4.jpeg)
+
 
 <br>
 
 
 
-## 4. Open Source
+## 4. 오픈소스
 
 [APACHE License](LICENSE)
-
 [Contribution Guideline](CONTRIBUTING.md)
 
 
