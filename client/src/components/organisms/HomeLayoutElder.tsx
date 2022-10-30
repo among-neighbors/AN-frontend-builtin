@@ -299,6 +299,7 @@ const HomeElder = ({
               return (
                 <HelpCallBoxElder
                   key={index}
+                  idx={index}
                   targetHouse={targetHouse}
                   myHouseLine={profileData.lineName}
                   pos={pos}
@@ -322,8 +323,7 @@ const HomeElder = ({
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            bottom: '22%',
-            width: '60%',
+            width: '65%',
             height: '60%',
             backgroundColor: '#F2ECE5',
             ...shadowCssForMUI,

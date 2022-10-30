@@ -12,6 +12,7 @@ interface HelpFinBoxProps {
 }
 
 interface HelpCallBoxProps {
+  idx: number;
   myHouseLine: string;
   targetHouse: string;
   pos: Pos;
@@ -36,7 +37,7 @@ const HelpFinBox: React.FC<HelpFinBoxProps> = ({ targetHouse, acceptHouse, myHou
   );
 };
 
-const HelpCallBox: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos }) => {
+const HelpCallBox: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHouseLine, pos }) => {
   const acceptHelpCall = (pos: Pos) => {
     const { lat, lng } = pos;
     client.publish({
@@ -52,8 +53,8 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos
       <Box
         sx={{
           position: 'fixed',
-          right: '40px',
-          bottom: '170px',
+          right: `${50 + 10 * idx}px`,
+          bottom: `${180 + 10 * idx}px`,
           width: '350px',
           height: '150px',
           backgroundColor: '#F2ECE5',
@@ -99,7 +100,7 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos
   );
 };
 
-const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine, pos }) => {
+const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHouseLine, pos }) => {
   const acceptHelpCall = (pos: Pos) => {
     const { lat, lng } = pos;
     client.publish({
@@ -118,31 +119,26 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ targetHouse, myHouseLine
           alignItems: 'center',
           textAlign: 'center',
           position: 'fixed',
-          top: '50%',
-          left: '50%',
+          top: `${52 + idx}%`,
+          left: `${52 + idx}%`,
           transform: 'translate(-50%, -50%)',
           width: '65%',
-          height: '65%',
+          height: '60%',
           backgroundColor: '#F2ECE5',
-          ...shadowCssForMUI,
           padding: '6%',
+          ...shadowCssForMUI,
         }}
       >
-        {/* <div className={'close'}>
-          <button onClick={() => closeHelpCallBox(targetHouse)}>
-            <SquareImg src={'../../../public/img/cancel.png'} length={'20px'} />{' '}
-          </button>
-        </div> */}
         <Typography
           sx={{
             fontSize: '45px',
             fontWeight: 900,
-            margin: '2%',
+            margin: '1%',
             height: '20%',
             alignItems: 'center',
             textAlign: 'center',
-            marginTop: '15%',
-            marginBottom: '8%',
+            marginTop: '10%',
+            marginBottom: '10%',
           }}
         >
           {`${myHouseLine} ${targetHouse}에서 긴급 도움 요청!`}
