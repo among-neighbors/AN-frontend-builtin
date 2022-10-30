@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { client } from '~/components/organisms/HelpCallConnectSocket';
 import { shadowCssForMUI } from '~/others/cssLibrary';
-import { openMap, Pos } from '~/others/store';
+import { closeHelpCallBox, openMap, Pos } from '~/others/store';
 import { HelpFinBoxContainer } from './styled';
 
 interface HelpFinBoxProps {
@@ -56,7 +57,7 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHouseLine
           right: `${50 + 10 * idx}px`,
           bottom: `${180 + 10 * idx}px`,
           width: '350px',
-          height: '150px',
+          height: '160px',
           backgroundColor: '#F2ECE5',
           alignItems: 'center',
           textAlign: 'center',
@@ -65,12 +66,24 @@ const HelpCallBox: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHouseLine
       >
         <Typography
           sx={{
+            lineHeight: '28px',
+            position: 'absolute',
+            right: 0,
+            padding: '5px',
+          }}
+        >
+          <IconButton onClick={() => closeHelpCallBox(targetHouse)}>
+            <CloseIcon />
+          </IconButton>
+        </Typography>
+        <Typography
+          sx={{
             fontSize: '18px',
             lineHeight: '28px',
             height: '55px',
             alignItems: 'center',
-            paddingTop: '45px',
-            paddingBottom: '40px',
+            paddingTop: '55px',
+            paddingBottom: '50px',
             textAlign: 'center',
           }}
         >
@@ -131,13 +144,26 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHous
       >
         <Typography
           sx={{
+            height: '20%',
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            padding: '5px',
+          }}
+        >
+          <IconButton onClick={() => closeHelpCallBox(targetHouse)}>
+            <CloseIcon fontSize='large' />
+          </IconButton>
+        </Typography>
+        <Typography
+          sx={{
             fontSize: '45px',
             fontWeight: 900,
             margin: '1%',
             height: '20%',
             alignItems: 'center',
             textAlign: 'center',
-            marginTop: '10%',
+            marginTop: '8%',
             marginBottom: '10%',
           }}
         >

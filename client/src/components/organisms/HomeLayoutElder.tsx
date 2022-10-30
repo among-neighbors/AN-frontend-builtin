@@ -41,7 +41,7 @@ const StyledImg = styled.img`
   width: 145px;
   height: 145px;
   position: fixed;
-  right: 30px;
+  right: 35px;
   bottom: 20px;
 `;
 const pages: {
@@ -180,7 +180,7 @@ const HomeElder = ({
             width: '100%',
           }}
           padding={2}
-          margin={3}
+          margin={2}
         >
           {pages.map((page) => (
             <Button

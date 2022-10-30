@@ -322,6 +322,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
         anchorEl={anchorElHelpCall}
         open={Boolean(anchorElHelpCall)}
         onClose={handleCloseHelpCallModal}
+        elevation={0}
         sx={{ mt: '10px', '& ul': { padding: 0 } }}
       >
         <Box
@@ -330,7 +331,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
             right: '40px',
             bottom: '170px',
             width: '350px',
-            height: '150px',
+            height: '160px',
             backgroundColor: '#F2ECE5',
             alignItems: 'center',
             textAlign: 'center',
@@ -344,7 +345,7 @@ const Home = ({ isHelpCallSideBarOpen, profileData, helpCallData, mapState }: Ho
               height: '55px',
               alignItems: 'center',
               paddingTop: '45px',
-              paddingBottom: '45px',
+              paddingBottom: '55px',
               textAlign: 'center',
             }}
           >
