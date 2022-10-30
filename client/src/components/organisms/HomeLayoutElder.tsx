@@ -311,6 +311,7 @@ const HomeElder = ({
       <Menu
         anchorEl={anchorElHelpCall}
         open={Boolean(anchorElHelpCall)}
+        elevation={0}
         onClose={handleCloseHelpCallModal}
         sx={{ mt: '10px', '& ul': { padding: 0 } }}
       >
