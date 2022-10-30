@@ -2,7 +2,7 @@ import { Box, Button, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { client } from '~/components/organisms/HelpCallConnectSocket';
 import { shadowCssForMUI } from '~/others/cssLibrary';
-import { closeHelpCallBox, openMap, Pos } from '~/others/store';
+import { closeHelpCallBox, deleteHelpCall, openMap, Pos } from '~/others/store';
 import { useState } from 'react';
 
 interface HelpFinBoxProps {
@@ -48,6 +48,7 @@ const HelpFinBox: React.FC<HelpFinBoxProps> = ({ idx, targetHouse, acceptHouse, 
         >
           <IconButton
             onClick={() => {
+              deleteHelpCall(acceptHouse);
               setIsShow(false);
             }}
           >
@@ -135,6 +136,7 @@ const HelpFinBoxElder: React.FC<HelpFinBoxProps> = ({
         >
           <IconButton
             onClick={() => {
+              deleteHelpCall(acceptHouse);
               setIsShow(false);
             }}
           >
@@ -318,7 +320,6 @@ const HelpCallBoxElder: React.FC<HelpCallBoxProps> = ({ idx, targetHouse, myHous
 
             marginTop: '8%',
             marginBottom: '10%',
-
           }}
         >
           {`${myHouseLine} ${targetHouse}에서 긴급 도움 요청!`}
