@@ -17,7 +17,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledImg2 = styled.img`
-  height: 105px;
+  height: 110px;
 `;
 
 //이미지와 텍스트를 감싸고 있는 요소
