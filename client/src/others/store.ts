@@ -17,6 +17,7 @@ const ACTION_TO_PUT_PROFILE = 'actionToPutProfile';
 
 const ACTION_TO_UPDATE_HELP_CALL = 'actionToUpdateHelpCall';
 const ACTION_TO_CLOSE_HELP_CALL_BOX = 'actionToCloseHelpCallBox';
+const ACTION_TO_DELETE_HELP_CALL = 'actionToDeleteHelpCall';
 
 const ACTION_TO_OPEN_MAP = 'actionToOpenMap';
 const ACTION_TO_CLOSE_MAP = 'actionToCloseMap';
@@ -159,6 +160,10 @@ const helpCallReducer = (
       tempState.requests = state.requests.filter(
         (request) => request.targetHouse !== action.targetHouse,
       );
+      return tempState;
+    case ACTION_TO_DELETE_HELP_CALL:
+      //완료 창을 지우면 acceptHouse도 삭제하게한다.
+      tempState.accepts = state.accepts.filter((accept) => accept.acceptHouse != acceptHouse);
       return tempState;
     default:
       return state;
@@ -304,6 +309,13 @@ const closeHelpCallBox = (targetHouse: string) => {
   });
 };
 
+const deleteHelpCall = (acceptHouse: string) => {
+  store.dispatch({
+    type: ACTION_TO_DELETE_HELP_CALL,
+    acceptHouse,
+  });
+};
+
 const handleTableNav = (isNotice: boolean, idx: number) => {
   store.dispatch({
     type: isNotice ? ACTION_FROM_NOTICE : ACTION_FROM_COMMUNITY,
@@ -397,6 +409,7 @@ export {
   closeHelpCallBox,
   openMap,
   closeMap,
+  deleteHelpCall,
   HelpCallState,
   RootState,
   accessTokenState,
