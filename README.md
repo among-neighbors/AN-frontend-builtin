@@ -15,6 +15,7 @@
 
 ## 2. 사용 방법
 
+![face](https://user-images.githubusercontent.com/62577565/198865075-271430e8-00ed-43bf-99fb-0e1d1036a68f.gif)
 
 ### **git clone**
 ```shell
